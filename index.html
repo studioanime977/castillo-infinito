@@ -12,6 +12,8 @@
       color: #fff;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
+
+    /* Header */
     header {
       background: #29003f;
       padding: 1rem;
@@ -22,6 +24,8 @@
       color: #ff66cc;
       text-shadow: 2px 2px #000;
     }
+
+    /* Navegación */
     nav {
       background: #3c004f;
       display: flex;
@@ -43,6 +47,8 @@
       background: #ff5cad;
       color: #000;
     }
+
+    /* Main */
     main {
       max-width: 1200px;
       margin: auto;
@@ -93,6 +99,8 @@
     .anime-card a:hover {
       background: #ffa8e0;
     }
+
+    /* Footer */
     .footer-folder {
       background: #1b1b1b;
       padding: 2rem 1rem;
@@ -101,6 +109,7 @@
     }
     .footer-folder section {
       margin-bottom: 2rem;
+      text-align: center;
     }
     .footer-folder h3 {
       font-size: 1.2rem;
@@ -119,20 +128,35 @@
     .footer-folder a:hover {
       opacity: 0.8;
     }
-    .footer-folder .apk { background: #00e0ff; color: #000; }
-    .footer-folder .whatsapp { background: #25d366; color: #000; }
-    .footer-folder .youtube { background: #ff0000; color: #fff; }
-    .footer-folder .facebook { background: #1877f2; color: #fff; }
-    .footer-folder .rumble { background: #2ecc71; color: #fff; }
+    .apk { background: #00e0ff; color: #000; }
+    .whatsapp { background: #25d366; color: #000; }
+    .youtube { background: #ff0000; color: #fff; }
+    .facebook { background: #1877f2; color: #fff; }
+    .rumble { background: #2ecc71; color: #fff; }
+
+    .hashtags {
+      margin-top: 1rem;
+    }
     .hashtags span {
       display: inline-block;
       margin: 0.2rem;
-      padding: 0.3rem 0.6rem;
+      padding: 0.4rem 0.8rem;
       font-size: 0.75rem;
       border-radius: 12px;
-      background: #ff66cc33;
+      background: #64003b;
       color: #ffccff;
     }
+
+    footer {
+      text-align: center;
+      border-top: 1px solid #333;
+      padding-top: 1.5rem;
+      font-size: 0.9rem;
+    }
+    footer p {
+      margin: 0.3rem 0;
+    }
+
     @media screen and (max-width: 600px) {
       header h1 { font-size: 1.8rem; }
     }
@@ -156,6 +180,7 @@
     <h2 class="section-title">📁 Animes disponibles para descarga</h2>
     <div class="anime-grid">
 
+      <!-- Tarjetas de anime -->
       <div class="anime-card">
         <img src="https://i.imgur.com/ZvI8s5J.jpeg" alt="Nanatsu no Taizai T5">
         <h3>Nanatsu no Taizai - Temp 5</h3>
@@ -215,29 +240,28 @@
 
   <!-- FOOTER -->
   <div class="footer-folder">
-
-    <section class="text-center">
+    <section>
       <h3>📲 App Anime TV</h3>
       <a href="https://exe.io/ANIMETV" target="_blank" class="apk">📥 Descargar APK</a>
-      <p class="text-sm">Incluye chat público y privado para fans. 🎌</p>
+      <p>Incluye chat público y privado para fans. 🎌</p>
     </section>
 
-    <section class="text-center">
+    <section>
       <h3>📢 Comunidad en WhatsApp</h3>
       <a href="https://chat.whatsapp.com/LgQP3YXx2eS2XRav5ashRm" target="_blank" class="whatsapp">👉 Unirse al grupo</a>
     </section>
 
-    <section class="text-center">
+    <section>
       <h3>🔗 Síguenos</h3>
       <a href="https://www.youtube.com/@STUDIOOTAKU1" target="_blank" class="youtube">YouTube</a>
       <a href="https://www.facebook.com/STUDIOOTAKU1" target="_blank" class="facebook">Facebook</a>
       <a href="https://rumble.com/c/c-6184817?e9s=src_v1_clr" target="_blank" class="rumble">Rumble</a>
     </section>
 
-    <footer class="text-center mt-6">
+    <footer>
       <p>🌟 Gracias por ser parte de <strong>Studio-Otaku</strong></p>
-      <p class="italic">❥✵🌙 Comparte y vive el anime junto a nosotros</p>
-      <div class="hashtags mt-3">
+      <p>❥✵🌙 Comparte y vive el anime junto a nosotros</p>
+      <div class="hashtags">
         <span>#AnimeALaCarta</span>
         <span>#StudioAnime</span>
         <span>#KimetsuNoYaiba</span>
@@ -246,9 +270,8 @@
         <span>#AnimeTV</span>
         <span>#ActualizaciónApp</span>
       </div>
-      <p class="mt-4 text-xs text-gray-400">&copy; 2025 StudioOtaku. Todos los derechos reservados.</p>
+      <p style="margin-top: 1rem; font-size: 0.8rem; color: #ccc;">&copy; 2025 StudioOtaku. Todos los derechos reservados.</p>
     </footer>
-
   </div>
 
 </body>
