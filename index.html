@@ -1,56 +1,58 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>StudioOtaku - Descarga tus animes favoritos</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { overflow-x: hidden; }
     body {
-      background-color: #121212;
+      background: linear-gradient(180deg, #1c002b 0%, #0a0a0a 100%);
       color: #fff;
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     header {
-      background: #1f1f1f;
-      text-align: center;
+      background: #29003f;
       padding: 1rem;
+      text-align: center;
     }
     header h1 {
-      font-size: 2.2rem;
-      color: #ff5cad;
+      font-size: 2.5rem;
+      color: #ff66cc;
+      text-shadow: 2px 2px #000;
     }
     nav {
-      background: #2a2a2a;
+      background: #3c004f;
       display: flex;
       justify-content: center;
-      gap: 1rem;
       flex-wrap: wrap;
+      gap: 1rem;
       padding: 0.8rem;
     }
     nav a {
       color: #fff;
       text-decoration: none;
       font-weight: bold;
-      transition: color 0.3s;
+      padding: 0.4rem 0.8rem;
+      background: #600088;
+      border-radius: 10px;
+      transition: all 0.3s;
     }
     nav a:hover {
-      color: #ff5cad;
+      background: #ff5cad;
+      color: #000;
     }
     main {
-      flex: 1;
-      padding: 2rem 1rem;
       max-width: 1200px;
-      margin: 0 auto;
+      margin: auto;
+      padding: 2rem 1rem;
     }
     .section-title {
-      font-size: 1.8rem;
-      margin: 1.5rem 0;
       text-align: center;
-      color: #00eaff;
+      font-size: 2rem;
+      color: #00f0ff;
+      margin: 2rem 0 1rem;
     }
     .anime-grid {
       display: grid;
@@ -58,66 +60,81 @@
       gap: 1.5rem;
     }
     .anime-card {
-      background: #1e1e1e;
-      border-radius: 10px;
-      overflow: hidden;
+      background: #1c0030;
+      border: 2px solid #ff5cad55;
+      border-radius: 12px;
       padding: 1rem;
       text-align: center;
+      box-shadow: 0 0 15px #ff00cc55;
       transition: transform 0.3s, box-shadow 0.3s;
     }
     .anime-card:hover {
-      transform: scale(1.03);
-      box-shadow: 0 0 10px #ff5cad66;
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #ff5cad;
     }
     .anime-card img {
       width: 100%;
-      height: auto;
-      border-radius: 8px;
+      border-radius: 10px;
       margin-bottom: 1rem;
     }
     .anime-card h3 {
       margin-bottom: 0.5rem;
-      font-size: 1.1rem;
+      color: #ffddff;
     }
     .anime-card a {
-      display: inline-block;
-      margin-top: 0.5rem;
-      padding: 0.5rem 1rem;
       background: #ff5cad;
       color: #000;
-      border-radius: 5px;
-      text-decoration: none;
       font-weight: bold;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      text-decoration: none;
       transition: background 0.3s;
     }
     .anime-card a:hover {
-      background: #ff92df;
+      background: #ffa8e0;
     }
-    .download-guide {
-      margin: 2rem auto;
-      max-width: 800px;
-      text-align: center;
-      border: 3px solid #00eaff;
-      border-radius: 10px;
-      padding: 1rem;
+    .footer-folder {
       background: #1b1b1b;
+      padding: 2rem 1rem;
+      border-top: 4px solid #ff5cad;
+      color: #fff;
     }
-    .download-guide h2 {
-      color: #00eaff;
-      margin-bottom: 1rem;
-      font-size: 1.4rem;
+    .footer-folder section {
+      margin-bottom: 2rem;
     }
-    .download-guide img {
-      max-width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 0 15px #000;
+    .footer-folder h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: #00f0ff;
     }
-    footer {
-      background: #1f1f1f;
-      color: #aaa;
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
+    .footer-folder a {
+      display: inline-block;
+      margin: 0.3rem;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: bold;
+      transition: 0.3s;
+      text-decoration: none;
+    }
+    .footer-folder a:hover {
+      opacity: 0.8;
+    }
+    .footer-folder .apk { background: #00e0ff; color: #000; }
+    .footer-folder .whatsapp { background: #25d366; color: #000; }
+    .footer-folder .youtube { background: #ff0000; color: #fff; }
+    .footer-folder .facebook { background: #1877f2; color: #fff; }
+    .footer-folder .rumble { background: #2ecc71; color: #fff; }
+    .hashtags span {
+      display: inline-block;
+      margin: 0.2rem;
+      padding: 0.3rem 0.6rem;
+      font-size: 0.75rem;
+      border-radius: 12px;
+      background: #ff66cc33;
+      color: #ffccff;
+    }
+    @media screen and (max-width: 600px) {
+      header h1 { font-size: 1.8rem; }
     }
   </style>
 </head>
@@ -128,7 +145,7 @@
   </header>
 
   <nav>
-    <a href="#" onclick="location.reload()">Inicio</a>
+    <a href="#">Inicio</a>
     <a href="#">Géneros</a>
     <a href="#">Estrenos</a>
     <a href="#">Top Anime</a>
@@ -136,37 +153,7 @@
   </nav>
 
   <main>
-
-    <section class="download-guide">
-      <h2>📺 Guía rápida para descargar</h2>
-      <!-- Contenedor del video con proporción 16:9 -->
-  <div class="relative w-full overflow-hidden rounded-xl aspect-video mb-3">
-    <div id="rumble_v6uh248" class="absolute inset-0 w-full h-full"></div>
-  </div>
-  <!-- Script para cargar el video correctamente -->
-  <script>
-    !function(r,u,m,b,l,e){
-      r._Rumble=b;
-      r[b]||(r[b]=function(){
-        (r[b]._=r[b]._||[]).push(arguments);
-        if(r[b]._.length==1){
-          l=u.createElement(m),e=u.getElementsByTagName(m)[0];
-          l.async=1;
-          l.src="https://rumble.com/embedJS/u3hv8rz"+(arguments[1].video?'.'+arguments[1].video:'')+
-            "/?url="+encodeURIComponent(location.href)+
-            "&args="+encodeURIComponent(JSON.stringify([].slice.apply(arguments)));
-          e.parentNode.insertBefore(l,e);
-        }
-      });
-    }(window, document, "script", "Rumble");
-
-    Rumble("play", { video: "v6uh248", div: "rumble_v6uh248" });
-  </script>
-</section>
-    </section>
-
     <h2 class="section-title">📁 Animes disponibles para descarga</h2>
-
     <div class="anime-grid">
 
       <div class="anime-card">
@@ -226,9 +213,43 @@
     </div>
   </main>
 
-  <footer>
-    &copy; 2025 StudioOtaku. Todos los derechos reservados.
-  </footer>
+  <!-- FOOTER -->
+  <div class="footer-folder">
+
+    <section class="text-center">
+      <h3>📲 App Anime TV</h3>
+      <a href="https://exe.io/ANIMETV" target="_blank" class="apk">📥 Descargar APK</a>
+      <p class="text-sm">Incluye chat público y privado para fans. 🎌</p>
+    </section>
+
+    <section class="text-center">
+      <h3>📢 Comunidad en WhatsApp</h3>
+      <a href="https://chat.whatsapp.com/LgQP3YXx2eS2XRav5ashRm" target="_blank" class="whatsapp">👉 Unirse al grupo</a>
+    </section>
+
+    <section class="text-center">
+      <h3>🔗 Síguenos</h3>
+      <a href="https://www.youtube.com/@STUDIOOTAKU1" target="_blank" class="youtube">YouTube</a>
+      <a href="https://www.facebook.com/STUDIOOTAKU1" target="_blank" class="facebook">Facebook</a>
+      <a href="https://rumble.com/c/c-6184817?e9s=src_v1_clr" target="_blank" class="rumble">Rumble</a>
+    </section>
+
+    <footer class="text-center mt-6">
+      <p>🌟 Gracias por ser parte de <strong>Studio-Otaku</strong></p>
+      <p class="italic">❥✵🌙 Comparte y vive el anime junto a nosotros</p>
+      <div class="hashtags mt-3">
+        <span>#AnimeALaCarta</span>
+        <span>#StudioAnime</span>
+        <span>#KimetsuNoYaiba</span>
+        <span>#CastilloInfinito</span>
+        <span>#SubEspañol</span>
+        <span>#AnimeTV</span>
+        <span>#ActualizaciónApp</span>
+      </div>
+      <p class="mt-4 text-xs text-gray-400">&copy; 2025 StudioOtaku. Todos los derechos reservados.</p>
+    </footer>
+
+  </div>
 
 </body>
 </html>
