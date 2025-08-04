@@ -1,145 +1,210 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="google-site-verification" content="tu-código-aquí" />
-  <title>Castillo Infinito – Kimetsu no Yaiba</title>
-  <link rel="icon" type="image/x-icon" href="demon-slayer.ico" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudioOtaku - Descarga tus animes favoritos</title>
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-      background-size: 400% 400%;
-      animation: neonBG 20s ease infinite;
+      background-color: #121212;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
-    @keyframes neonBG {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
+    header {
+      background: #1f1f1f;
+      text-align: center;
+      padding: 1rem;
+    }
+    header h1 {
+      font-size: 2.2rem;
+      color: #ff5cad;
+    }
+    nav {
+      background: #2a2a2a;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding: 0.8rem;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #ff5cad;
+    }
+    main {
+      flex: 1;
+      padding: 2rem 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-title {
+      font-size: 1.8rem;
+      margin: 1.5rem 0;
+      text-align: center;
+      color: #00eaff;
+    }
+    .anime-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+    .anime-card {
+      background: #1e1e1e;
+      border-radius: 10px;
+      overflow: hidden;
+      padding: 1rem;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .anime-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 10px #ff5cad66;
+    }
+    .anime-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    .anime-card h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+    .anime-card a {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: #ff5cad;
+      color: #000;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .anime-card a:hover {
+      background: #ff92df;
+    }
+    .download-guide {
+      margin: 2rem auto;
+      max-width: 800px;
+      text-align: center;
+      border: 3px solid #00eaff;
+      border-radius: 10px;
+      padding: 1rem;
+      background: #1b1b1b;
+    }
+    .download-guide h2 {
+      color: #00eaff;
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+    }
+    .download-guide img {
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #000;
+    }
+    footer {
+      background: #1f1f1f;
+      color: #aaa;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
     }
   </style>
 </head>
+<body>
 
-<body class="min-h-screen text-white flex flex-col items-center">
+  <header>
+    <h1>StudioOtaku</h1>
+  </header>
 
-  <main class="w-full max-w-3xl mt-10 mb-10 p-6 sm:p-10 bg-black/60 backdrop-blur-md rounded-2xl shadow-2xl space-y-6">
+  <nav>
+    <a href="#" onclick="location.reload()">Inicio</a>
+    <a href="#">Géneros</a>
+    <a href="#">Estrenos</a>
+    <a href="#">Top Anime</a>
+    <a href="#">Contacto</a>
+  </nav>
 
-    <section class="text-center bg-gradient-to-br from-cyan-800 to-blue-900 p-6 rounded-xl border border-cyan-400 shadow-lg">
-  <h2 class="text-xl font-bold text-cyan-100 mb-4">🎥 Guía rápida para descargar</h2>
+  <main>
 
-  <!-- Contenedor del video con proporción 16:9 -->
-  <div class="relative w-full overflow-hidden rounded-xl aspect-video mb-3">
-    <div id="rumble_v6uh248" class="absolute inset-0 w-full h-full"></div>
-  </div>
-  <!-- Script para cargar el video correctamente -->
-  <script>
-    !function(r,u,m,b,l,e){
-      r._Rumble=b;
-      r[b]||(r[b]=function(){
-        (r[b]._=r[b]._||[]).push(arguments);
-        if(r[b]._.length==1){
-          l=u.createElement(m),e=u.getElementsByTagName(m)[0];
-          l.async=1;
-          l.src="https://rumble.com/embedJS/u3hv8rz"+(arguments[1].video?'.'+arguments[1].video:'')+
-            "/?url="+encodeURIComponent(location.href)+
-            "&args="+encodeURIComponent(JSON.stringify([].slice.apply(arguments)));
-          e.parentNode.insertBefore(l,e);
-        }
-      });
-    }(window, document, "script", "Rumble");
-
-    Rumble("play", { video: "v6uh248", div: "rumble_v6uh248" });
-  </script>
-</section>
-
-
-    <!-- 🏯 INFORMACIÓN DE LANZAMIENTO -->
-    <header class="text-center">
-      <h1 class="text-4xl sm:text-5xl font-extrabold text-pink-400 mb-2">📢 Estreno: Castillo Infinito</h1>
-      <h2 class="text-2xl font-semibold text-yellow-300">🎌 Anime a la Carta | Studio-Otaku</h2>
-      <p class="text-sm text-gray-300 mt-2">🗓 10 de julio de 2025</p>
-    </header>
-
-    <!-- 🔥 Versión estándar -->
-    <section class="text-center bg-pink-700/70 p-4 rounded-xl">
-      <p class="text-xl font-bold mb-1">🔥 ¡Ya disponible!</p>
-      <p class="text-base">🏯 <strong>Castillo Infinito – Kimetsu no Yaiba (480p Subtitulada)</strong></p>
-      <a href="https://exe.io/SUBTCASTILLO" target="_blank"
-         class="mt-3 inline-block bg-gradient-to-r from-pink-500 to-yellow-400 text-black font-bold py-2 px-6 rounded-full hover:scale-105 transition">
-         👉 Ver ahora
-      </a>
+    <section class="download-guide">
+      <h2>📺 Guía rápida para descargar</h2>
+      <img src="ddaab4f6-bbaf-4c6f-bda9-85d1ef1a8ee7.png" alt="Guía descarga">
     </section>
 
-    <!-- 🌟 FULL HD SUB -->
-    <section class="bg-green-900/60 border border-green-400 rounded-xl p-5 text-center">
-      <h3 class="text-xl font-bold text-green-300 mb-1">🌟 Full HD Subtitulada (1080p)</h3>
-      <p>Subtítulos en español</p>
-      <a href="https://exe.io/SUBTCastillofullhd" target="_blank"
-         class="mt-2 inline-block bg-green-400 text-black font-semibold py-2 px-6 rounded-full hover:bg-green-300 transition">
-         🎬 Ver Full HD
-      </a>
-    </section>
+    <h2 class="section-title">📁 Animes disponibles para descarga</h2>
 
-    <!-- ✨ HD Japonés sin subtítulo -->
-    <section class="bg-yellow-900/60 border border-yellow-400 rounded-xl p-5 text-center">
-      <h3 class="text-xl font-bold text-yellow-300 mb-1">✨ HD Japonés (sin subtítulo)</h3>
-      <p>Idioma original japonés</p>
-      <div class="flex flex-wrap gap-3 justify-center mt-3">
-        <a href="https://exe.io/DRIVE" target="_blank" class="bg-yellow-400 text-black py-2 px-6 rounded-full hover:bg-yellow-300 transition">DRIVE</a>
-        <a href="https://exe.io/CASTILLO" target="_blank" class="bg-orange-400 text-black py-2 px-6 rounded-full hover:bg-orange-300 transition">MEDIAFIRE</a>
+    <div class="anime-grid">
+
+      <div class="anime-card">
+        <img src="https://i.imgur.com/ZvI8s5J.jpeg" alt="Nanatsu no Taizai T5">
+        <h3>Nanatsu no Taizai - Temp 5</h3>
+        <a href="https://exe.io/NanatsunotaizaiTEM5" target="_blank">Descargar</a>
       </div>
-    </section>
 
-    <!-- 📲 APP -->
-    <section class="text-center bg-cyan-800/60 border border-cyan-400 rounded-xl p-4">
-      <h3 class="text-lg font-bold text-cyan-300">📲 App Anime TV</h3>
-      <a href="https://exe.io/ANIMETV" target="_blank"
-         class="bg-cyan-400 text-black font-semibold py-2 px-6 rounded-full hover:bg-cyan-300 transition mb-2 inline-block">
-         📥 Descargar APK
-      </a>
-      <p class="text-sm text-gray-200">Incluye chat público y privado para fans. 🎌</p>
-    </section>
-
-    <!-- WHATSAPP Y REDES -->
-    <section class="text-center space-y-4">
-      <div class="bg-green-700/70 p-4 rounded-xl">
-        <h3 class="font-bold text-lg">📢 Comunidad en WhatsApp</h3>
-        <a href="https://chat.whatsapp.com/LgQP3YXx2eS2XRav5ashRm" target="_blank"
-           class="bg-green-400 text-black font-semibold py-2 px-6 rounded-full hover:bg-green-300 transition inline-block mt-2">
-           👉 Unirse al grupo
-        </a>
+      <div class="anime-card">
+        <img src="https://i.imgur.com/mLx7KKn.jpeg" alt="Nanatsu no Taizai T4">
+        <h3>Nanatsu no Taizai - Temp 4</h3>
+        <a href="https://exe.io/NanatsunotaizaiTEM4" target="_blank">Descargar</a>
       </div>
-      <div>
-        <h4 class="text-sm font-bold">🔗 Síguenos</h4>
-        <div class="flex flex-wrap justify-center gap-2 mt-2">
-          <a href="https://www.youtube.com/@STUDIOOTAKU1" target="_blank" class="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-400 transition">YouTube</a>
-          <a href="https://www.facebook.com/STUDIOOTAKU1" target="_blank" class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-500 transition">Facebook</a>
-          <a href="https://rumble.com/c/c-6184817?e9s=src_v1_clr" target="_blank" class="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-500 transition">Rumble</a>
-        </div>
-      </div>
-    </section>
 
-    <!-- HASHTAGS -->
-    <footer class="text-center mt-10 text-sm text-pink-200">
-      <p>🌟 Gracias por ser parte de <strong>Studio-Otaku</strong></p>
-      <p class="italic text-pink-100">❥✵🌙 Comparte y vive el anime junto a nosotros</p>
-      <div class="mt-4 flex flex-wrap gap-2 justify-center text-xs">
-        <span class="bg-pink-600/80 px-2 py-1 rounded">#AnimeALaCarta</span>
-        <span class="bg-indigo-600/80 px-2 py-1 rounded">#StudioAnime</span>
-        <span class="bg-yellow-600/80 px-2 py-1 rounded">#KimetsuNoYaiba</span>
-        <span class="bg-purple-600/80 px-2 py-1 rounded">#CastilloInfinito</span>
-        <span class="bg-cyan-600/80 px-2 py-1 rounded">#SubEspañol</span>
-        <span class="bg-green-600/80 px-2 py-1 rounded">#AnimeTV</span>
-        <span class="bg-red-600/80 px-2 py-1 rounded">#ActualizaciónApp</span>
+      <div class="anime-card">
+        <img src="https://i.imgur.com/ulJOWQs.jpeg" alt="Nanatsu no Taizai T3">
+        <h3>Nanatsu no Taizai - Temp 3</h3>
+        <a href="https://exe.io/NanatsunotaizaiTEM3" target="_blank">Descargar</a>
       </div>
-    </footer>
 
+      <div class="anime-card">
+        <img src="https://i.imgur.com/bECEDkl.jpeg" alt="Nanatsu no Taizai T2">
+        <h3>Nanatsu no Taizai - Temp 2</h3>
+        <a href="https://exe.io/NanatsunotaizaiTEM2" target="_blank">Descargar</a>
+      </div>
+
+      <div class="anime-card">
+        <img src="https://i.imgur.com/NefXW9M.jpeg" alt="Sakamoto Days">
+        <h3>Sakamoto Days</h3>
+        <a href="https://exe.io/sakamotodays" target="_blank">Descargar</a>
+      </div>
+
+      <div class="anime-card">
+        <img src="https://i.imgur.com/JipzKZq.jpeg" alt="Castillo Infinito (Sub)">
+        <h3>Castillo Infinito (Sub)</h3>
+        <a href="https://exe.io/SUBTCastillofullhd" target="_blank">Descargar</a>
+      </div>
+
+      <div class="anime-card">
+        <img src="https://i.imgur.com/G1ZIQ2F.jpeg" alt="Castillo Sub UP">
+        <h3>Castillo Subtitulado UP</h3>
+        <a href="https://exe.io/SUBTCastilloUP" target="_blank">Descargar</a>
+      </div>
+
+      <div class="anime-card">
+        <img src="https://i.imgur.com/qHRzJWi.jpeg" alt="Castillo Sub normal">
+        <h3>Castillo Subtitulado</h3>
+        <a href="https://exe.io/SUBTCASTILLO" target="_blank">Descargar</a>
+      </div>
+
+      <div class="anime-card">
+        <img src="https://i.imgur.com/cTAcrV3.jpeg" alt="Superman 2025">
+        <h3>Superman 2025</h3>
+        <a href="https://exe.io/superman2025mediafire" target="_blank">Descargar</a>
+      </div>
+
+    </div>
   </main>
 
-  <footer class="text-xs text-gray-300 text-center mb-6">
-    &copy; 2025 Anime a la Carta | Studio-Otaku
+  <footer>
+    &copy; 2025 StudioOtaku. Todos los derechos reservados.
   </footer>
 
 </body>
