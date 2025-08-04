@@ -44,6 +44,34 @@
       background: #ff5cad;
       color: #000;
     }
+    .search-bar {
+      max-width: 600px;
+      margin: 1rem auto;
+      display: flex;
+      gap: 0.5rem;
+    }
+    .search-bar input {
+      flex: 1;
+      padding: 0.6rem;
+      border: 2px solid #ff5cad;
+      border-radius: 10px;
+      background: #1c0030;
+      color: #fff;
+      font-size: 1rem;
+    }
+    .search-bar button {
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 10px;
+      background: #ff5cad;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .search-bar button:hover {
+      background: #ffa8e0;
+    }
     main {
       max-width: 1200px;
       margin: auto;
@@ -166,6 +194,14 @@
     <a href="#">Contacto</a>
   </nav>
 
+  <!-- Barra de búsqueda -->
+  <div class="search-bar">
+    <input type="text" placeholder="Buscar anime..." />
+    <button>
+      <span style="font-size:1.2rem;">🔍</span>
+    </button>
+  </div>
+
   <main>
     <h2 class="section-title">📁 Animes disponibles para descarga</h2>
     <div class="anime-grid">
@@ -242,5 +278,17 @@
     </footer>
   </div>
 
+  <script>
+  const searchInput = document.querySelector('.search-bar input');
+  const animeCards = document.querySelectorAll('.anime-card');
+
+  searchInput.addEventListener('input', function() {
+    const query = this.value.toLowerCase();
+    animeCards.forEach(card => {
+      const title = card.querySelector('h3').textContent.toLowerCase();
+      card.style.display = title.includes(query) ? '' : 'none';
+    });
+  });
+  </script>
 </body>
 </html>
