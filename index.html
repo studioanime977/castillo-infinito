@@ -87,6 +87,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 1.5rem;
+      justify-items: center;
     }
     .anime-card {
       background: #1c0030;
@@ -96,6 +97,8 @@
       text-align: center;
       box-shadow: 0 0 15px #ff00cc55;
       transition: transform 0.3s, box-shadow 0.3s;
+      max-width: 320px;
+      width: 100%;
     }
     .anime-card:hover {
       transform: scale(1.05);
