@@ -181,6 +181,23 @@
     @media screen and (max-width: 600px) {
       header h1 { font-size: 1.8rem; }
     }
+    .floating-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #ff5cad;
+      color: #000;
+      padding: 0.8rem 1.2rem;
+      border-radius: 50px;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: background 0.3s, transform 0.3s;
+    }
+    .floating-btn:hover {
+      background: #ffa8e0;
+      transform: translateY(-2px);
+    }
   </style>
 </head>
 <body>
@@ -359,7 +376,9 @@
 
     <section>
       <h3>📢 Comunidad en WhatsApp</h3>
-      <a href="https://chat.whatsapp.com/LgQP3YXx2eS2XRav5ashRm" target="_blank" class="whatsapp">👉 Unirse al grupo</a>
+      <a href="https://chat.whatsapp.com/LgQP3YXx2eS2XRav5ashRm" target="_blank" class="floating-btn">
+        ¡Pide tu anime!
+      </a>
     </section>
 
     <section>
