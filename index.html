@@ -213,6 +213,8 @@
       animation: none;
     }
     .floating-home {
+      right: 2rem;
+      left: auto;
       bottom: 6.5rem;
       font-size: 2rem;
       width: 48px;
@@ -444,6 +446,13 @@
       const title = card.querySelector('h3').textContent.toLowerCase();
       card.style.display = title.includes(query) ? '' : 'none';
     });
+  });
+
+  document.querySelector('.floating-home').addEventListener('click', function(e) {
+    e.preventDefault();
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 350); // 350ms de retraso
   });
   </script>
 </body>
