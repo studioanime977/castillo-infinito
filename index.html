@@ -189,7 +189,6 @@
       80% { transform: translateY(0); }
     }
 
-    /* Botón petición de anime - IZQUIERDA */
     .floating-request {
       position: fixed;
       left: 2rem;
@@ -206,11 +205,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      animation: bounce 1.5s infinite;
     }
     .floating-request:hover {
       background: #ff5cad;
       color: #fff;
       transform: scale(1.08);
+      animation: none;
     }
 
     /* Botón ir arriba - DERECHA */
