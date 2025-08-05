@@ -213,18 +213,35 @@
       animation: none;
     }
     .floating-home {
+      position: fixed;
       right: 2rem;
-      left: auto;
       bottom: 6.5rem;
       font-size: 2rem;
       width: 48px;
       height: 48px;
       padding: 0;
-      justify-content: center;
+      background: #ff5cad;
+      color: #000;
+      border-radius: 50px;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      text-decoration: none;
+      z-index: 1000;
+      display: flex;
       align-items: center;
+      justify-content: center;
+      transition: background 0.3s, transform 0.3s, opacity 0.3s;
+      opacity: 0;
+      pointer-events: none;
     }
-    .floating-btn:not(.floating-home) {
-      bottom: 2rem;
+    .floating-home.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .floating-home:hover {
+      background: #ffa8e0;
+      color: #fff;
+      transform: scale(1.08);
     }
   </style>
 </head>
@@ -437,9 +454,9 @@
   </a>
 
   <script>
+  // Buscador (ya lo tienes)
   const searchInput = document.querySelector('.search-bar input');
   const animeCards = document.querySelectorAll('.anime-card');
-
   searchInput.addEventListener('input', function() {
     const query = this.value.toLowerCase();
     animeCards.forEach(card => {
@@ -448,11 +465,20 @@
     });
   });
 
-  document.querySelector('.floating-home').addEventListener('click', function(e) {
+  // Flecha scroll arriba con retraso y visibilidad condicional
+  const floatingHome = document.querySelector('.floating-home');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 300) { // Cambia 300 por el valor que prefieras
+      floatingHome.classList.add('visible');
+    } else {
+      floatingHome.classList.remove('visible');
+    }
+  });
+  floatingHome.addEventListener('click', function(e) {
     e.preventDefault();
     setTimeout(() => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 350); // 350ms de retraso
+    }, 500); // 500ms de retraso
   });
   </script>
 </body>
