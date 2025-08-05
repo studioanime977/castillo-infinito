@@ -191,8 +191,7 @@
 
     .floating-btn {
       position: fixed;
-      bottom: 2rem;
-      right: 2rem;
+      left: 2rem;
       background: #ff5cad;
       color: #000;
       padding: 0.8rem 1.2rem;
@@ -203,12 +202,27 @@
       transition: background 0.3s, transform 0.3s;
       animation: bounce 1.5s infinite;
       z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .floating-btn:hover {
       background: #ffa8e0;
       color: #fff;
       transform: scale(1.08);
       animation: none;
+    }
+    .floating-home {
+      bottom: 6.5rem;
+      font-size: 2rem;
+      width: 48px;
+      height: 48px;
+      padding: 0;
+      justify-content: center;
+      align-items: center;
+    }
+    .floating-btn:not(.floating-home) {
+      bottom: 2rem;
     }
   </style>
 </head>
@@ -415,6 +429,10 @@
       <p style="margin-top: 1rem; font-size: 0.8rem; color: #ccc;">&copy; 2025 StudioOtaku. Todos los derechos reservados.</p>
     </footer>
   </div>
+
+  <a href="#" class="floating-btn floating-home" title="Ir al inicio">
+    ⬆️
+  </a>
 
   <script>
   const searchInput = document.querySelector('.search-bar input');
