@@ -181,6 +181,14 @@
     @media screen and (max-width: 600px) {
       header h1 { font-size: 1.8rem; }
     }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      20% { transform: translateY(-10px); }
+      40% { transform: translateY(-20px); }
+      60% { transform: translateY(-10px); }
+      80% { transform: translateY(0); }
+    }
+
     .floating-btn {
       position: fixed;
       bottom: 2rem;
@@ -191,12 +199,16 @@
       border-radius: 50px;
       font-weight: bold;
       text-decoration: none;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       transition: background 0.3s, transform 0.3s;
+      animation: bounce 1.5s infinite;
+      z-index: 1000;
     }
     .floating-btn:hover {
       background: #ffa8e0;
-      transform: translateY(-2px);
+      color: #fff;
+      transform: scale(1.08);
+      animation: none;
     }
   </style>
 </head>
