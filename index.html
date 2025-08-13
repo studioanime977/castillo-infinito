@@ -83,6 +83,17 @@
       color: #00f0ff;
       margin: 2rem 0 1rem;
     }
+    .anime-section-title {
+      text-align: center;
+      font-size: 1.5rem;
+      color: #ff5cad;
+      margin: 3rem 0 1.5rem;
+      padding: 0.5rem 1rem;
+      background: linear-gradient(90deg, #1c0030, #3c004f, #1c0030);
+      border-radius: 15px;
+      border: 2px solid #ff5cad55;
+      text-shadow: 1px 1px #000;
+    }
     .anime-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -246,12 +257,268 @@
       color: #fff;
       transform: scale(1.08);
     }
+
+    /* Estilos para autenticación */
+    .user-actions {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .auth-btn {
+      background: #ff5cad;
+      color: #000;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .auth-btn:hover {
+      background: #ffa8e0;
+    }
+    #username-display {
+      color: #00f0ff;
+      font-weight: bold;
+      margin-right: 1rem;
+    }
+    #vip-status {
+      background: #ffd700;
+      color: #000;
+      padding: 0.25rem 0.5rem;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      margin-right: 1rem;
+    }
+
+    /* Estilos para modales */
+    .modal {
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal.hidden {
+      display: none;
+    }
+    .modal-content {
+      background: #1c0030;
+      border: 2px solid #ff5cad;
+      border-radius: 15px;
+      padding: 2rem;
+      max-width: 500px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+    }
+    .close {
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      font-size: 2rem;
+      cursor: pointer;
+      color: #ff5cad;
+    }
+    .close:hover {
+      color: #ffa8e0;
+    }
+    .modal h2 {
+      color: #ff5cad;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .modal form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .modal input {
+      padding: 0.75rem;
+      border: 2px solid #ff5cad55;
+      border-radius: 8px;
+      background: #2a0040;
+      color: #fff;
+      font-size: 1rem;
+    }
+    .modal input:focus {
+      border-color: #ff5cad;
+      outline: none;
+    }
+    .modal button {
+      background: #ff5cad;
+      color: #000;
+      border: none;
+      padding: 0.75rem;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-size: 1rem;
+    }
+    .modal button:hover {
+      background: #ffa8e0;
+    }
+    .modal p {
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .modal a {
+      color: #ff5cad;
+      text-decoration: none;
+    }
+    .modal a:hover {
+      text-decoration: underline;
+    }
+
+    /* Estilos para VIP */
+    .vip-info h3 {
+      color: #00f0ff;
+      margin-bottom: 1rem;
+    }
+    .vip-info ul {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+    .vip-info li {
+      margin: 0.5rem 0;
+      padding-left: 1rem;
+    }
+    .pricing {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .price-option {
+      background: #2a0040;
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+      border: 1px solid #ff5cad55;
+    }
+    .price-option h4 {
+      color: #ff5cad;
+      margin-bottom: 0.5rem;
+    }
+    .price {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #00f0ff;
+      margin-bottom: 0.25rem;
+    }
+    .period {
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+    .payment-methods h4 {
+      color: #00f0ff;
+      margin-bottom: 1rem;
+    }
+    .payment-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .paypal-btn, .cop-btn {
+      flex: 1;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      transition: background 0.3s;
+    }
+    .paypal-btn {
+      background: #0070ba;
+      color: #fff;
+    }
+    .paypal-btn:hover {
+      background: #005ea6;
+    }
+    .cop-btn {
+      background: #ffd700;
+      color: #000;
+    }
+    .cop-btn:hover {
+      background: #ffed4e;
+    }
+
+    /* Estilos para formulario de pago */
+    .payment-details {
+      background: #2a0040;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    .payment-details p {
+      margin: 0.5rem 0;
+      text-align: left;
+    }
+    .payment-instructions {
+      background: #2a0040;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    .payment-instructions h4 {
+      color: #00f0ff;
+      margin-bottom: 0.5rem;
+    }
+    .payment-instructions ol {
+      margin: 0;
+      padding-left: 1.5rem;
+    }
+    .payment-instructions li {
+      margin: 0.5rem 0;
+      text-align: left;
+    }
+
+    /* Botón VIP en las tarjetas de anime */
+    .vip-lock {
+      background: #ff5cad;
+      color: #000;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+      border: none;
+      width: 100%;
+    }
+    .vip-lock:hover {
+      background: #ffa8e0;
+    }
   </style>
 </head>
 <body>
 
   <header>
     <h1>🧧 StudioOtaku • Anime a la carta 🎬</h1>
+    <div class="user-actions">
+      <div id="guest-actions">
+        <button onclick="showModal('login')" class="auth-btn">🔐 Iniciar Sesión</button>
+        <button onclick="showModal('register')" class="auth-btn">📝 Registrarse</button>
+      </div>
+      <div id="user-actions" style="display: none;">
+        <span id="username-display"></span>
+        <span id="vip-status"></span>
+        <button onclick="logout()" class="auth-btn">🚪 Cerrar Sesión</button>
+      </div>
+    </div>
   </header>
 
   <nav>
@@ -273,8 +540,55 @@
 
   <main>
     <h2 class="section-title">📁 Animes disponibles para descarga</h2>
+    
+    <!-- Kimetsu no Yaiba (Demon Slayer) -->
+    <h3 class="anime-section-title">🗡️ Kimetsu no Yaiba (Demon Slayer)</h3>
     <div class="anime-grid">
+      <div class="anime-card">
+        <img src="img/Kimetsu No Yaiba temporada 1.png" alt="Kimetsu No Yaiba T1">
+        <h3>Kimetsu No Yaiba - Temp 1</h3>
+        <a href="https://exe.io/KimetsuNoYaibaS1" target="_blank">Descargar</a>
+      </div>
+      <div class="anime-card">
+        <img src="img/tem 2 Kimetsu no Yaiba.png" alt="Kimetsu No Yaiba T2">
+        <h3>Kimetsu No Yaiba - Temp 2</h3>
+        <a href="https://exe.io/tem2KimetsunoYaiba" target="_blank">Descargar</a>
+      </div>
+      <div class="anime-card">
+        <img src="img/Kimetsu No Yaiba temporada 3.jpg" alt="Kimetsu No Yaiba T3">
+        <h3>Kimetsu No Yaiba - Temp 3</h3>
+        <a href="https://exe.io/kimetsuS3" target="_blank">Descargar</a>
+      </div>
+      <div class="anime-card">
+        <img src="img/kimetsu tem 4.png" alt="Kimetsu No Yaiba T4">
+        <h3>Kimetsu No Yaiba - Temp 4</h3>
+        <a href="https://exe.io/kimetsuS4" target="_blank">Descargar</a>
+      </div>
+      <div class="anime-card">
+        <img src="img/Kimetsu no Yaiba Tren Infino.png" alt="Kimetsu No Yaiba Tren Infinito">
+        <h3>Kimetsu No Yaiba - Tren Infinito</h3>
+        <a href="https://exe.io/KimetsunoYaibaTrenInfino" target="_blank">Descargar</a>
+      </div>
+      <div class="anime-card">
+        <img src="img/entrenamiento pilar.png" alt="Kimetsu No Yaiba Entrenamiento Pilar">
+        <h3>Kimetsu No Yaiba - Entrenamiento Pilar</h3>
+        <a href="https://exe.io/entrenamientopilar" target="_blank">Descargar</a>
+      </div>
+      <div class="anime-card">
+        <img src="img/castillo infinito.png" alt="Castillo Infinito">
+        <h3>Castillo Infinito (Sub)</h3>
+        <a href="https://exe.io/SUBTCastillofullhd" target="_blank">Descargar</a>
+      </div>
+      <div class="anime-card">
+        <img src="img/Demon Slayer Kimetsu No Yaiba rugido de victoria.png" alt="Kimetsu No Yaiba Rugido de Victoria">
+        <h3>Kimetsu No Yaiba - Rugido de Victoria</h3>
+        <a href="https://exe.io/KimetsuNoYaibarugidodevictoria" target="_blank">Descargar</a>
+      </div>
+    </div>
 
+    <!-- Nanatsu no Taizai (Los 7 Pecados Capitales) -->
+    <h3 class="anime-section-title">⚔️ Nanatsu no Taizai (Los 7 Pecados Capitales)</h3>
+    <div class="anime-grid">
       <div class="anime-card">
         <img src="img/Nanatsu no taizai TEM  1.jpg" alt="Nanatsu no Taizai T1">
         <h3>Nanatsu no Taizai - Temp 1</h3>
@@ -301,15 +615,70 @@
         <a href="https://exe.io/NanatsunotaizaiTEM5" target="_blank">Descargar</a>
       </div>
       <div class="anime-card">
+        <img src="img/Nanatsu no taizai Prisioneros del Cielo.png" alt="Nanatsu no Taizai: Prisioneros del Cielo">
+        <h3>Nanatsu no Taizai: Prisioneros del Cielo</h3>
+        <a href="https://exe.io/NanatsuPrisionerosdelCielo" target="_blank">Descargar</a>
+      </div>
+      <div class="anime-card">
+        <img src="img/Nanatsu no taizai TEM La Maldición de la Luz .jpg" alt="Los 7 Pecados: La Maldición de la Luz">
+        <h3>Los 7 Pecados: La Maldición de la Luz</h3>
+        <a href="https://exe.io/7pecadosLaMaldiciondelaLuz" target="_blank">Descargar</a>
+      </div>
+    </div>
+
+    <!-- Re:Zero -->
+    <h3 class="anime-section-title">🔄 Re:Zero</h3>
+    <div class="anime-grid">
+      <div class="anime-card">
+        <img src="img/rezeroS1.png" alt="Re:Zero S1">
+        <h3>Re:Zero - Temp 1</h3>
+        <a href="https://exe.io/ReZeroS1" target="_blank">Descargar</a>
+      </div>
+      <div class="anime-card">
+        <img src="img/rezeroS2.png" alt="Re:Zero S2">
+        <h3>Re:Zero - Temp 2</h3>
+        <a href="https://exe.io/ReZeroS2" target="_blank">Descargar</a>
+      </div>
+      <div class="anime-card">
+        <img src="img/ReZeroS3.png" alt="Re:Zero S3">
+        <h3>Re:Zero - Temp 3</h3>
+        <a href="https://exe.io/ReZeroS3" target="_blank">Descargar</a>
+      </div>
+    </div>
+
+    <!-- Solo Leveling -->
+    <h3 class="anime-section-title">👑 Solo Leveling</h3>
+    <div class="anime-grid">
+      <div class="anime-card">
+        <img src="img/Solo Leveling season 1.jpg" alt="Solo Leveling T1">
+        <h3>Solo Leveling - Temp 1</h3>
+        <a href="https://exe.io/sololevelingS1" target="_blank">Descargar</a>
+      </div>
+      <div class="anime-card">
+        <img src="img/Solo Leveling season 2.jpg" alt="Solo Leveling T2">
+        <h3>Solo Leveling - Temp 2</h3>
+        <a href="https://exe.io/SoloLevelingS2" target="_blank">Descargar</a>
+      </div>
+    </div>
+
+    <!-- Sakamoto Days -->
+    <h3 class="anime-section-title">💼 Sakamoto Days</h3>
+    <div class="anime-grid">
+      <div class="anime-card">
         <img src="img/sakamoto-days-art.jpg" alt="Sakamoto Days">
-        <h3>Sakamoto Days</h3>
+        <h3>Sakamoto Days - Temp 1</h3>
         <a href="https://exe.io/sakamotodays" target="_blank">Descargar</a>
       </div>
       <div class="anime-card">
-  <img src="img/Sakamoto days season 2 .png" alt="Sakamoto Days T2">
-  <h3>Sakamoto Days - Temp 2</h3>
-  <a href="https://exe.io/sakamotodaysS2" target="_blank">Descargar</a>
-</div>
+        <img src="img/Sakamoto days season 2 .png" alt="Sakamoto Days T2">
+        <h3>Sakamoto Days - Temp 2</h3>
+        <a href="https://exe.io/sakamotodaysS2" target="_blank">Descargar</a>
+      </div>
+    </div>
+
+    <!-- Classroom of the Elite -->
+    <h3 class="anime-section-title">🎓 Classroom of the Elite</h3>
+    <div class="anime-grid">
       <div class="anime-card">
         <img src="img/classroom of the elite  season 1.png" alt="Classroom of the Elite T1">
         <h3>Classroom of the Elite - Temp 1</h3>
@@ -320,6 +689,51 @@
         <h3>Classroom of the Elite - Temp 2</h3>
         <a href="https://exe.io/classroomoftheelites2" target="_blank">Descargar</a>
       </div>
+    </div>
+
+    <!-- Mashle -->
+    <h3 class="anime-section-title">💪 Mashle</h3>
+    <div class="anime-grid">
+      <div class="anime-card">
+        <img src="img/Mashle  temporada 1.png" alt="Mashle T1">
+        <h3>Mashle - Temp 1</h3>
+        <a href="https://exe.io/Mashletemporada1" target="_blank">Descargar</a>
+      </div>
+      <div class="anime-card">
+        <img src="img/mashle temporada 2.jpg" alt="Mashle T2">
+        <h3>Mashle - Temp 2</h3>
+        <a href="https://exe.io/Mashletem2" target="_blank">Descargar</a>
+      </div>
+    </div>
+
+    <!-- Boku no Hero Academia -->
+    <h3 class="anime-section-title">🦸‍♂️ Boku no Hero Academia</h3>
+    <div class="anime-grid">
+      <div class="anime-card">
+        <img src="img/BokunoHeroAcademia S1.png" alt="Boku no Hero Academia T1">
+        <h3>Boku no Hero Academia - Temp 1</h3>
+        <a href="https://exe.io/BokunoHeroAcademiaS1" target="_blank">Descargar</a>
+      </div>
+    </div>
+
+    <!-- Horimiya -->
+    <h3 class="anime-section-title">💕 Horimiya</h3>
+    <div class="anime-grid">
+      <div class="anime-card">
+        <img src="img/horimiya-the-missing-pieces-key-visual-tall.png" alt="Horimiya T1">
+        <h3>Horimiya - Temp 1</h3>
+        <a href="https://exe.io/HorimiyaS1" target="_blank">Descargar</a>
+      </div>
+      <div class="anime-card">
+        <img src="img/HorimiyaS2.jpg" alt="Horimiya T2">
+        <h3>Horimiya - Temp 2</h3>
+        <a href="https://exe.io/HorimiyaS2" target="_blank">Descargar</a>
+      </div>
+    </div>
+
+    <!-- Animes de una sola temporada -->
+    <h3 class="anime-section-title">🎬 Animes de una sola temporada</h3>
+    <div class="anime-grid">
       <div class="anime-card">
         <img src="img/DRAGON BALL HEROES.png" alt="Dragon Ball Heroes">
         <h3>Dragon Ball Heroes</h3>
@@ -336,54 +750,9 @@
         <a href="https://exe.io/SwordArtOnlineProgressiveMovie" target="_blank">Descargar</a>
       </div>
       <div class="anime-card">
-        <img src="img/Demon Slayer Kimetsu No Yaiba rugido de victoria.png" alt="Kimetsu No Yaiba Rugido de Victoria">
-        <h3>Kimetsu No Yaiba - Rugido de Victoria</h3>
-        <a href="https://exe.io/KimetsuNoYaibarugidodevictoria" target="_blank">Descargar</a>
-      </div>
-      <div class="anime-card">
         <img src="img/Kono oto tomaré Season 1.png" alt="Kono Oto Tomare S1">
         <h3>Kono Oto Tomare - Temp 1</h3>
         <a href="https://exe.io/KonoototomareS1" target="_blank">Descargar</a>
-      </div>
-      <div class="anime-card">
-        <img src="img/rezeroS1.png" alt="Re:Zero S1">
-        <h3>Re:Zero - Temp 1</h3>
-        <a href="https://exe.io/ReZeroS1" target="_blank">Descargar</a>
-      </div>
-      <div class="anime-card">
-        <img src="img/rezeroS2.png" alt="Re:Zero S2">
-        <h3>Re:Zero - Temp 2</h3>
-        <a href="https://exe.io/ReZeroS2" target="_blank">Descargar</a>
-      </div>
-      <div class="anime-card">
-        <img src="img/ReZeroS3.png" alt="Re:Zero S3">
-        <h3>Re:Zero - Temp 3</h3>
-        <a href="https://exe.io/ReZeroS3" target="_blank">Descargar</a>
-      </div>
-      <div class="anime-card">
-        <img src="img/Kimetsu No Yaiba temporada 1.png" alt="Kimetsu No Yaiba T1">
-        <h3>Kimetsu No Yaiba - Temp 1</h3>
-        <a href="https://exe.io/KimetsuNoYaibaS1" target="_blank">Descargar</a>
-      </div>
-      <div class="anime-card">
-        <img src="img/kimetsu tem 4.png" alt="Kimetsu No Yaiba T4">
-        <h3>Kimetsu No Yaiba - Temp 4</h3>
-        <a href="https://exe.io/kimetsuS4" target="_blank">Descargar</a>
-      </div>
-      <div class="anime-card">
-        <img src="img/entrenamiento pilar.png" alt="Kimetsu No Yaiba Entrenamiento Pilar">
-        <h3>Kimetsu No Yaiba - Entrenamiento Pilar</h3>
-        <a href="https://exe.io/entrenamientopilar" target="_blank">Descargar</a>
-      </div>
-      <div class="anime-card">
-        <img src="img/Kimetsu no Yaiba Tren Infino.png" alt="Kimetsu No Yaiba Tren Infinito">
-        <h3>Kimetsu No Yaiba - Tren Infinito</h3>
-        <a href="https://exe.io/KimetsunoYaibaTrenInfino" target="_blank">Descargar</a>
-      </div>
-      <div class="anime-card">
-        <img src="img/castillo infinito.png" alt="Castillo Infinito">
-        <h3>Castillo Infinito (Sub)</h3>
-        <a href="https://exe.io/SUBTCastillofullhd" target="_blank">Descargar</a>
       </div>
       <div class="anime-card">
         <img src="img/Papa no Iukoto o Kikinasai.png" alt="Papa no Iukoto o Kikinasai">
@@ -396,62 +765,17 @@
         <a href="https://exe.io/MushokuTenseitem1" target="_blank">Descargar</a>
       </div>
       <div class="anime-card">
-        <img src="img/Mashle  temporada 1.png" alt="Mashle T1">
-        <h3>Mashle - Temp 1</h3>
-        <a href="https://exe.io/Mashletemporada1" target="_blank">Descargar</a>
-      </div>
-      <div class="anime-card">
-        <img src="img/Nanatsu no taizai TEM La Maldición de la Luz .jpg" alt="Los 7 Pecados: La Maldición de la Luz">
-        <h3>Los 7 Pecados: La Maldición de la Luz</h3>
-        <a href="https://exe.io/7pecadosLaMaldiciondelaLuz" target="_blank">Descargar</a>
-      </div>
-      <div class="anime-card">
-        <img src="img/mashle temporada 2.jpg" alt="Mashle T2">
-        <h3>Mashle - Temp 2</h3>
-        <a href="https://exe.io/Mashletem2" target="_blank">Descargar</a>
-      </div>
-      <div class="anime-card">
         <img src="img/DanMachi tem 1.png" alt="DanMachi T1">
         <h3>DanMachi - Temp 1</h3>
         <a href="https://exe.io/DanMachitem1" target="_blank">Descargar</a>
-      </div>
-      <div class="anime-card">
-        <img src="img/tem 2 Kimetsu no Yaiba.png" alt="Kimetsu No Yaiba T2">
-        <h3>Kimetsu No Yaiba - Temp 2</h3>
-        <a href="https://exe.io/tem2KimetsunoYaiba" target="_blank">Descargar</a>
-      </div>
-      <div class="anime-card">
-        <img src="img/Kimetsu No Yaiba temporada 3.jpg" alt="Kimetsu No Yaiba T3">
-        <h3>Kimetsu No Yaiba - Temp 3</h3>
-        <a href="https://exe.io/kimetsuS3" target="_blank">Descargar</a>
       </div>
       <div class="anime-card">
         <img src="img/Urusei Yatsura temporada 1.jpg" alt="Urusei Yatsura T1">
         <h3>Urusei Yatsura - Temp 1</h3>
         <a href="https://exe.io/UruseiYatsuratemporada1" target="_blank">Descargar</a>
       </div>
-      <div class="anime-card">
-        <img src="img/Nanatsu no taizai Prisioneros del Cielo.png" alt="Nanatsu no Taizai: Prisioneros del Cielo">
-        <h3>Nanatsu no Taizai: Prisioneros del Cielo</h3>
-        <a href="https://exe.io/NanatsuPrisionerosdelCielo" target="_blank">Descargar</a>
-      </div>
-      <div class="anime-card">
-        <img src="img/Solo Leveling season 1.jpg" alt="Solo Leveling T1">
-        <h3>Solo Leveling - Temp 1</h3>
-        <a href="https://exe.io/sololevelingS1" target="_blank">Descargar</a>
-      </div>
-      <div class="anime-card">
-        <img src="img/Solo Leveling season 2.jpg" alt="Solo Leveling T2">
-        <h3>Solo Leveling - Temp 2</h3>
-        <a href="https://exe.io/SoloLevelingS2" target="_blank">Descargar</a>
-      </div>
-      <div class="anime-card">
-        <img src="img/horimiya-the-missing-pieces-key-visual-tall.png" alt="Horimiya T1">
-        <h3>Horimiya - Temp 1</h3>
-        <a href="https://exe.io/HorimiyaS1" target="_blank">Descargar</a>
-      </div>
-
     </div>
+
   </main>
 
   <!-- FOOTER -->
@@ -496,6 +820,98 @@
     ⬆️
   </a>
 
+  <!-- Modales de autenticación -->
+  <div id="login-modal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('login')">&times;</span>
+      <h2>🔐 Iniciar Sesión</h2>
+      <form id="login-form">
+        <input type="text" name="username" placeholder="Usuario o Email" required>
+        <input type="password" name="password" placeholder="Contraseña" required>
+        <button type="submit">Iniciar Sesión</button>
+      </form>
+      <p>¿No tienes cuenta? <a href="#" onclick="showModal('register')">Regístrate aquí</a></p>
+    </div>
+  </div>
+
+  <div id="register-modal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('register')">&times;</span>
+      <h2>📝 Registrarse</h2>
+      <form id="register-form">
+        <input type="text" name="username" placeholder="Nombre de usuario" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Contraseña" required>
+        <input type="password" name="confirm_password" placeholder="Confirmar contraseña" required>
+        <button type="submit">Registrarse</button>
+      </form>
+      <p>¿Ya tienes cuenta? <a href="#" onclick="showModal('login')">Inicia sesión aquí</a></p>
+    </div>
+  </div>
+
+  <div id="vip-modal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('vip')">&times;</span>
+      <h2>👑 Suscripción VIP</h2>
+      <div class="vip-info">
+        <h3>Beneficios VIP:</h3>
+        <ul>
+          <li>✅ Acceso completo a todos los animes</li>
+          <li>✅ Descargas ilimitadas</li>
+          <li>✅ Sin publicidad</li>
+          <li>✅ Contenido exclusivo</li>
+        </ul>
+        <div class="pricing">
+          <div class="price-option">
+            <h4>🇨🇴 Colombia</h4>
+            <p class="price">$20.000 COP</p>
+            <p class="period">por mes</p>
+          </div>
+          <div class="price-option">
+            <h4>🇺🇸 Internacional</h4>
+            <p class="price">$5.00 USD</p>
+            <p class="period">por mes</p>
+          </div>
+        </div>
+        <div class="payment-methods">
+          <h4>Métodos de pago:</h4>
+          <div class="payment-buttons">
+            <a href="https://paypal.me/injenieroensistemas" target="_blank" class="paypal-btn">
+              💳 PayPal (USD)
+            </a>
+            <button onclick="showPaymentForm('COP')" class="cop-btn">
+              💰 Peso Colombiano
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="payment-modal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('payment')">&times;</span>
+      <h2>💳 Completar Suscripción</h2>
+      <form id="payment-form">
+        <input type="hidden" name="currency" id="payment-currency">
+        <div class="payment-details">
+          <p><strong>Moneda:</strong> <span id="currency-display"></span></p>
+          <p><strong>Monto:</strong> <span id="amount-display"></span></p>
+        </div>
+        <div class="payment-instructions">
+          <h4>Instrucciones de pago:</h4>
+          <ol>
+            <li>Realiza el pago a: <strong>STUDIOOTAKU6@GMAIL.COM</strong></li>
+            <li>Toma una captura de pantalla del comprobante</li>
+            <li>Sube la imagen aquí</li>
+          </ol>
+        </div>
+        <input type="file" name="payment_proof" accept="image/*" required>
+        <button type="submit">Enviar Comprobante</button>
+      </form>
+    </div>
+  </div>
+
   <script>
   // Buscador (ya lo tienes)
   const searchInput = document.querySelector('.search-bar input');
@@ -523,6 +939,231 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }, 500); // 500ms de retraso
   });
+
+  // Sistema de autenticación y VIP
+  let currentUser = null;
+
+  // Verificar estado de autenticación al cargar la página
+  document.addEventListener('DOMContentLoaded', function() {
+    checkAuthStatus();
+    updateAnimeCards();
+  });
+
+  // Funciones para modales
+  function showModal(modalType) {
+    document.getElementById(modalType + '-modal').classList.remove('hidden');
+  }
+
+  function closeModal(modalType) {
+    document.getElementById(modalType + '-modal').classList.add('hidden');
+  }
+
+  // Cerrar modal al hacer clic fuera
+  window.addEventListener('click', function(event) {
+    if (event.target.classList.contains('modal')) {
+      event.target.classList.add('hidden');
+    }
+  });
+
+  // Formulario de registro
+  document.getElementById('register-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    formData.append('action', 'register');
+
+    if (formData.get('password') !== formData.get('confirm_password')) {
+      alert('Las contraseñas no coinciden');
+      return;
+    }
+
+    fetch('auth.php', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        alert(data.message);
+        closeModal('register');
+        showModal('login');
+        this.reset();
+      } else {
+        alert('Error: ' + data.message);
+      }
+    })
+    .catch(error => {
+      alert('Error de conexión: ' + error.message);
+    });
+  });
+
+  // Formulario de login
+  document.getElementById('login-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    formData.append('action', 'login');
+
+    fetch('auth.php', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        alert(data.message);
+        closeModal('login');
+        this.reset();
+        checkAuthStatus();
+      } else {
+        alert('Error: ' + data.message);
+      }
+    })
+    .catch(error => {
+      alert('Error de conexión: ' + error.message);
+    });
+  });
+
+  // Cerrar sesión
+  function logout() {
+    fetch('auth.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: 'action=logout'
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        currentUser = null;
+        updateUI();
+        updateAnimeCards();
+        alert('Sesión cerrada exitosamente');
+      }
+    })
+    .catch(error => {
+      alert('Error al cerrar sesión: ' + error.message);
+    });
+  }
+
+  // Verificar estado de autenticación
+  function checkAuthStatus() {
+    fetch('auth.php')
+    .then(response => response.json())
+    .then(data => {
+      if (data.authenticated) {
+        currentUser = data.user;
+        updateUI();
+        updateAnimeCards();
+      }
+    })
+    .catch(error => {
+      console.log('Usuario no autenticado');
+    });
+  }
+
+  // Actualizar interfaz de usuario
+  function updateUI() {
+    const guestActions = document.getElementById('guest-actions');
+    const userActions = document.getElementById('user-actions');
+    const usernameDisplay = document.getElementById('username-display');
+    const vipStatus = document.getElementById('vip-status');
+
+    if (currentUser) {
+      guestActions.style.display = 'none';
+      userActions.style.display = 'flex';
+      usernameDisplay.textContent = `👤 ${currentUser.username}`;
+      
+      if (currentUser.is_vip) {
+        vipStatus.textContent = '👑 VIP';
+        vipStatus.style.display = 'inline-block';
+      } else {
+        vipStatus.style.display = 'none';
+      }
+    } else {
+      guestActions.style.display = 'flex';
+      userActions.style.display = 'none';
+    }
+  }
+
+  // Actualizar tarjetas de anime según estado VIP
+  function updateAnimeCards() {
+    const animeCards = document.querySelectorAll('.anime-card');
+    
+    animeCards.forEach(card => {
+      const downloadBtn = card.querySelector('a');
+      if (downloadBtn) {
+        if (!currentUser || !currentUser.is_vip) {
+          // Usuario no VIP - mostrar botón de bloqueo
+          downloadBtn.style.display = 'none';
+          
+          // Crear botón VIP si no existe
+          if (!card.querySelector('.vip-lock')) {
+            const vipBtn = document.createElement('button');
+            vipBtn.className = 'vip-lock';
+            vipBtn.textContent = '🔒 Necesitas VIP para descargar';
+            vipBtn.onclick = () => showModal('vip');
+            card.appendChild(vipBtn);
+          }
+        } else {
+          // Usuario VIP - mostrar botón de descarga
+          downloadBtn.style.display = 'inline-block';
+          const vipBtn = card.querySelector('.vip-lock');
+          if (vipBtn) {
+            vipBtn.remove();
+          }
+        }
+      }
+    });
+  }
+
+  // Mostrar formulario de pago
+  function showPaymentForm(currency) {
+    document.getElementById('payment-currency').value = currency;
+    document.getElementById('currency-display').textContent = currency === 'COP' ? 'Peso Colombiano' : 'Dólar Estadounidense';
+    document.getElementById('amount-display').textContent = currency === 'COP' ? '$20.000' : '$5.00';
+    
+    closeModal('vip');
+    showModal('payment');
+  }
+
+  // Formulario de pago
+  document.getElementById('payment-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    formData.append('action', 'create_subscription');
+    
+    const currency = formData.get('currency');
+    const amount = currency === 'COP' ? 20000 : 5.00;
+
+    formData.append('amount', amount);
+
+    fetch('subscription.php', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        alert('Suscripción creada exitosamente. Recibirás un correo de confirmación.');
+        closeModal('payment');
+        this.reset();
+      } else {
+        alert('Error: ' + data.message);
+      }
+    })
+    .catch(error => {
+      alert('Error de conexión: ' + error.message);
+    });
+  });
+
+  // Mostrar modal VIP
+  function showVIPModal() {
+    if (!currentUser) {
+      showModal('login');
+      return;
+    }
+    showModal('vip');
+  }
   </script>
 </body>
 </html>
