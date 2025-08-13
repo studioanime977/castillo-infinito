@@ -69,11 +69,13 @@ chmod 644 *.js
 ### PayPal (USD)
 - **Enlace:** [https://paypal.me/injenieroensistemas](https://paypal.me/injenieroensistemas)
 - **Precio:** $5.00 USD por mes
+- **Método:** Pagos internacionales
 
-### Peso Colombiano (COP)
-- **Email:** STUDIOOTAKU6@GMAIL.COM
+### Llave Bancaria (COP)
+- **Llave:** STUDIOOTAKU6@GMAIL.COM
 - **Precio:** $20.000 COP por mes
-- **Método:** Transferencia bancaria o Nequi
+- **Métodos:** Nequi, Daviplata, Bancos colombianos
+- **Proceso:** Pago directo + comprobante
 
 ## 🔧 Funcionalidades del Sistema
 

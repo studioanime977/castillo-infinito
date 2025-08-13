@@ -9,40 +9,49 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { overflow-x: hidden; }
     body {
-      background: linear-gradient(180deg, #1c002b 0%, #0a0a0a 100%);
+      background: linear-gradient(180deg, #1a0030 0%, #0d0d0d 100%);
       color: #fff;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     header {
-      background: #29003f;
+      background: linear-gradient(135deg, #2d0040 0%, #1a0026 100%);
       padding: 1rem;
       text-align: center;
+      border-bottom: 3px solid #ff5cad;
+      box-shadow: 0 4px 20px rgba(255, 92, 173, 0.3);
     }
     header h1 {
       font-size: 2.5rem;
-      color: #ff66cc;
-      text-shadow: 2px 2px #000;
+      color: #ff5cad;
+      text-shadow: 2px 2px #000, 0 0 20px rgba(255, 92, 173, 0.5);
+      background: linear-gradient(45deg, #ff5cad, #ff66cc, #ff88dd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     nav {
-      background: #3c004f;
+      background: linear-gradient(90deg, #3a004f 0%, #2d0040 50%, #3a004f 100%);
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
       gap: 1rem;
       padding: 0.8rem;
+      border-bottom: 2px solid #ff5cad55;
     }
     nav a {
       color: #fff;
       text-decoration: none;
       font-weight: bold;
       padding: 0.4rem 0.8rem;
-      background: #600088;
+      background: linear-gradient(45deg, #600088, #7a00aa);
       border-radius: 10px;
       transition: all 0.3s;
     }
     nav a:hover {
-      background: #ff5cad;
+      background: linear-gradient(45deg, #ff5cad, #ff66cc);
       color: #000;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(255, 92, 173, 0.4);
     }
     .search-bar {
       max-width: 600px;
@@ -55,22 +64,31 @@
       padding: 0.6rem;
       border: 2px solid #ff5cad;
       border-radius: 10px;
-      background: #1c0030;
+      background: linear-gradient(145deg, #1a0030 0%, #2a0040 100%);
       color: #fff;
       font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    .search-bar input:focus {
+      border-color: #ff66cc;
+      box-shadow: 0 0 15px rgba(255, 92, 173, 0.3);
+      background: linear-gradient(145deg, #2a0040 0%, #3a0050 100%);
     }
     .search-bar button {
       padding: 0.6rem 1rem;
       border: none;
       border-radius: 10px;
-      background: #ff5cad;
+      background: linear-gradient(45deg, #ff5cad, #ff66cc);
       color: #000;
       font-weight: bold;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(255, 92, 173, 0.3);
     }
     .search-bar button:hover {
-      background: #ffa8e0;
+      background: linear-gradient(45deg, #ff66cc, #ff88dd);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(255, 92, 173, 0.5);
     }
     main {
       max-width: 1200px;
@@ -82,6 +100,11 @@
       font-size: 2rem;
       color: #00f0ff;
       margin: 2rem 0 1rem;
+      text-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+      background: linear-gradient(45deg, #00f0ff, #00d4ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .anime-section-title {
       text-align: center;
@@ -89,10 +112,26 @@
       color: #ff5cad;
       margin: 3rem 0 1.5rem;
       padding: 0.5rem 1rem;
-      background: linear-gradient(90deg, #1c0030, #3c004f, #1c0030);
+      background: linear-gradient(135deg, #1a0030 0%, #2d0040 50%, #1a0030 100%);
       border-radius: 15px;
       border: 2px solid #ff5cad55;
-      text-shadow: 1px 1px #000;
+      text-shadow: 1px 1px #000, 0 0 10px rgba(255, 92, 173, 0.5);
+      box-shadow: 0 4px 20px rgba(255, 92, 173, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    .anime-section-title::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 92, 173, 0.1), transparent);
+      transition: left 1s ease;
+    }
+    .anime-section-title:hover::before {
+      left: 100%;
     }
     .anime-grid {
       display: grid;
@@ -101,19 +140,35 @@
       justify-items: center;
     }
     .anime-card {
-      background: #1c0030;
+      background: linear-gradient(145deg, #1c0030 0%, #2a0040 100%);
       border: 2px solid #ff5cad55;
       border-radius: 12px;
       padding: 1rem;
       text-align: center;
-      box-shadow: 0 0 15px #ff00cc55;
-      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 0 15px rgba(255, 92, 173, 0.3);
+      transition: all 0.3s ease;
       max-width: 320px;
       width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    .anime-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 92, 173, 0.1), transparent);
+      transition: left 0.5s;
+    }
+    .anime-card:hover::before {
+      left: 100%;
     }
     .anime-card:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 25px #ff5cad;
+      box-shadow: 0 0 30px rgba(255, 92, 173, 0.6);
+      border-color: #ff5cad;
     }
     .anime-card img {
       width: 100%;
@@ -267,19 +322,23 @@
       flex-wrap: wrap;
     }
     .auth-btn {
-      background: #ff5cad;
+      background: linear-gradient(45deg, #ff5cad, #ff66cc);
       color: #000;
       border: none;
       padding: 0.5rem 1rem;
       border-radius: 8px;
       font-weight: bold;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: all 0.3s ease;
       text-decoration: none;
       display: inline-block;
+      box-shadow: 0 2px 8px rgba(255, 92, 173, 0.3);
+      border: 1px solid #ff5cad55;
     }
     .auth-btn:hover {
-      background: #ffa8e0;
+      background: linear-gradient(45deg, #ff66cc, #ff88dd);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(255, 92, 173, 0.5);
     }
     #username-display {
       color: #00f0ff;
@@ -294,6 +353,97 @@
       font-size: 0.8rem;
       font-weight: bold;
       margin-right: 1rem;
+    }
+    .google-btn {
+      background: linear-gradient(45deg, #4285f4, #5c9eff);
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 2px 8px rgba(66, 133, 244, 0.4);
+      border: 1px solid #4285f455;
+    }
+    .google-btn:hover {
+      background: linear-gradient(45deg, #3367d6, #4285f4);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(66, 133, 244, 0.6);
+    }
+    .google-icon {
+      width: 18px;
+      height: 18px;
+    }
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: linear-gradient(145deg, rgba(255, 92, 173, 0.1) 0%, rgba(255, 102, 204, 0.15) 100%);
+      padding: 0.5rem 1rem;
+      border-radius: 12px;
+      border: 1px solid #ff5cad55;
+      box-shadow: 0 2px 10px rgba(255, 92, 173, 0.2);
+      backdrop-filter: blur(5px);
+    }
+    .user-picture {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #ff5cad;
+      object-fit: cover;
+      box-shadow: 0 2px 8px rgba(255, 92, 173, 0.4);
+      transition: all 0.3s ease;
+    }
+    .user-picture:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 15px rgba(255, 92, 173, 0.6);
+    }
+    .user-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    .user-info span {
+      font-size: 0.9rem;
+      color: #ffddff;
+    }
+    
+    /* Estilos para Google en modales */
+    .google-login-section {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .modal-google-btn {
+      width: 100%;
+      justify-content: center;
+      padding: 0.8rem 1rem;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    .divider {
+      position: relative;
+      text-align: center;
+      margin: 1.5rem 0;
+    }
+    .divider::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #ff5cad55, transparent);
+    }
+    .divider span {
+      background: linear-gradient(145deg, #1a0030 0%, #2d0040 100%);
+      padding: 0 1rem;
+      color: #ff5cad;
+      font-weight: bold;
+      font-size: 0.9rem;
     }
 
     /* Estilos para modales */
@@ -313,7 +463,7 @@
       display: none;
     }
     .modal-content {
-      background: #1c0030;
+      background: linear-gradient(145deg, #1a0030 0%, #2d0040 100%);
       border: 2px solid #ff5cad;
       border-radius: 15px;
       padding: 2rem;
@@ -322,6 +472,8 @@
       max-height: 90vh;
       overflow-y: auto;
       position: relative;
+      box-shadow: 0 0 40px rgba(255, 92, 173, 0.4);
+      backdrop-filter: blur(10px);
     }
     .close {
       position: absolute;
@@ -348,27 +500,33 @@
       padding: 0.75rem;
       border: 2px solid #ff5cad55;
       border-radius: 8px;
-      background: #2a0040;
+      background: linear-gradient(145deg, #2a0040 0%, #3a0050 100%);
       color: #fff;
       font-size: 1rem;
+      transition: all 0.3s ease;
     }
     .modal input:focus {
       border-color: #ff5cad;
       outline: none;
+      box-shadow: 0 0 15px rgba(255, 92, 173, 0.3);
+      background: linear-gradient(145deg, #3a0050 0%, #4a0060 100%);
     }
     .modal button {
-      background: #ff5cad;
+      background: linear-gradient(45deg, #ff5cad, #ff66cc);
       color: #000;
       border: none;
       padding: 0.75rem;
       border-radius: 8px;
       font-weight: bold;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: all 0.3s ease;
       font-size: 1rem;
+      box-shadow: 0 2px 10px rgba(255, 92, 173, 0.3);
     }
     .modal button:hover {
-      background: #ffa8e0;
+      background: linear-gradient(45deg, #ff66cc, #ff88dd);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(255, 92, 173, 0.5);
     }
     .modal p {
       text-align: center;
@@ -377,9 +535,13 @@
     .modal a {
       color: #ff5cad;
       text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
     }
     .modal a:hover {
-      text-decoration: underline;
+      color: #ff66cc;
+      text-shadow: 0 0 10px rgba(255, 92, 173, 0.5);
+      text-decoration: none;
     }
 
     /* Estilos para VIP */
@@ -402,11 +564,18 @@
       margin-bottom: 1.5rem;
     }
     .price-option {
-      background: #2a0040;
+      background: linear-gradient(145deg, #2a0040 0%, #3a0050 100%);
       padding: 1rem;
       border-radius: 8px;
       text-align: center;
       border: 1px solid #ff5cad55;
+      box-shadow: 0 2px 10px rgba(255, 92, 173, 0.2);
+      transition: all 0.3s ease;
+    }
+    .price-option:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(255, 92, 173, 0.3);
+      border-color: #ff5cad;
     }
     .price-option h4 {
       color: #ff5cad;
@@ -440,33 +609,56 @@
       cursor: pointer;
       text-decoration: none;
       text-align: center;
-      transition: background 0.3s;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
     .paypal-btn {
-      background: #0070ba;
+      background: linear-gradient(45deg, #0070ba, #005ea6);
       color: #fff;
+      border: 1px solid #0070ba55;
     }
     .paypal-btn:hover {
-      background: #005ea6;
+      background: linear-gradient(45deg, #005ea6, #004080);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0, 112, 186, 0.4);
     }
     .cop-btn {
-      background: #ffd700;
+      background: linear-gradient(45deg, #ffd700, #ffed4e);
       color: #000;
+      border: 1px solid #ffd70055;
     }
     .cop-btn:hover {
-      background: #ffed4e;
+      background: linear-gradient(45deg, #ffed4e, #fff200);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
     }
 
     /* Estilos para formulario de pago */
     .payment-details {
+      background: linear-gradient(145deg, #2a0040 0%, #3a0050 100%);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      border: 1px solid #ff5cad55;
+      box-shadow: 0 2px 10px rgba(255, 92, 173, 0.2);
+    }
+    .payment-details p {
+      margin: 0.5rem 0;
+      text-align: left;
+    }
+    .user-info {
       background: #2a0040;
       padding: 1rem;
       border-radius: 8px;
       margin-bottom: 1rem;
     }
-    .payment-details p {
-      margin: 0.5rem 0;
-      text-align: left;
+    .user-info h4 {
+      color: #00f0ff;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .user-info input {
+      margin-bottom: 0.5rem;
     }
     .payment-instructions {
       background: #2a0040;
@@ -485,6 +677,53 @@
     .payment-instructions li {
       margin: 0.5rem 0;
       text-align: left;
+    }
+    .bank-info {
+      background: #1a0020;
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+      border: 2px solid #ff5cad55;
+    }
+    .bank-key {
+      background: #ff5cad;
+      color: #000;
+      padding: 0.25rem 0.5rem;
+      border-radius: 5px;
+      font-weight: bold;
+      font-family: monospace;
+      font-size: 1.1rem;
+    }
+    .payment-note {
+      background: #2a0040;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      border-left: 4px solid #00f0ff;
+    }
+    .payment-details-info {
+      background: #1a0020;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      border: 1px solid #ff5cad55;
+    }
+    .payment-details-info p {
+      margin: 0.5rem 0;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+    .file-upload {
+      background: #2a0040;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .file-info {
+      font-size: 0.8rem;
+      color: #ccc;
+      margin-top: 0.5rem;
     }
 
     /* Botón VIP en las tarjetas de anime */
@@ -520,8 +759,13 @@
         <button onclick="showModal('register')" class="auth-btn">📝 Registrarse</button>
       </div>
       <div id="user-actions" style="display: none;">
-        <span id="username-display"></span>
-        <span id="vip-status"></span>
+        <div class="user-profile">
+          <img id="user-picture" src="" alt="Foto de perfil" class="user-picture">
+          <div class="user-info">
+            <span id="username-display"></span>
+            <span id="vip-status"></span>
+          </div>
+        </div>
         <button onclick="logout()" class="auth-btn">🚪 Cerrar Sesión</button>
       </div>
     </div>
@@ -831,6 +1075,18 @@
     <div class="modal-content">
       <span class="close" onclick="closeModal('login')">&times;</span>
       <h2>🔐 Iniciar Sesión</h2>
+      
+      <!-- Botón de Google -->
+      <div class="google-login-section">
+        <button onclick="googleLogin()" class="google-btn modal-google-btn">
+          <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCA0OCA0OCI+PHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTQzLjYxMSwyMC4wODNIMzQuMzc1djI2LjcyNWMwLDAsMC4wODQsMC4xMjcsMC4yMTIsMC4wODRsMTIuMTk1LTEyLjE5NlYyMC4wODN6Ii8+PHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTI0LjAwMSw0OEwzNC4yOTIsMzcuMjc4TDI0LjAwMSwyNi40NzZ2MjEuNTI0eiIvPjxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0yNC4wMDEsMy4wMDR2MTIuNDY5bDEyLjI5Mi0xMi4yOTJjMC0wLjAwMS0wLjAwMS0wLjAwMSwwLTAuMDAyTDI0LjAwMSwzLjAwNHoiLz48cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNMjQuMDAxLDI2LjQ3NkwxMS43MDksMTQuMTg0Yy0wLjAwMS0wLjAwMS0wLjAwMS0wLjAwMSwwLTAuMDAyTDI0LjAwMSwyNi40NzZ6Ii8+PHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTI0LjAwMSwzLjAwNEwxMS43MDksMTQuMTg0YzAuMDAxLDAuMDAxLDAuMDAxLDAuMDAxLDAsMC4wMDJMMjQuMDAxLDMuMDA0eiIvPjwvc3ZnPg==" alt="Google" class="google-icon">
+          Continuar con Google
+        </button>
+        <div class="divider">
+          <span>o</span>
+        </div>
+      </div>
+      
       <form id="login-form">
         <input type="text" name="username" placeholder="Usuario o Email" required>
         <input type="password" name="password" placeholder="Contraseña" required>
@@ -844,6 +1100,18 @@
     <div class="modal-content">
       <span class="close" onclick="closeModal('register')">&times;</span>
       <h2>📝 Registrarse</h2>
+      
+      <!-- Botón de Google -->
+      <div class="google-login-section">
+        <button onclick="googleLogin()" class="google-btn modal-google-btn">
+          <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCA0OCA0OCI+PHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTQzLjYxMSwyMC4wODNIMzQuMzc1djI2LjcyNWMwLDAsMC4wODQsMC4xMjcsMC4yMTIsMC4wODRsMTIuMTk1LTEyLjE5NlYyMC4wODN6Ii8+PHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTI0LjAwMSw0OEwzNC4yOTIsMzcuMjc4TDI0LjAwMSwyNi40NzZ2MjEuNTI0eiIvPjxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0yNC4wMDEsMy4wMDR2MTIuNDY5bDEyLjI5Mi0xMi4yOTJjMC0wLjAwMS0wLjAwMS0wLjAwMSwwLTAuMDAyTDI0LjAwMSwzLjAwNHoiLz48cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNMjQuMDAxLDI2LjQ3NkwxMS43MDksMTQuMTg0Yy0wLjAwMS0wLjAwMS0wLjAwMS0wLjAwMSwwLTAuMDAyTDI0LjAwMSwyNi40NzZ6Ii8+PHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTI0LjAwMSwzLjAwNEwxMS43MDksMTQuMTg0YzAuMDAxLDAuMDAxLDAuMDAxLDAuMDAxLDAsMC4wMDJMMjQuMDAxLDMuMDA0eiIvPjwvc3ZnPg==" alt="Google" class="google-icon">
+          Continuar con Google
+        </button>
+        <div class="divider">
+          <span>o</span>
+        </span>
+      </div>
+      
       <form id="register-form">
         <input type="text" name="username" placeholder="Nombre de usuario" required>
         <input type="email" name="email" placeholder="Email" required>
@@ -880,14 +1148,18 @@
           </div>
         </div>
         <div class="payment-methods">
-          <h4>Métodos de pago:</h4>
+          <h4>💳 Métodos de pago:</h4>
           <div class="payment-buttons">
             <a href="https://paypal.me/injenieroensistemas" target="_blank" class="paypal-btn">
               💳 PayPal (USD)
             </a>
             <button onclick="showPaymentForm('COP')" class="cop-btn">
-              💰 Peso Colombiano
+              🏦 Llave Bancaria (COP)
             </button>
+          </div>
+          <div class="payment-details-info">
+            <p><strong>PayPal:</strong> Para pagos en dólares desde cualquier país</p>
+            <p><strong>Llave Bancaria:</strong> Para pagos en pesos colombianos (Nequi, Daviplata, Bancos)</p>
           </div>
         </div>
       </div>
@@ -897,23 +1169,44 @@
   <div id="payment-modal" class="modal hidden">
     <div class="modal-content">
       <span class="close" onclick="closeModal('payment')">&times;</span>
-      <h2>💳 Completar Suscripción</h2>
-      <form id="payment-form">
+      <h2>💳 Completar Suscripción VIP</h2>
+      <form id="payment-form" enctype="multipart/form-data">
         <input type="hidden" name="currency" id="payment-currency">
+        <input type="hidden" name="amount" id="payment-amount">
+        
         <div class="payment-details">
           <p><strong>Moneda:</strong> <span id="currency-display"></span></p>
           <p><strong>Monto:</strong> <span id="amount-display"></span></p>
         </div>
-        <div class="payment-instructions">
-          <h4>Instrucciones de pago:</h4>
-          <ol>
-            <li>Realiza el pago a: <strong>STUDIOOTAKU6@GMAIL.COM</strong></li>
-            <li>Toma una captura de pantalla del comprobante</li>
-            <li>Sube la imagen aquí</li>
-          </ol>
+        
+        <div class="user-info">
+          <h4>📝 Información Personal:</h4>
+          <input type="text" name="name" placeholder="Tu nombre completo" required>
+          <input type="email" name="email" placeholder="Tu email" required>
         </div>
-        <input type="file" name="payment_proof" accept="image/*" required>
-        <button type="submit">Enviar Comprobante</button>
+        
+        <div class="payment-instructions">
+          <h4>🏦 Instrucciones de pago con Llave Bancaria:</h4>
+          <div class="bank-info">
+            <p><strong>Llave Bancaria:</strong> <span class="bank-key">STUDIOOTAKU6@GMAIL.COM</span></p>
+            <p><strong>Métodos aceptados:</strong> Nequi, Daviplata, Bancos colombianos</p>
+          </div>
+          <ol>
+            <li>Realiza el pago a la llave bancaria: <strong>STUDIOOTAKU6@GMAIL.COM</strong></li>
+            <li>Toma una captura de pantalla del comprobante de pago</li>
+            <li>Sube la imagen aquí para verificación</li>
+          </ol>
+          <div class="payment-note">
+            <p>💡 <strong>Nota:</strong> Una vez verificado el pago, recibirás acceso VIP inmediatamente.</p>
+          </div>
+        </div>
+        
+        <div class="file-upload">
+          <input type="file" name="payment_proof" accept="image/*,application/pdf" required>
+          <p class="file-info">Formatos permitidos: JPG, PNG, GIF, PDF</p>
+        </div>
+        
+        <button type="submit">🚀 Enviar Comprobante</button>
       </form>
     </div>
   </div>
@@ -1073,11 +1366,22 @@
     const userActions = document.getElementById('user-actions');
     const usernameDisplay = document.getElementById('username-display');
     const vipStatus = document.getElementById('vip-status');
+    const userPicture = document.getElementById('user-picture');
 
     if (currentUser) {
       guestActions.style.display = 'none';
       userActions.style.display = 'flex';
       usernameDisplay.textContent = `👤 ${currentUser.username}`;
+      
+      // Mostrar foto de perfil si existe
+      if (currentUser.google_picture) {
+        userPicture.src = currentUser.google_picture;
+        userPicture.style.display = 'block';
+      } else {
+        // Foto por defecto si no hay foto de Google
+        userPicture.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjZmY1Y2FkIi8+PHN2ZyB4PSI4IiB5PSI4IiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTEyIDEyYzIuMjEgMCA0LTEuNzkgNC00cy0xLjc5LTQtNC00LTQgMS43OS00IDQgMS43OSA0IDQgNHptMCAyYy0yLjY3IDAtOCAxLjM0LTggNHYyaDE2di0yYzAtMi42Ni01LjMzLTQtOC00eiIvPjwvc3ZnPjwvc3ZnPg==';
+        userPicture.style.display = 'block';
+      }
       
       if (currentUser.is_vip) {
         vipStatus.textContent = '👑 VIP';
@@ -1088,6 +1392,7 @@
     } else {
       guestActions.style.display = 'flex';
       userActions.style.display = 'none';
+      userPicture.style.display = 'none';
     }
   }
 
@@ -1122,7 +1427,6 @@
   // Mostrar formulario de pago
   function showPaymentForm(currency) {
     document.getElementById('payment-currency').value = currency;
-    document.getElementById('currency-display').textContent = currency === 'COP' ? 'Peso Colombiano' : 'Dólar Estadounidense';
     document.getElementById('amount-display').textContent = currency === 'COP' ? '$20.000' : '$5.00';
     
     closeModal('vip');
@@ -1133,29 +1437,67 @@
   document.getElementById('payment-form').addEventListener('submit', function(e) {
     e.preventDefault();
     const formData = new FormData(this);
-    formData.append('action', 'create_subscription');
     
+    // Agregar el monto al formulario
     const currency = formData.get('currency');
     const amount = currency === 'COP' ? 20000 : 5.00;
-
-    formData.append('amount', amount);
-
-    fetch('subscription.php', {
+    formData.set('amount', amount);
+    
+    // Mostrar indicador de carga
+    const submitBtn = this.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = '⏳ Enviando...';
+    submitBtn.disabled = true;
+    
+    // Mostrar mensaje de estado
+    const statusDiv = document.createElement('div');
+    statusDiv.style.cssText = 'background: #2a0040; color: #00f0ff; padding: 1rem; border-radius: 8px; margin: 1rem 0; text-align: center;';
+    statusDiv.textContent = '📤 Enviando comprobante de pago...';
+    this.appendChild(statusDiv);
+    
+    fetch('payment_form.php', {
       method: 'POST',
       body: formData
     })
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
     .then(data => {
+      statusDiv.remove();
+      
       if (data.success) {
-        alert('Suscripción creada exitosamente. Recibirás un correo de confirmación.');
+        if (data.mail_sent) {
+          alert('✅ ¡Pago enviado exitosamente! Recibirás un correo de confirmación una vez verificado.');
+        } else {
+          alert('⚠️ Pago recibido. El correo no se pudo enviar, pero tu solicitud está registrada. Te contactaremos pronto.');
+        }
         closeModal('payment');
         this.reset();
       } else {
-        alert('Error: ' + data.message);
+        alert('❌ Error: ' + data.message);
       }
     })
     .catch(error => {
-      alert('Error de conexión: ' + error.message);
+      statusDiv.remove();
+      console.error('Error completo:', error);
+      
+      let errorMessage = 'Error de conexión al enviar el pago.';
+      
+      if (error.message.includes('Failed to fetch')) {
+        errorMessage = '❌ Error de conexión: No se pudo conectar con el servidor.\n\nPosibles causas:\n• El archivo payment_form.php no existe\n• Error en el servidor\n• Problema de red\n\n💡 Solución: Verifica que todos los archivos estén en el servidor y que PHP esté funcionando.';
+      } else if (error.message.includes('HTTP error')) {
+        errorMessage = '❌ Error del servidor: ' + error.message + '\n\n💡 Verifica que el archivo payment_form.php esté funcionando correctamente.';
+      }
+      
+      alert(errorMessage);
+    })
+    .finally(() => {
+      // Restaurar botón
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
     });
   });
 
@@ -1167,6 +1509,102 @@
     }
     showModal('vip');
   }
+
+  // Google OAuth Configuration
+  const GOOGLE_CLIENT_ID = 'TU_CLIENT_ID_REAL.apps.googleusercontent.com'; // Reemplaza con tu CLIENT_ID real
+  const GOOGLE_SCOPES = 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile';
+
+  // Cargar Google API
+  function loadGoogleAPI() {
+    if (typeof gapi === 'undefined') {
+      const script = document.createElement('script');
+      script.src = 'https://apis.google.com/js/api.js';
+      script.onload = initGoogleAPI;
+      document.head.appendChild(script);
+    } else {
+      initGoogleAPI();
+    }
+  }
+
+  // Inicializar Google API
+  function initGoogleAPI() {
+    gapi.load('auth2', function() {
+      gapi.auth2.init({
+        client_id: GOOGLE_CLIENT_ID,
+        scope: GOOGLE_SCOPES
+      }).then(function(auth2) {
+        console.log('Google API inicializada correctamente');
+      }).catch(function(error) {
+        console.error('Error inicializando Google API:', error);
+      });
+    });
+  }
+
+  // Login con Google
+  function googleLogin() {
+    if (GOOGLE_CLIENT_ID === 'PON_AQUI_TU_CLIENT_ID.apps.googleusercontent.com') {
+      alert('⚠️ Configura tu CLIENT_ID de Google primero en el archivo index.html');
+      return;
+    }
+
+    if (typeof gapi === 'undefined') {
+      loadGoogleAPI();
+      setTimeout(googleLogin, 1000);
+      return;
+    }
+
+    gapi.auth2.getAuthInstance().signIn().then(function(googleUser) {
+      const profile = googleUser.getBasicProfile();
+      const idToken = googleUser.getAuthResponse().id_token;
+      
+      // Mostrar indicador de carga
+      const googleBtn = document.querySelector('.google-btn');
+      const originalText = googleBtn.innerHTML;
+      googleBtn.innerHTML = '⏳ Autenticando...';
+      googleBtn.disabled = true;
+
+      // Enviar token al servidor
+      const formData = new FormData();
+      formData.append('action', 'google_login');
+      formData.append('access_token', idToken);
+
+      fetch('google_auth.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          currentUser = data.user;
+          updateUI();
+          updateAnimeCards();
+          // Cerrar todos los modales
+          closeModal('login');
+          closeModal('register');
+          alert('🎉 ' + data.message);
+        } else {
+          alert('❌ Error: ' + data.message);
+        }
+      })
+      .catch(error => {
+        console.error('Error en login de Google:', error);
+        alert('❌ Error de conexión al autenticarse con Google');
+      })
+      .finally(() => {
+        // Restaurar botón
+        googleBtn.innerHTML = originalText;
+        googleBtn.disabled = false;
+      });
+    }).catch(function(error) {
+      console.error('Error en autenticación de Google:', error);
+      alert('❌ Error al autenticarse con Google: ' + error.message);
+    });
+  }
+
+  // Cargar Google API al cargar la página
+  document.addEventListener('DOMContentLoaded', function() {
+    loadGoogleAPI();
+  });
   </script>
 </body>
 </html>
