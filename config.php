@@ -1,9 +1,9 @@
 <?php
-// Configuración de la base de datos
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'studiootaku_db');
+// Configuración de la base de datos AlwaysData
+define('DB_HOST', 'mysql-studiootaku.alwaysdata.net');
+define('DB_USER', '426590'); // Usuario de AlwaysData
+define('DB_PASS', 'Cs181029**'); // Contraseña de AlwaysData
+define('DB_NAME', 'studiootaku_01');
 
 // Configuración de PayPal
 define('PAYPAL_CLIENT_ID', 'TU_CLIENT_ID_AQUI');
