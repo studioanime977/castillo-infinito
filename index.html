@@ -4,14 +4,49 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>StudioOtaku - Descarga tus animes favoritos</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="description" content="Descarga tus animes favoritos gratis. StudioOtaku - La mejor plataforma de anime en español." />
+  <meta name="keywords" content="anime, descargar anime, anime gratis, anime español, StudioOtaku" />
+  <meta name="language" content="Spanish" />
   <link rel="icon" type="image/x-icon" href="img/demon-slayer.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { overflow-x: hidden; }
     body {
       background: linear-gradient(180deg, #1a0030 0%, #0d0d0d 100%);
       color: #fff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, 'Noto Color Emoji', 'Apple Color Emoji', 'Segoe UI Emoji', 'Twemoji Mozilla', 'EmojiOne Color', 'Android Emoji';
+    }
+    
+    /* Asegurar que los emojis se muestren correctamente */
+    .emoji {
+      font-family: 'Noto Color Emoji', 'Apple Color Emoji', 'Segoe UI Emoji', 'Twemoji Mozilla', 'EmojiOne Color', 'Android Emoji', sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      line-height: 1;
+      text-rendering: optimizeLegibility;
+      font-feature-settings: "liga" off;
+      -webkit-font-feature-settings: "liga" off;
+      -moz-font-feature-settings: "liga" off;
+      font-variant-emoji: emoji;
+      display: inline-block;
+    }
+    
+    /* Fallback para navegadores que no soportan emojis */
+    @supports not (font-variant-emoji: emoji) {
+      .emoji {
+        font-size: 1.2em;
+        vertical-align: middle;
+      }
+    }
+    
+    /* Alternativa con símbolos Unicode más compatibles */
+    .symbol {
+      font-family: 'Segoe UI Symbol', 'Symbola', 'DejaVu Sans', sans-serif;
+      font-weight: bold;
+      color: #ff5cad;
+      text-shadow: 0 0 5px rgba(255, 92, 173, 0.5);
     }
     header {
       background: linear-gradient(135deg, #2d0040 0%, #1a0026 100%);
@@ -23,10 +58,7 @@
     header h1 {
       font-size: 2.5rem;
       color: #ff5cad;
-      text-shadow: 2px 2px #000, 0 0 20px rgba(255, 92, 173, 0.5);
-      background: linear-gradient(45deg, #ff5cad, #ff66cc, #ff88dd);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      background: linear-gradient(45deg, #ff5cad , #3a004f 0%, #2d0040 50%, #3a004f 100%);
       background-clip: text;
     }
     nav {
@@ -244,9 +276,7 @@
     footer p {
       margin: 0.3rem 0;
     }
-    @media screen and (max-width: 600px) {
-      header h1 { font-size: 1.8rem; }
-    }
+
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
       20% { transform: translateY(-10px); }
@@ -752,11 +782,14 @@
 <body>
 
   <header>
-    <h1>🧧 StudioOtaku • Anime a la carta 🎬</h1>
+    <h1>🧧StudioOtaku • Anime a la carta🎬</h1>
+    <div class="floating-request">
+      
+    </div>
     <div class="user-actions">
       <div id="guest-actions">
-        <button onclick="showModal('login')" class="auth-btn">🔐 Iniciar Sesión</button>
-        <button onclick="showModal('register')" class="auth-btn">📝 Registrarse</button>
+        <button onclick="showModal('login')" class="auth-btn"><span class="symbol">🔒</span> Iniciar Sesión</button>
+        <button onclick="showModal('register')" class="auth-btn"><span class="symbol">✎</span> Registrarse</button>
       </div>
       <div id="user-actions" style="display: none;">
         <div class="user-profile">
@@ -766,7 +799,7 @@
             <span id="vip-status"></span>
           </div>
         </div>
-        <button onclick="logout()" class="auth-btn">🚪 Cerrar Sesión</button>
+        <button onclick="logout()" class="auth-btn"><span class="symbol">⚬</span> Cerrar Sesión</button>
       </div>
     </div>
   </header>
@@ -784,15 +817,15 @@
   <div class="search-bar">
     <input type="text" placeholder="Buscar anime..." />
     <button>
-      <span style="font-size:1.2rem;">🔍</span>
+      <span class="symbol" style="font-size:1.2rem;">🔍</span>
     </button>
   </div>
 
   <main>
-    <h2 class="section-title">📁 Animes disponibles para descarga</h2>
+    <h2 class="section-title"><span class="symbol">■</span> Animes disponibles para descarga</h2>
     
     <!-- Kimetsu no Yaiba (Demon Slayer) -->
-    <h3 class="anime-section-title">🗡️ Kimetsu no Yaiba (Demon Slayer)</h3>
+    <h3 class="anime-section-title"><span class="symbol">⚔</span> Kimetsu no Yaiba (Demon Slayer)</h3>
     <div class="anime-grid">
       <div class="anime-card">
         <img src="img/Kimetsu No Yaiba temporada 1.png" alt="Kimetsu No Yaiba T1">
