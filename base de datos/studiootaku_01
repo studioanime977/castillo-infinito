@@ -1,4 +1,6 @@
 -- Base de datos para StudioOtaku con soporte para Google OAuth
+CREATE DATABASE IF NOT EXISTS studiootaku_db;
+USE studiootaku_db;
 
 -- Tabla de usuarios con soporte para Google OAuth
 CREATE TABLE IF NOT EXISTS users (

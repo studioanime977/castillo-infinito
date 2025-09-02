@@ -1,0 +1,283 @@
+/* Anime Catalog Styles - StudioOtaku */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #0a0a0a;
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header */
+.header {
+  background: #1a1a1a;
+  padding: 1rem;
+  border-bottom: 2px solid #333;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 1.5rem;
+  color: #ff5cad;
+  font-weight: bold;
+}
+
+.search-bar {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 300px;
+  flex: 1;
+  margin: 0 2rem;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background: #2a2a2a;
+  color: #fff;
+}
+
+.search-bar button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  background: #ff5cad;
+  color: #000;
+  cursor: pointer;
+}
+
+.user-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.auth-btn {
+  background: #ff5cad;
+  color: #000;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+/* Layout principal */
+.main-container {
+  display: flex;
+  margin-top: 70px;
+  min-height: calc(100vh - 70px);
+}
+
+/* Sidebar izquierdo */
+.left-sidebar {
+  width: 200px;
+  background: #1a1a1a;
+  border-right: 2px solid #333;
+  padding: 1rem 0;
+}
+
+.sidebar-nav {
+  list-style: none;
+}
+
+.sidebar-nav a {
+  display: block;
+  color: #ccc;
+  text-decoration: none;
+  padding: 0.8rem 1.5rem;
+  transition: all 0.3s;
+  border-left: 3px solid transparent;
+  font-size: 0.9rem;
+}
+
+.sidebar-nav a:hover,
+.sidebar-nav a.active {
+  background: #2a2a2a;
+  border-left-color: #ff5cad;
+  color: #fff;
+}
+
+/* Contenido principal */
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  background: #0a0a0a;
+}
+
+/* Sidebar derecho */
+.right-sidebar {
+  width: 250px;
+  background: #1a1a1a;
+  border-left: 2px solid #333;
+  padding: 1rem;
+}
+
+.sidebar-section {
+  background: #2a2a2a;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.sidebar-section h3 {
+  color: #ff5cad;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  border-bottom: 1px solid #444;
+  padding-bottom: 0.5rem;
+}
+
+.social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.social-links a {
+  padding: 0.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.popular-anime {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.popular-item {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: #1a1a1a;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.popular-item:hover {
+  background: #333;
+}
+
+.popular-item img {
+  width: 50px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.popular-info h4 {
+  color: #fff;
+  font-size: 0.8rem;
+  margin-bottom: 0.2rem;
+}
+
+.popular-info span {
+  color: #999;
+  font-size: 0.7rem;
+}
+
+/* Grid de anime */
+.section-title {
+  font-size: 1.8rem;
+  color: #fff;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #333;
+  padding-bottom: 0.5rem;
+}
+
+.anime-section-title {
+  font-size: 1.2rem;
+  color: #ff5cad;
+  margin: 2rem 0 1rem;
+  padding: 0.5rem 0;
+}
+
+.anime-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.anime-card {
+  background: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 0.5rem;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.anime-card:hover {
+  transform: translateY(-5px);
+  border-color: #ff5cad;
+}
+
+.anime-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+
+.anime-card h3 {
+  color: #fff;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+  height: 2.4rem;
+  overflow: hidden;
+}
+
+.anime-card a {
+  background: #ff5cad;
+  color: #000;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.anime-card a:hover {
+  background: #ff66cc;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .main-container { 
+    flex-direction: column; 
+  }
+  
+  .left-sidebar, .right-sidebar { 
+    position: static; 
+    width: 100%; 
+  }
+  
+  .main-content { 
+    padding: 1rem; 
+  }
+  
+  .header { 
+    flex-direction: column; 
+    height: auto; 
+    gap: 1rem; 
+  }
+}

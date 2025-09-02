@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Even Given the Worthless - StudioOtaku</title>
+  <link rel="icon" type="image/x-icon" href="../img/demon-slayer.ico">
+  <link rel="stylesheet" href="../css/anime-catalog.css">
+  <style>
+    .main-content {
+      margin-top: 70px;
+      padding: 2rem;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .anime-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: rgba(42, 42, 42, 0.8);
+      border-radius: 15px;
+      border: 2px solid #ff5cad;
+    }
+    
+    .anime-title {
+      font-size: 3rem;
+      color: #ff5cad;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 20px rgba(255, 92, 173, 0.5);
+    }
+    
+    .anime-description {
+      font-size: 1.2rem;
+      color: #ccc;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    
+    .back-btn {
+      background: #333;
+      color: #fff;
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 2rem;
+      transition: all 0.3s ease;
+    }
+    
+    .back-btn:hover {
+      background: #555;
+    }
+    
+    .seasons-section {
+      margin-bottom: 3rem;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+      color: #ff5cad;
+      margin-bottom: 2rem;
+      text-align: center;
+      border-bottom: 2px solid #333;
+      padding-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">🧧StudioOtaku</div>
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar anime..." id="search-input">
+      <button onclick="searchAnime()">🔍</button>
+    </div>
+    <div class="user-actions">
+      <button class="auth-btn">🔒 Login</button>
+      <button class="auth-btn">✎ Registro</button>
+      <a href="../index.html" class="auth-btn">🏠 Inicio</a>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <a href="index.html" class="back-btn">← Volver al Catálogo</a>
+    
+    <div class="anime-header">
+      <h1 class="anime-title">⚔️ Even Given the Worthless</h1>
+      <p class="anime-description">
+        Shinichi Kanou es un otaku ordinario que es transportado a otro mundo junto con toda su clase. 
+        Mientras sus compañeros reciben habilidades poderosas, él obtiene una habilidad aparentemente inútil. 
+        Sin embargo, pronto descubre que su poder tiene un potencial oculto que podría cambiar el destino del mundo.
+      </p>
+    </div>
+
+    <div class="seasons-section">
+      <h2 class="section-title">Temporada Disponible</h2>
+      <div class="anime-grid">
+        <div class="anime-card">
+          <img src="../img/even given the worthless.jpg" alt="Even Given the Worthless">
+          <h3>Even Given the Worthless</h3>
+          <a href="https://exe.io/EvenGivenTheWorthless" target="_blank">Descargar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Función de búsqueda
+    function searchAnime() {
+      const searchTerm = document.getElementById('search-input').value.toLowerCase();
+      const animeCards = document.querySelectorAll('.anime-card');
+      
+      animeCards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        card.style.display = title.includes(searchTerm) ? 'block' : 'none';
+      });
+    }
+    
+    // Búsqueda en tiempo real
+    document.getElementById('search-input').addEventListener('input', searchAnime);
+  </script>
+</body>
+</html>

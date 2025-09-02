@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boku no Hero Academia - StudioOtaku</title>
+  <link rel="icon" type="image/x-icon" href="../img/demon-slayer.ico">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0a0a0a;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    .header {
+      background: #1a1a1a;
+      padding: 1rem;
+      border-bottom: 2px solid #333;
+      text-align: center;
+    }
+    .header h1 {
+      color: #ff5cad;
+      margin-bottom: 0.5rem;
+    }
+    .back-btn {
+      background: #ff5cad;
+      color: #000;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+    
+    .anime-detail {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+    .anime-info {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    .anime-poster {
+      width: 300px;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    .anime-description {
+      flex: 1;
+    }
+    .anime-description h2 {
+      color: #ff5cad;
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+    .anime-description p {
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      color: #ccc;
+    }
+    
+    .seasons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .season-card {
+      background: #2a2a2a;
+      border: 1px solid #444;
+      border-radius: 10px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .season-card:hover {
+      transform: translateY(-5px);
+      border-color: #ff5cad;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .season-card img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    .season-card h3 {
+      color: #fff;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+    .download-btn {
+      background: #ff5cad;
+      color: #000;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      transition: all 0.3s;
+      margin: 0.3rem;
+    }
+    .download-btn:hover {
+      background: #ff66cc;
+      transform: scale(1.05);
+    }
+    .vip-btn {
+      background: #ffd700;
+      color: #000;
+    }
+    .vip-btn:hover {
+      background: #ffed4e;
+    }
+    
+    @media (max-width: 768px) {
+      .anime-info { flex-direction: column; }
+      .anime-poster { width: 100%; height: 300px; }
+      .seasons-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <a href="../index.html" class="back-btn">← Volver al inicio</a>
+    <h1>🧧StudioOtaku</h1>
+  </div>
+
+  <div class="anime-detail">
+    <div class="anime-info">
+      <img src="../img/BokunoHeroAcademia S1.png" alt="Boku no Hero Academia" class="anime-poster">
+      <div class="anime-description">
+        <h2>🦸‍♂️ Boku no Hero Academia (My Hero Academia)</h2>
+        <p><strong>Género:</strong> Acción, Superhéroes, Shonen, Escolar</p>
+        <p><strong>Año:</strong> 2016-2023</p>
+        <p><strong>Estado:</strong> Finalizado</p>
+        <p><strong>Estudio:</strong> Bones</p>
+        <p><strong>Episodios:</strong> 138 episodios</p>
+        <p><strong>Sinopsis:</strong> En un mundo donde el 80% de la población tiene superpoderes llamados "Quirks", Izuku Midoriya es uno de los pocos que nació sin ningún poder. A pesar de esto, sueña con convertirse en un héroe como su ídolo All Might. Su vida cambia cuando conoce a All Might, quien le otorga su Quirk "One For All" y lo ayuda a ingresar a la prestigiosa Academia U.A. para entrenar y convertirse en un héroe profesional.</p>
+      </div>
+    </div>
+
+    <h3 style="color: #ff5cad; font-size: 1.5rem; margin-bottom: 1rem; text-align: center;">Temporadas Disponibles</h3>
+    
+    <div class="seasons-grid">
+      <div class="season-card">
+        <img src="../img/BokunoHeroAcademia S1.png" alt="Temporada 1">
+        <h3>Temporada 1</h3>
+        <p style="color: #ccc; margin-bottom: 1rem;">13 episodios</p>
+        <a href="https://exe.io/BokunoHeroAcademiaS1" target="_blank" class="download-btn">Descarga Normal</a>
+        <a href="#" class="download-btn vip-btn">Descarga VIP</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
