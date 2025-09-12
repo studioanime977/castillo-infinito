@@ -68,9 +68,108 @@
       border-bottom: 2px solid #333;
       padding-bottom: 1rem;
     }
+    
+    .download-options {
+      margin-top: 1rem;
+    }
+    
+    .download-btn {
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+    
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4);
+    }
+    
+    .download-links {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: rgba(42, 42, 42, 0.9);
+      border-radius: 10px;
+      border: 1px solid #333;
+    }
+    
+    .download-link {
+      display: block;
+      padding: 0.5rem 1rem;
+      margin: 0.3rem 0;
+      background: rgba(255, 92, 173, 0.1);
+      color: #ff5cad;
+      text-decoration: none;
+      border-radius: 5px;
+      border: 1px solid #ff5cad;
+      transition: all 0.3s ease;
+    }
+    
+    .download-link:hover {
+      background: rgba(255, 92, 173, 0.2);
+      transform: translateX(5px);
+    }
+    
+    .download-link.terabox {
+      border-color: #4CAF50;
+      color: #4CAF50;
+    }
+    
+    .download-link.mediafire {
+      border-color: #FF5722;
+      color: #FF5722;
+    }
+    
+    .download-link.exe {
+      border-color: #2196F3;
+      color: #2196F3;
+    }
+    
+    .unavailable {
+      display: block;
+      padding: 0.5rem 1rem;
+      margin: 0.3rem 0;
+      background: rgba(128, 128, 128, 0.1);
+      color: #888;
+      border-radius: 5px;
+      border: 1px solid #555;
+      font-style: italic;
+    }
+    
+    .language-selector {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 1000;
+    }
+    
+    .language-selector select {
+      background: #333;
+      color: #fff;
+      border: 1px solid #ff5cad;
+      border-radius: 5px;
+      padding: 0.5rem;
+    }
   </style>
 </head>
 <body>
+  <!-- Language Selector -->
+  <div class="language-selector">
+    <select id="language-select" onchange="changeLanguage()">
+      <option value="es">🇪🇸 Español</option>
+      <option value="en">🇺🇸 English</option>
+      <option value="pt">🇧🇷 Português</option>
+      <option value="fr">🇫🇷 Français</option>
+      <option value="ja">🇯🇵 日本語</option>
+    </select>
+  </div>
+
   <!-- Header -->
   <div class="header">
     <div class="logo">🧧StudioOtaku</div>
@@ -137,9 +236,19 @@
         </div>
         
         <div class="anime-card">
-          <img src="../img/castillo infinito.png" alt="Castillo Infinito">
-          <h3>Castillo Infinito (Sub)</h3>
-          <a href="https://exe.io/SUBTCastillofullhd" target="_blank">Descargar</a>
+          <img src="../img/demon_slayer_kimetsu_no_yaiba_infinity_castle.jpg" alt="Castillo Infinito">
+          <h3>Kimetsu no Yaiba - Castillo Infinito</h3>
+          <div class="download-options">
+            <button onclick="showDownloadOptions('castillo')" class="download-btn">📥 Descargar</button>
+            <div id="castillo-options" class="download-links" style="display: none;">
+              <a href="https://www.mediafire.com/file_premium/zgojscx5tnnwfe3/KIMETSU_NO_YAIBA__Demon_Slayer__Pelicula_Castillo_Infinito_Sub_Espa%25C3%25B1ol.mkv/file" target="_blank" class="download-link mediafire" id="castillo-mediafire" style="display: none;">🔥 MediaFire (Disponible 24h)</a>
+              <a href="https://exe.io/CastilloInfinito2025" target="_blank" class="download-link mediafire" id="castillo-exe" style="display: none;">🔥 MediaFire</a>
+              <a href="https://exe.io/SUBTCastillofullhd" target="_blank" class="download-link terabox">📦 TeraBox</a>
+              <span class="unavailable">💾 Drive (No disponible)</span>
+              <span class="unavailable">📁 Dropbox (No disponible)</span>
+              <span class="unavailable">💎 Mega (No disponible)</span>
+            </div>
+          </div>
         </div>
         
         <div class="anime-card">
@@ -152,6 +261,61 @@
   </div>
 
   <script>
+    // Multi-language support
+    const translations = {
+      es: {
+        title: "⚔ Kimetsu no Yaiba (Demon Slayer)",
+        description: "Sigue las aventuras de Tanjiro Kamado, un joven vendedor de carbón que se convierte en cazador de demonios para salvar a su hermana Nezuko y vengar a su familia. Una épica historia de determinación, hermandad y la lucha entre el bien y el mal en el Japón de la era Taisho.",
+        sectionTitle: "Todas las Temporadas y Películas",
+        backBtn: "← Volver al Catálogo",
+        searchPlaceholder: "Buscar anime...",
+        downloadBtn: "📥 Descargar",
+        availableOptions: "📥 Opciones de descarga disponibles:",
+        unavailableOptions: "❌ No disponibles actualmente:",
+        redirectMessage: "🔗 Serás redirigido al enlace seleccionado."
+      },
+      en: {
+        title: "⚔ Kimetsu no Yaiba (Demon Slayer)",
+        description: "Follow the adventures of Tanjiro Kamado, a young charcoal seller who becomes a demon slayer to save his sister Nezuko and avenge his family. An epic story of determination, brotherhood and the fight between good and evil in Taisho era Japan.",
+        sectionTitle: "All Seasons and Movies",
+        backBtn: "← Back to Catalog",
+        searchPlaceholder: "Search anime...",
+        downloadBtn: "📥 Download",
+        availableOptions: "📥 Available download options:",
+        unavailableOptions: "❌ Currently unavailable:",
+        redirectMessage: "🔗 You will be redirected to the selected link."
+      },
+      pt: {
+        title: "⚔ Kimetsu no Yaiba (Demon Slayer)",
+        description: "Siga as aventuras de Tanjiro Kamado, um jovem vendedor de carvão que se torna um caçador de demônios para salvar sua irmã Nezuko e vingar sua família. Uma história épica de determinação, irmandade e a luta entre o bem e o mal no Japão da era Taisho.",
+        sectionTitle: "Todas as Temporadas e Filmes",
+        backBtn: "← Voltar ao Catálogo",
+        searchPlaceholder: "Buscar anime...",
+        downloadBtn: "📥 Baixar",
+        availableOptions: "📥 Opções de download disponíveis:",
+        unavailableOptions: "❌ Atualmente indisponíveis:",
+        redirectMessage: "🔗 Você será redirecionado para o link selecionado."
+      }
+    };
+
+    function changeLanguage() {
+      const lang = document.getElementById('language-select').value;
+      const t = translations[lang] || translations.es;
+      
+      document.querySelector('.anime-title').textContent = t.title;
+      document.querySelector('.anime-description').textContent = t.description;
+      document.querySelector('.section-title').textContent = t.sectionTitle;
+      document.querySelector('.back-btn').textContent = t.backBtn;
+      document.querySelector('#search-input').placeholder = t.searchPlaceholder;
+      
+      // Update download buttons
+      document.querySelectorAll('.download-btn').forEach(btn => {
+        btn.textContent = t.downloadBtn;
+      });
+      
+      localStorage.setItem('selectedLanguage', lang);
+    }
+
     // Función de búsqueda
     function searchAnime() {
       const searchTerm = document.getElementById('search-input').value.toLowerCase();
@@ -163,8 +327,90 @@
       });
     }
     
+    // Función para mostrar opciones de descarga
+    function showDownloadOptions(id) {
+      const optionsDiv = document.getElementById(id + '-options');
+      const allOptions = document.querySelectorAll('.download-links');
+      
+      allOptions.forEach(option => {
+        if (option.id !== id + '-options') {
+          option.style.display = 'none';
+        }
+      });
+      
+      if (optionsDiv.style.display === 'none') {
+        optionsDiv.style.display = 'block';
+        
+        const availableLinks = optionsDiv.querySelectorAll('.download-link');
+        const unavailableLinks = optionsDiv.querySelectorAll('.unavailable');
+        const lang = document.getElementById('language-select').value;
+        const t = translations[lang] || translations.es;
+        
+        let message = t.availableOptions + '\n\n';
+        availableLinks.forEach(link => {
+          const platform = link.textContent.split(' ')[1];
+          message += `✅ ${platform}\n`;
+        });
+        
+        if (unavailableLinks.length > 0) {
+          message += '\n' + t.unavailableOptions + '\n';
+          unavailableLinks.forEach(span => {
+            const platform = span.textContent.split(' ')[1];
+            message += `• ${platform}\n`;
+          });
+        }
+        
+        message += '\n' + t.redirectMessage;
+        alert(message);
+      } else {
+        optionsDiv.style.display = 'none';
+      }
+    }
+
+    // Función para manejar el cambio de enlaces de Castillo Infinito después de 24 horas
+    function checkCastilloLinks() {
+      const now = new Date();
+      // Tiempo de activación: 11 de septiembre 2025, 8:21 PM Colombia (UTC-5)
+      const activationTime = new Date('2025-09-11T20:21:00-05:00');
+      const expirationTime = new Date(activationTime.getTime() + (24 * 60 * 60 * 1000)); // 24 horas después
+      
+      const mediaFireLink = document.getElementById('castillo-mediafire');
+      const exeLink = document.getElementById('castillo-exe');
+      
+      if (now >= activationTime && now < expirationTime) {
+        // Mostrar MediaFire directo (primeras 24h desde 8:21 PM)
+        if (mediaFireLink && exeLink) {
+          mediaFireLink.style.display = 'block';
+          exeLink.style.display = 'none';
+        }
+      } else if (now >= expirationTime) {
+        // Mostrar exe.io después de 24h
+        if (mediaFireLink && exeLink) {
+          mediaFireLink.style.display = 'none';
+          exeLink.style.display = 'block';
+        }
+      } else {
+        // Antes de las 8:21 PM - ocultar ambos
+        if (mediaFireLink && exeLink) {
+          mediaFireLink.style.display = 'none';
+          exeLink.style.display = 'none';
+        }
+      }
+    }
+    
     // Búsqueda en tiempo real
     document.getElementById('search-input').addEventListener('input', searchAnime);
+    
+    // Load saved language
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedLang = localStorage.getItem('selectedLanguage') || 'es';
+      document.getElementById('language-select').value = savedLang;
+      changeLanguage();
+      checkCastilloLinks();
+    });
+    
+    // Check Castillo links every hour
+    setInterval(checkCastilloLinks, 3600000);
   </script>
 </body>
 </html>

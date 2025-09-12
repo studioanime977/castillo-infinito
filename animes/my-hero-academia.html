@@ -68,6 +68,79 @@
       border-bottom: 2px solid #333;
       padding-bottom: 1rem;
     }
+    
+    .download-options {
+      margin-top: 1rem;
+    }
+    
+    .download-btn {
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+    
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4);
+    }
+    
+    .download-links {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: rgba(42, 42, 42, 0.9);
+      border-radius: 10px;
+      border: 1px solid #333;
+    }
+    
+    .download-link {
+      display: block;
+      padding: 0.5rem 1rem;
+      margin: 0.3rem 0;
+      background: rgba(255, 92, 173, 0.1);
+      color: #ff5cad;
+      text-decoration: none;
+      border-radius: 5px;
+      border: 1px solid #ff5cad;
+      transition: all 0.3s ease;
+    }
+    
+    .download-link:hover {
+      background: rgba(255, 92, 173, 0.2);
+      transform: translateX(5px);
+    }
+    
+    .download-link.terabox {
+      border-color: #4CAF50;
+      color: #4CAF50;
+    }
+    
+    .download-link.mediafire {
+      border-color: #FF5722;
+      color: #FF5722;
+    }
+    
+    .download-link.exe {
+      border-color: #2196F3;
+      color: #2196F3;
+    }
+    
+    .unavailable {
+      display: block;
+      padding: 0.5rem 1rem;
+      margin: 0.3rem 0;
+      background: rgba(128, 128, 128, 0.1);
+      color: #888;
+      border-radius: 5px;
+      border: 1px solid #555;
+      font-style: italic;
+    }
   </style>
 </head>
 <body>
@@ -104,37 +177,91 @@
         <div class="anime-card">
           <img src="../img/BokunoHeroAcademia S1.png" alt="My Hero Academia S1">
           <h3>My Hero Academia - Temp 1</h3>
-          <a href="https://exe.io/MyHeroAcademiaS1" target="_blank">Descargar</a>
+          <div class="download-options">
+            <button onclick="showDownloadOptions('mha-s1')" class="download-btn">📥 Descargar</button>
+            <div id="mha-s1-options" class="download-links" style="display: none;">
+              <a href="https://exe.io/MyHeroAcademiaS1" target="_blank" class="download-link terabox">📦 TeraBox</a>
+              <span class="unavailable">💾 Drive (No disponible)</span>
+              <span class="unavailable">📁 Dropbox (No disponible)</span>
+              <span class="unavailable">🔥 MediaFire (No disponible)</span>
+              <span class="unavailable">💎 Mega (No disponible)</span>
+            </div>
+          </div>
         </div>
         
         <div class="anime-card">
           <img src="../img/My Hero Academia S2.jpg" alt="My Hero Academia S2">
           <h3>My Hero Academia - Temp 2</h3>
-          <a href="https://exe.io/MyHeroAcademiaS2" target="_blank">Descargar</a>
+          <div class="download-options">
+            <button onclick="showDownloadOptions('mha-s2')" class="download-btn">📥 Descargar</button>
+            <div id="mha-s2-options" class="download-links" style="display: none;">
+              <a href="https://exe.io/MyHeroAcademiaS2" target="_blank" class="download-link terabox">📦 TeraBox</a>
+              <span class="unavailable">💾 Drive (No disponible)</span>
+              <span class="unavailable">📁 Dropbox (No disponible)</span>
+              <span class="unavailable">🔥 MediaFire (No disponible)</span>
+              <span class="unavailable">💎 Mega (No disponible)</span>
+            </div>
+          </div>
         </div>
         
         <div class="anime-card">
           <img src="../img/My Hero Academia S3.jpg" alt="My Hero Academia S3">
           <h3>My Hero Academia - Temp 3</h3>
-          <a href="https://exe.io/MyHeroAcademiaS3" target="_blank">Descargar</a>
+          <div class="download-options">
+            <button onclick="showDownloadOptions('mha-s3')" class="download-btn">📥 Descargar</button>
+            <div id="mha-s3-options" class="download-links" style="display: none;">
+              <a href="https://exe.io/MyHeroAcademiaS3" target="_blank" class="download-link terabox">📦 TeraBox</a>
+              <span class="unavailable">💾 Drive (No disponible)</span>
+              <span class="unavailable">📁 Dropbox (No disponible)</span>
+              <span class="unavailable">🔥 MediaFire (No disponible)</span>
+              <span class="unavailable">💎 Mega (No disponible)</span>
+            </div>
+          </div>
         </div>
         
         <div class="anime-card">
           <img src="../img/My Hero Academia S4.jpg" alt="My Hero Academia S4">
           <h3>My Hero Academia - Temp 4</h3>
-          <a href="https://exe.io/MyHeroAcademiaS4" target="_blank">Descargar</a>
+          <div class="download-options">
+            <button onclick="showDownloadOptions('mha-s4')" class="download-btn">📥 Descargar</button>
+            <div id="mha-s4-options" class="download-links" style="display: none;">
+              <a href="https://exe.io/MyHeroAcademiaS4" target="_blank" class="download-link terabox">📦 TeraBox</a>
+              <span class="unavailable">💾 Drive (No disponible)</span>
+              <span class="unavailable">📁 Dropbox (No disponible)</span>
+              <span class="unavailable">🔥 MediaFire (No disponible)</span>
+              <span class="unavailable">💎 Mega (No disponible)</span>
+            </div>
+          </div>
         </div>
         
         <div class="anime-card">
           <img src="../img/My Hero Academia S5.jpg" alt="My Hero Academia S5">
           <h3>My Hero Academia - Temp 5</h3>
-          <a href="https://exe.io/MyHeroAcademiaS5" target="_blank">Descargar</a>
+          <div class="download-options">
+            <button onclick="showDownloadOptions('mha-s5')" class="download-btn">📥 Descargar</button>
+            <div id="mha-s5-options" class="download-links" style="display: none;">
+              <a href="https://exe.io/MyHeroAcademiaS5" target="_blank" class="download-link terabox">📦 TeraBox</a>
+              <span class="unavailable">💾 Drive (No disponible)</span>
+              <span class="unavailable">📁 Dropbox (No disponible)</span>
+              <span class="unavailable">🔥 MediaFire (No disponible)</span>
+              <span class="unavailable">💎 Mega (No disponible)</span>
+            </div>
+          </div>
         </div>
         
         <div class="anime-card">
           <img src="../img/My Hero Academia S6.jpg" alt="My Hero Academia S6">
           <h3>My Hero Academia - Temp 6</h3>
-          <a href="https://exe.io/MyHeroAcademiaS6" target="_blank">Descargar</a>
+          <div class="download-options">
+            <button onclick="showDownloadOptions('mha-s6')" class="download-btn">📥 Descargar</button>
+            <div id="mha-s6-options" class="download-links" style="display: none;">
+              <a href="https://exe.io/MyHeroAcademiaS6" target="_blank" class="download-link terabox">📦 TeraBox</a>
+              <span class="unavailable">💾 Drive (No disponible)</span>
+              <span class="unavailable">📁 Dropbox (No disponible)</span>
+              <span class="unavailable">🔥 MediaFire (No disponible)</span>
+              <span class="unavailable">💎 Mega (No disponible)</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -150,6 +277,47 @@
         const title = card.querySelector('h3').textContent.toLowerCase();
         card.style.display = title.includes(searchTerm) ? 'block' : 'none';
       });
+    }
+    
+    // Función para mostrar opciones de descarga
+    function showDownloadOptions(id) {
+      const optionsDiv = document.getElementById(id + '-options');
+      const allOptions = document.querySelectorAll('.download-links');
+      
+      // Cerrar todas las otras opciones
+      allOptions.forEach(option => {
+        if (option.id !== id + '-options') {
+          option.style.display = 'none';
+        }
+      });
+      
+      // Toggle la opción actual
+      if (optionsDiv.style.display === 'none') {
+        optionsDiv.style.display = 'block';
+        
+        // Mostrar alerta con opciones disponibles
+        const availableLinks = optionsDiv.querySelectorAll('.download-link');
+        const unavailableLinks = optionsDiv.querySelectorAll('.unavailable');
+        
+        let message = '📥 Opciones de descarga disponibles:\n\n';
+        availableLinks.forEach(link => {
+          const platform = link.textContent.split(' ')[1];
+          message += `✅ ${platform}\n`;
+        });
+        
+        if (unavailableLinks.length > 0) {
+          message += '\n❌ No disponibles actualmente:\n';
+          unavailableLinks.forEach(span => {
+            const platform = span.textContent.split(' ')[1];
+            message += `• ${platform}\n`;
+          });
+        }
+        
+        message += '\n🔗 Serás redirigido al enlace seleccionado.';
+        alert(message);
+      } else {
+        optionsDiv.style.display = 'none';
+      }
     }
     
     // Búsqueda en tiempo real
