@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demon Slayer - Temporada 1 | StudioOtaku</title>
+  <link rel="icon" type="image/x-icon" href="../../img/demon-slayer.ico">
+  <style>
+    :root {
+      --primary-color: #ff5cad;
+      --secondary-color: #ff8a80;
+      --background-start: #0f0f23;
+      --background-end: #2d1b69;
+      --card-background: rgba(255, 255, 255, 0.05);
+      --card-border: rgba(255, 92, 173, 0.2);
+      --text-color: #fff;
+      --text-muted: #ccc;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--background-start) 0%, var(--background-end) 50%, var(--background-start) 100%);
+      color: var(--text-color);
+      margin: 0;
+    }
+
+    .header {
+      background: rgba(0, 0, 0, 0.85);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--primary-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .main-content {
+      padding: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 500;
+      margin-bottom: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4);
+    }
+
+    .video-and-episodes {
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      gap: 2rem;
+    }
+
+    .video-player-section {
+      position: sticky;
+      top: 100px;
+      align-self: start;
+    }
+    
+    .video-player-container {
+      background: var(--card-background);
+      border-radius: 15px;
+      padding: 1rem;
+      border: 1px solid var(--card-border);
+    }
+
+    .player-options {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .player-btn {
+      background: #333;
+      color: white;
+      border: 1px solid transparent;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .player-btn:hover {
+      background: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+
+    .player-btn.active {
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      font-weight: bold;
+    }
+
+    .video-player {
+      position: relative;
+      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+      background-color: #000;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .video-player iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .episode-title-display {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: rgba(0,0,0,0.3);
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    #current-episode-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .episodes-list-section {
+      max-height: 80vh;
+      overflow-y: auto;
+      padding-right: 1rem;
+    }
+
+    .episode-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.75rem;
+      background: var(--card-background);
+      border: 1px solid transparent;
+      border-radius: 10px;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .episode-item:hover {
+      border-color: var(--primary-color);
+      transform: translateX(5px);
+    }
+
+    .episode-item.active {
+      border-color: var(--secondary-color);
+      background: rgba(255, 138, 128, 0.1);
+    }
+
+    .ep-number {
+      font-size: 1rem;
+      font-weight: bold;
+      color: var(--text-muted);
+    }
+
+    .ep-title {
+      font-size: 0.9rem;
+      flex-grow: 1;
+    }
+
+    @media (max-width: 1024px) {
+      .video-and-episodes {
+        grid-template-columns: 1fr;
+      }
+      .video-player-section { position: static; }
+      .episodes-list-section { max-height: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="logo">StudioOtaku</div>
+    <a href="../../html/index.html" class="back-btn" style="margin: 0;">🏠 Inicio</a>
+  </header>
+
+  <main class="main-content">
+    <a href="temporadas.html" class="back-btn">← Volver a Temporadas</a>
+
+    <div class="video-and-episodes">
+      <div class="video-player-section">
+        <div class="video-player-container">
+          <div class="player-options">
+            <button class="player-btn active" id="opcion1-btn" onclick="switchPlayer('opcion1')">Opción 1</button>
+            <button class="player-btn" id="opcion2-btn" onclick="switchPlayer('opcion2')">Opción 2</button>
+            <button class="player-btn" id="opcion3-btn" onclick="switchPlayer('opcion3')">Opción 3</button>
+          </div>
+          <div class="video-player">
+            <iframe id="video-iframe" src="" allowfullscreen></iframe>
+          </div>
+          <div class="episode-title-display">
+            <h2 id="current-episode-title">Cargando...</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="episodes-list-section" id="episodes-list">
+        <!-- La lista de episodios se generará aquí -->
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const episodes = [
+      { num: 1, title: 'Crueldad', op1: 'https://sendvid.com/embed/q7vjj7y2', op2: 'URL_OP2_EP1', op3: 'URL_OP3_EP1' },
+      { num: 2, title: 'El entrenador, Sakonji Urokodaki', op1: 'https://sendvid.com/embed/z0c81x2c', op2: 'URL_OP2_EP2', op3: 'URL_OP3_EP2' },
+      { num: 3, title: 'Sabito y Makomo', op1: 'https://sendvid.com/embed/u8yq5x9b', op2: 'URL_OP2_EP3', op3: 'URL_OP3_EP3' },
+      { num: 4, title: 'Selección final', op1: 'https://sendvid.com/embed/s3y2k5p1', op2: 'URL_OP2_EP4', op3: 'URL_OP3_EP4' },
+      { num: 5, title: 'Tu propio acero', op1: 'https://sendvid.com/embed/t5w6h6g9', op2: 'URL_OP2_EP5', op3: 'URL_OP3_EP5' },
+      { num: 6, title: 'El espadachín que acompaña a un demonio', op1: 'https://sendvid.com/embed/p9x8w7v6', op2: 'URL_OP2_EP6', op3: 'URL_OP3_EP6' },
+      { num: 7, title: 'Muzan Kibutsuji', op1: 'https://sendvid.com/embed/k3v2j2x9', op2: 'URL_OP2_EP7', op3: 'URL_OP3_EP7' },
+      { num: 8, title: 'El hechizo de la luna sangrienta', op1: 'https://sendvid.com/embed/j1b9c8w2', op2: 'URL_OP2_EP8', op3: 'URL_OP3_EP8' },
+      { num: 9, title: 'El demonio de la pelota Temari y el demonio de la flecha', op1: 'https://sendvid.com/embed/x7g5f4v1', op2: 'URL_OP2_EP9', op3: 'URL_OP3_EP9' },
+      { num: 10, title: 'Siempre juntos', op1: 'https://sendvid.com/embed/c6v4b3f8', op2: 'URL_OP2_EP10', op3: 'URL_OP3_EP10' },
+      { num: 11, title: 'La casa de los tambores', op1: 'https://sendvid.com/embed/v2f1j1c7', op2: 'URL_OP2_EP11', op3: 'URL_OP3_EP11' },
+      { num: 12, title: 'El jabalí muestra sus colmillos, Zenitsu duerme', op1: 'https://sendvid.com/embed/b0v9e8d6', op2: 'URL_OP2_EP12', op3: 'URL_OP3_EP12' },
+      { num: 13, title: 'Algo más importante que la vida', op1: 'https://sendvid.com/embed/f8d7g6f5', op2: 'URL_OP2_EP13', op3: 'URL_OP3_EP13' },
+      { num: 14, title: 'La casa con el blasón de la glicinia', op1: 'https://sendvid.com/embed/a6c5b4e3', op2: 'URL_OP2_EP14', op3: 'URL_OP3_EP14' },
+      { num: 15, title: 'Monte Natagumo', op1: 'https://sendvid.com/embed/d5b3a2d1', op2: 'URL_OP2_EP15', op3: 'URL_OP3_EP15' },
+      { num: 16, title: 'Dejando que otros vayan delante', op1: 'https://sendvid.com/embed/h4a2g1b9', op2: 'URL_OP2_EP16', op3: 'URL_OP3_EP16' },
+      { num: 17, title: 'Debes dominar una sola cosa', op1: 'https://sendvid.com/embed/g3h1f9a8', op2: 'URL_OP2_EP17', op3: 'URL_OP3_EP17' },
+      { num: 18, title: 'Un lazo falso', op1: 'https://sendvid.com/embed/f2g9e8h7', op2: 'URL_OP2_EP18', op3: 'URL_OP3_EP18' },
+      { num: 19, title: 'Dios del fuego', op1: 'https://sendvid.com/embed/e1f8d7g6', op2: 'URL_OP2_EP19', op3: 'URL_OP3_EP19' },
+      { num: 20, title: 'Familia de pega', op1: 'https://sendvid.com/embed/d9e7f6d5', op2: 'URL_OP2_EP20', op3: 'URL_OP3_EP20' },
+      { num: 21, title: 'Violación de la normativa', op1: 'https://sendvid.com/embed/c8d6e5c4', op2: 'URL_OP2_EP21', op3: 'URL_OP3_EP21' },
+      { num: 22, title: 'El maestro', op1: 'https://sendvid.com/embed/b7c5d4b3', op2: 'URL_OP2_EP22', op3: 'URL_OP3_EP22' },
+      { num: 23, title: 'Reunión de los Pilares', op1: 'https://sendvid.com/embed/a6b4c3a2', op2: 'URL_OP2_EP23', op3: 'URL_OP3_EP23' },
+      { num: 24, title: 'Entrenamiento de rehabilitación', op1: 'https://sendvid.com/embed/95a3b291', op2: 'URL_OP2_EP24', op3: 'URL_OP3_EP24' },
+      { num: 25, title: 'Tsuguko, Kanao Tsuyuri', op1: 'https://sendvid.com/embed/8492a189', op2: 'URL_OP2_EP25', op3: 'URL_OP3_EP25' },
+      { num: 26, title: 'Nueva misión', op1: 'https://sendvid.com/embed/73819878', op2: 'URL_OP2_EP26', op3: 'URL_OP3_EP26' }
+    ];
+
+    const episodesList = document.getElementById('episodes-list');
+    const videoIframe = document.getElementById('video-iframe');
+    const currentEpisodeTitle = document.getElementById('current-episode-title');
+    let activePlayer = 'op1';
+
+    function loadEpisode(episode) {
+      videoIframe.src = episode[activePlayer];
+      currentEpisodeTitle.textContent = `Ep. ${episode.num}: ${episode.title}`;
+
+      document.querySelectorAll('.episode-item').forEach(item => item.classList.remove('active'));
+      document.getElementById(`ep-${episode.num}`).classList.add('active');
+    }
+
+    function switchPlayer(option) {
+      activePlayer = option.replace('opcion', 'op');
+      document.querySelectorAll('.player-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(`${option}-btn`).classList.add('active');
+      
+      const activeEpisodeNum = document.querySelector('.episode-item.active')?.id.split('-')[1];
+      if (activeEpisodeNum) {
+        const episode = episodes.find(ep => ep.num == activeEpisodeNum);
+        videoIframe.src = episode[activePlayer];
+      }
+    }
+
+    episodes.forEach(ep => {
+      const epItem = document.createElement('div');
+      epItem.className = 'episode-item';
+      epItem.id = `ep-${ep.num}`;
+      epItem.innerHTML = `<span class="ep-number">${ep.num}</span><span class="ep-title">${ep.title}</span>`;
+      epItem.addEventListener('click', () => loadEpisode(ep));
+      episodesList.appendChild(epItem);
+    });
+
+    // Cargar el primer episodio por defecto
+    if (episodes.length > 0) {
+      loadEpisode(episodes[0]);
+    }
+
+  </script>
+</body>
+</html>

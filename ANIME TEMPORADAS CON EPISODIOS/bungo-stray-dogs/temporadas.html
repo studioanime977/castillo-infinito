@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <style>
+    :root {
+      --primary-color: #ff5cad;
+      --secondary-color: #ff8a80;
+      --background-start: #0f0f23;
+      --background-end: #2d1b69;
+      --card-background: rgba(255, 255, 255, 0.05);
+      --card-border: rgba(255, 92, 173, 0.2);
+      --text-color: #fff;
+      --text-muted: #ccc;
+    }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, var(--background-start) 0%, var(--background-end) 50%, var(--background-start) 100%); color: var(--text-color); margin: 0; }
+    .header { background: rgba(0, 0, 0, 0.85); padding: 1rem 2rem; position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px); border-bottom: 2px solid var(--primary-color); display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.8rem; font-weight: bold; background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .main-content { padding: 2rem; max-width: 1400px; margin: 0 auto; }
+    .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 25px; text-decoration: none; font-weight: 500; margin-bottom: 2rem; transition: all 0.3s ease; }
+    .back-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4); }
+    .anime-header { text-align: center; margin-bottom: 3rem; }
+    .anime-title { font-size: 3rem; margin-bottom: 1rem; }
+    .anime-description { font-size: 1.1rem; color: var(--text-muted); max-width: 800px; margin: 0 auto; line-height: 1.6; }
+    .seasons-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
+    .season-card { background: var(--card-background); border-radius: 15px; border: 1px solid var(--card-border); overflow: hidden; transition: all 0.3s ease; display: flex; flex-direction: column; }
+    .season-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(255, 92, 173, 0.3); border-color: var(--primary-color); }
+    .season-card img { width: 100%; height: 250px; object-fit: cover; }
+    .season-info { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+    .season-title { font-size: 1.4rem; margin-bottom: 0.5rem; }
+    .season-description { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; flex-grow: 1; }
+    .watch-btn { background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 25px; text-decoration: none; font-weight: 500; display: block; text-align: center; transition: all 0.3s ease; }
+    .watch-btn:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4); }
+    .servers-title { font-size: 0.9rem; color: #ff5cad; margin-bottom: 0.5rem; font-weight: bold; margin-top: 1rem; }
+    .servers-grid-compact { display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 0.5rem; }
+    .download-link { padding: 0.5rem 0.8rem; background: rgba(255, 92, 173, 0.1); border: 1px solid #ff5cad; border-radius: 8px; color: #fff; text-decoration: none; font-size: 0.9rem; text-align: center; transition: all 0.3s ease; display: block; font-weight: 500; }
+    .download-link:hover { background: rgba(255, 92, 173, 0.3); transform: translateY(-2px); }
+    .download-link.terabox { border-color: #4CAF50; background: rgba(76, 175, 80, 0.1); color: #4CAF50; }
+    .download-link.terabox:hover { background: rgba(76, 175, 80, 0.3); }
+    @media (max-width: 768px) { .anime-title { font-size: 2.2rem; } .seasons-grid { grid-template-columns: 1fr; } }
+  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bungo Stray Dogs - Todas las Temporadas | StudioOtaku</title>
+
+    .search-bar {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .search-bar input {
+      padding: 0.5rem 1rem;
+      border: 2px solid #ff5cad;
+      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      outline: none;
+      width: 300px;
+    }
+
+    .search-bar button {
+      padding: 0.5rem 1rem;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      border: none;
+      border-radius: 25px;
+      color: #fff;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .user-actions {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .auth-btn {
+      padding: 0.5rem 1rem;
+      background: transparent;
+      border: 2px solid #ff5cad;
+      border-radius: 25px;
+      color: #fff;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .auth-btn:hover {
+      background: #ff5cad;
+      transform: translateY(-2px);
+    }
+
+    .main-content {
+      padding: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .back-btn {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: rgba(255, 92, 173, 0.2);
+      border: 2px solid #ff5cad;
+      border-radius: 25px;
+      color: #fff;
+      text-decoration: none;
+      margin-bottom: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background: #ff5cad;
+      transform: translateX(-5px);
+    }
+
+    .anime-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .anime-title {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(255, 92, 173, 0.5);
+    }
+
+    .anime-description {
+      font-size: 1.2rem;
+      color: #ccc;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .seasons-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .season-card {
+      background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .season-card:hover {
+      transform: translateY(-10px);
+      border-color: #ff5cad;
+      box-shadow: 0 20px 40px rgba(255, 92, 173, 0.3);
+    }
+
+    .season-thumbnail {
+      position: relative;
+      height: 300px;
+      overflow: hidden;
+    }
+
+    .season-thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .season-card:hover .season-thumbnail img {
+      transform: scale(1.1);
+    }
+
+    .season-number {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .season-play-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 92, 173, 0.9);
+      color: #fff;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      cursor: pointer;
+    }
+
+    .season-card:hover .season-play-overlay {
+      opacity: 1;
+    }
+
+    .season-info {
+      padding: 1.5rem;
+    }
+
+    .season-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: #ff5cad;
+    }
+
+    .season-description {
+      color: #ccc;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+
+    .season-stats {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .episode-count {
+      color: #ff8a80;
+      font-weight: bold;
+    }
+
+    .season-year {
+      color: #aaa;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: #333;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #ff5cad, #ff8a80);
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+
+    .progress-text {
+      font-size: 0.8rem;
+      color: #aaa;
+      margin-bottom: 1rem;
+    }
+
+    .watch-btn {
+      width: 100%;
+      padding: 0.8rem;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      border: none;
+      border-radius: 25px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-bottom: 1rem;
+    }
+
+    .watch-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4);
+    }
+
+    .download-servers-section {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #333;
+    }
+
+    .servers-title {
+      font-size: 0.9rem;
+      color: #ff5cad;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    .servers-grid-compact {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+    }
+
+    .download-link {
+      padding: 0.4rem 0.6rem;
+      background: rgba(255, 92, 173, 0.1);
+      border: 1px solid #ff5cad;
+      border-radius: 15px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.8rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      display: block;
+    }
+
+    .download-link:hover {
+      background: rgba(255, 92, 173, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .download-link.terabox {
+      border-color: #4CAF50;
+      background: rgba(76, 175, 80, 0.1);
+    }
+
+    .download-link.unavailable-server {
+      opacity: 0.5;
+      cursor: not-allowed;
+      background: rgba(128, 128, 128, 0.1);
+      border-color: #666;
+    }
+
+    .download-link.unavailable-server:hover {
+      transform: none;
+      background: rgba(128, 128, 128, 0.1);
+    }
+
+    .language-selector {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+
+    .language-selector select {
+      background: #333;
+      color: #fff;
+      border: 1px solid #ff5cad;
+      border-radius: 5px;
+      padding: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .seasons-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .anime-title {
+        font-size: 2rem;
+      }
+      
+      .header {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .search-bar input {
+        width: 200px;
+      }
+    }
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+  
+    .contenedor-video {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 2rem;
+      border: 1px solid rgba(255, 92, 173, 0.2);
+      margin-bottom: 2rem;
+    }
+
+    .player-options {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .player-btn {
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .player-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 92, 173, 0.3);
+    }
+
+    .player-btn.active {
+      background: linear-gradient(45deg, #4CAF50, #45a049);
+    }
+
+    .reproductor-video {
+      position: relative;
+      width: 100%;
+      height: 500px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .player-container {
+      display: none;
+      width: 100%;
+      height: 100%;
+    }
+
+    .player-container.active {
+      display: block;
+    }
+
+    .player-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Language Selector -->
+  <div class="language-selector">
+    <select id="language-select" onchange="changeLanguage()">
+      <option value="es">🇪🇸 Español</option>
+      <option value="en">🇺🇸 English</option>
+      <option value="pt">🇧🇷 Português</option>
+      <option value="fr">🇫🇷 Français</option>
+      <option value="ja">🇯🇵 日本語</option>
+    </select>
+  </div>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">🧧StudioOtaku</div>
+    <a href="../../html/index.html" class="back-btn">🏠 Inicio</a>
+  </div>
+
+  <main class="main-content">
+    <a href="../../html/index.html" class="back-btn">← Volver al Catálogo</a>
+
+    <div class="anime-header">
+      <h1 class="anime-title">Bungo Stray Dogs</h1>
+      <p class="anime-description">
+        Atsushi Nakajima, un huérfano expulsado, se une a la Agencia de Detectives Armados, un grupo de individuos con poderes sobrenaturales que resuelven casos demasiado peligrosos para la policía. Junto a Osamu Dazai y otros miembros, se enfrenta a la mafia y otras organizaciones.
+      </p>
+    </div>
+
+    <div class="seasons-grid">
+      <!-- Temporada 1 -->
+      <div class="season-card">
+        <img src="../../img/Bungou Stray Dogs S1.jpg" alt="Temporada 1">
+        <div class="season-info">
+          <h2 class="season-title">Temporada 1</h2>
+          <p class="season-description">Atsushi se une a la Agencia de Detectives Armados y descubre su poder de transformarse en tigre. (12 episodios)</p>
+          <a href="temporada-1.html" class="watch-btn">Ver Temporada</a>
+          <div class="servers-title">Descargar Temporada</div>
+          <div class="servers-grid-compact">
+            <a href="#" class="download-link terabox">TeraBox</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Temporada 2 -->
+      <div class="season-card">
+        <img src="../../img/Bungou Stray Dogs S2.jpg" alt="Temporada 2">
+        <div class="season-info">
+          <h2 class="season-title">Temporada 2</h2>
+          <p class="season-description">La Agencia se enfrenta a "The Guild", una organización de usuarios de habilidades de Norteamérica. (12 episodios)</p>
+          <a href="temporada-2.html" class="watch-btn">Ver Temporada</a>
+          <div class="servers-title">Descargar Temporada</div>
+          <div class="servers-grid-compact">
+            <a href="#" class="download-link terabox">TeraBox</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Temporada 3 -->
+      <div class="season-card">
+        <img src="../../img/Bungou Stray Dogs S3.png" alt="Temporada 3">
+        <div class="season-info">
+          <h2 class="season-title">Temporada 3</h2>
+          <p class="season-description">La Agencia lucha contra Fyodor Dostoevsky y su organización, las Ratas en la Casa de los Muertos. (12 episodios)</p>
+          <a href="temporada-3.html" class="watch-btn">Ver Temporada</a>
+          <div class="servers-title">Descargar Temporada</div>
+          <div class="servers-grid-compact">
+            <a href="#" class="download-link terabox">TeraBox</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Temporada 4 -->
+      <div class="season-card">
+        <img src="../../img/Bungou Stray Dogs S4.jpg" alt="Temporada 4">
+        <div class="season-info">
+          <h2 class="season-title">Temporada 4</h2>
+          <p class="season-description">La Agencia es incriminada por terrorismo y debe limpiar su nombre mientras son perseguidos. (13 episodios)</p>
+          <a href="temporada-4.html" class="watch-btn">Ver Temporada</a>
+          <div class="servers-title">Descargar Temporada</div>
+          <div class="servers-grid-compact">
+            <a href="#" class="download-link terabox">TeraBox</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Temporada 5 -->
+      <div class="season-card">
+        <img src="../../img/Bungou Stray Dogs S5.jpg" alt="Temporada 5">
+        <div class="season-info">
+          <h2 class="season-title">Temporada 5</h2>
+          <p class="season-description">La conclusión de la lucha contra la Decadencia de los Ángeles y el destino de la Agencia. (11 episodios)</p>
+          <a href="temporada-5.html" class="watch-btn">Ver Temporada</a>
+          <div class="servers-title">Descargar Temporada</div>
+          <div class="servers-grid-compact">
+            <a href="#" class="download-link terabox">TeraBox</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  
+  <script>
+    function switchPlayer(option) {
+      const playerButtons = document.querySelectorAll('.player-btn');
+      const playerContainers = document.querySelectorAll('.player-container');
+      
+      playerButtons.forEach(btn => btn.classList.remove('active'));
+      playerContainers.forEach(container => container.classList.remove('active'));
+      
+      document.getElementById(option + '-btn').classList.add('active');
+      document.getElementById(option + '-player').classList.add('active');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const firstPlayerBtn = document.querySelector('.player-btn');
+      if (firstPlayerBtn) {
+        firstPlayerBtn.click();
+      }
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+

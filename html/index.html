@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo de Anime - StudioOtaku</title>
+  <link rel="icon" type="image/x-icon" href="../img/demon-slayer.ico">
+  <script>
+    window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/speed-insights/script.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f0f23 0%, #2d1b69 50%, #0f0f23 100%);
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .header {
+      background: rgba(0, 0, 0, 0.9);
+      padding: 1rem 2rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid #ff5cad;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 25px;
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(255, 92, 173, 0.3);
+    }
+
+    .search-bar input {
+      background: transparent;
+      border: none;
+      color: #fff;
+      padding: 0.5rem;
+      font-size: 1rem;
+      width: 300px;
+      outline: none;
+    }
+
+    .search-bar input::placeholder {
+      color: #b0b0b0;
+    }
+
+    .search-bar button {
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      border: none;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      margin-left: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .search-bar button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 92, 173, 0.3);
+    }
+
+    .user-actions {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .auth-btn {
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .auth-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 92, 173, 0.3);
+    }
+
+    /* Main Container */
+    .main-container {
+      display: flex;
+      margin-top: 80px;
+      min-height: calc(100vh - 80px);
+    }
+
+    /* Left Sidebar */
+    .left-sidebar {
+      width: 250px;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 2rem 1rem;
+      border-right: 1px solid rgba(255, 92, 173, 0.2);
+    }
+
+    .sidebar-nav {
+      list-style: none;
+    }
+
+    .sidebar-nav li {
+      margin-bottom: 1rem;
+    }
+
+    .sidebar-nav a {
+      color: #b0b0b0;
+      text-decoration: none;
+      padding: 0.8rem 1rem;
+      border-radius: 10px;
+      display: block;
+      transition: all 0.3s ease;
+    }
+
+    .sidebar-nav a:hover,
+    .sidebar-nav a.active {
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      color: white;
+      transform: translateX(5px);
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-align: center;
+    }
+
+    /* Anime Grid */
+    .anime-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      padding: 1rem 0;
+    }
+
+    .anime-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 92, 173, 0.2);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .anime-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(255, 92, 173, 0.2);
+      border-color: rgba(255, 92, 173, 0.5);
+    }
+
+    .anime-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .anime-info {
+      padding: 1.5rem;
+    }
+
+    .anime-info h3 {
+      color: #fff;
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    .anime-info p {
+      color: #b0b0b0;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      margin-bottom: 1rem;
+    }
+
+    .anime-status {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+    }
+
+    .status-badge {
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    .anime-rating {
+      color: #ffd700;
+      font-weight: bold;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .main-container {
+        flex-direction: column;
+      }
+      
+      .left-sidebar {
+        width: 100%;
+        padding: 1rem;
+      }
+      
+      .sidebar-nav {
+        display: flex;
+        overflow-x: auto;
+        gap: 1rem;
+      }
+      
+      .sidebar-nav li {
+        margin-bottom: 0;
+        white-space: nowrap;
+      }
+      
+      .search-bar input {
+        width: 200px;
+      }
+      
+      .user-actions {
+        flex-wrap: wrap;
+      }
+      
+      .anime-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+      }
+      
+      .search-bar input {
+        width: 150px;
+      }
+      
+      .anime-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Encabezado -->
+  <div class="header">
+    <div class="logo">🧧StudioOtaku</div>
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar anime..." id="search-input">
+      <button onclick="buscarAnime()">🔍</button>
+    </div>
+    <div class="user-actions">
+      <button class="auth-btn">🔒 Login</button>
+      <button class="auth-btn">✎ Registro</button>
+      <a href="../index.html" class="auth-btn">🏠 Inicio</a>
+    </div>
+  </div>
+
+  <div class="main-container">
+    <!-- Barra lateral izquierda -->
+    <div class="left-sidebar">
+      <ul class="sidebar-nav">
+        <li><a href="../index.html">🏠 Inicio</a></li>
+        <li><a href="#" class="active">🎌 Anime</a></li>
+        <li><a href="#peliculas">🎬 Películas</a></li>
+        <li><a href="#generos">📚 Géneros</a></li>
+        <li><a href="#estrenos">⭐ Estrenos</a></li>
+        <li><a href="#top">🏆 Top Anime</a></li>
+        <li><a href="#live-action">🎭 Live Action</a></li>
+        <li><a href="#programacion">📺 Programación</a></li>
+        <li><a href="https://exe.io/ANIMETV" target="_blank">📱 APK</a></li>
+      </ul>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="main-content">
+      <h2 class="section-title">🎌 Catálogo Completo de Anime</h2>
+      <div class="anime-grid">
+        <!-- Attack on Titan -->
+        <div class="anime-card">
+          <img src="../img/Attack on Titan S1.jpg" alt="Attack on Titan">
+          <div class="anime-info">
+            <h3>Attack on Titan</h3>
+            <p>La humanidad lucha por sobrevivir contra los titanes gigantes.</p>
+            <div class="anime-status">
+              <span class="status-badge">Completo</span>
+              <span class="anime-rating">⭐ 9.0</span>
+            </div>
+          </div>
+          <a href="../ANIME TEMPORADAS CON EPISODIOS/attack-on-titan/temporadas.html" class="anime-link"></a>
+        </div>
+
+        <!-- Demon Slayer -->
+        <div class="anime-card">
+          <img src="../img/Kimetsu No Yaiba temporada 1.png" alt="Kimetsu no Yaiba">
+          <div class="anime-info">
+            <h3>Kimetsu no Yaiba</h3>
+            <p>Tanjiro se convierte en cazador de demonios para salvar a su hermana.</p>
+            <div class="anime-status">
+              <span class="status-badge">Completo</span>
+              <span class="anime-rating">⭐ 8.7</span>
+            </div>
+          </div>
+          <a href="../ANIME TEMPORADAS CON EPISODIOS/demon-slayer/temporadas.html" class="anime-link"></a>
+        </div>
+
+        <!-- Jujutsu Kaisen -->
+        <div class="anime-card">
+          <img src="../img/Jujutsu Kaisen S1.jpg" alt="Jujutsu Kaisen">
+          <div class="anime-info">
+            <h3>Jujutsu Kaisen</h3>
+            <p>Yuji Itadori se une al mundo de la hechicería para combatir maldiciones.</p>
+            <div class="anime-status">
+              <span class="status-badge">En emisión</span>
+              <span class="anime-rating">⭐ 8.6</span>
+            </div>
+          </div>
+          <a href="../ANIME TEMPORADAS CON EPISODIOS/jujutsu-kaisen/temporadas.html" class="anime-link"></a>
+        </div>
+
+        <!-- My Hero Academia -->
+        <div class="anime-card">
+          <img src="../img/BokunoHeroAcademia S1.png" alt="My Hero Academia">
+          <div class="anime-info">
+            <h3>My Hero Academia</h3>
+            <p>Izuku Midoriya sueña con convertirse en el héroe número uno.</p>
+            <div class="anime-status">
+              <span class="status-badge">En emisión</span>
+              <span class="anime-rating">⭐ 8.5</span>
+            </div>
+          </div>
+          <a href="../ANIME TEMPORADAS CON EPISODIOS/my-hero-academia/temporadas.html" class="anime-link"></a>
+        </div>
+
+        <!-- One Piece -->
+        <div class="anime-card">
+          <img src="../img/One Piece East Blue.png" alt="One Piece">
+          <div class="anime-info">
+            <h3>One Piece</h3>
+            <p>Monkey D. Luffy busca el tesoro más grande del mundo.</p>
+            <div class="anime-status">
+              <span class="status-badge">En emisión</span>
+              <span class="anime-rating">⭐ 9.1</span>
+            </div>
+          </div>
+          <a href="../ANIME TEMPORADAS CON EPISODIOS/one-piece/temporadas.html" class="anime-link"></a>
+        </div>
+
+        <!-- Naruto -->
+        <div class="anime-card">
+          <img src="../img/Naruto Classic.jpg" alt="Naruto">
+          <div class="anime-info">
+            <h3>Naruto</h3>
+            <p>Un ninja adolescente busca reconocimiento y sueña con ser Hokage.</p>
+            <div class="anime-status">
+              <span class="status-badge">Completo</span>
+              <span class="anime-rating">⭐ 8.4</span>
+            </div>
+          </div>
+          <a href="../ANIME TEMPORADAS CON EPISODIOS/naruto/temporadas.html" class="anime-link"></a>
+        </div>
+
+        <!-- Dragon Ball -->
+        <div class="anime-card">
+          <img src="../img/Dragon Ball Z.jpg" alt="Dragon Ball">
+          <div class="anime-info">
+            <h3>Dragon Ball</h3>
+            <p>Goku y sus amigos protegen la Tierra de poderosos enemigos.</p>
+            <div class="anime-status">
+              <span class="status-badge">Completo</span>
+              <span class="anime-rating">⭐ 8.8</span>
+            </div>
+          </div>
+          <a href="../ANIME TEMPORADAS CON EPISODIOS/dragon-ball/temporadas.html" class="anime-link"></a>
+        </div>
+
+        <!-- Tokyo Ghoul -->
+        <div class="anime-card">
+          <img src="../img/Tokyo Ghoul S1.jpg" alt="Tokyo Ghoul">
+          <div class="anime-info">
+            <h3>Tokyo Ghoul</h3>
+            <p>Ken Kaneki se convierte en un ghoul y lucha por su humanidad.</p>
+            <div class="anime-status">
+              <span class="status-badge">Completo</span>
+              <span class="anime-rating">⭐ 7.8</span>
+            </div>
+          </div>
+          <a href="../ANIME TEMPORADAS CON EPISODIOS/tokyo-ghoul/temporadas.html" class="anime-link"></a>
+        </div>
+
+        <!-- One Punch Man -->
+        <div class="anime-card">
+          <img src="../img/One Punch Man S1.jpg" alt="One Punch Man">
+          <div class="anime-info">
+            <h3>One Punch Man</h3>
+            <p>Saitama es un héroe que puede vencer a cualquier enemigo de un golpe.</p>
+            <div class="anime-status">
+              <span class="status-badge">En emisión</span>
+              <span class="anime-rating">⭐ 8.9</span>
+            </div>
+          </div>
+          <a href="../ANIME TEMPORADAS CON EPISODIOS/one-punch-man/temporadas.html" class="anime-link"></a>
+        </div>
+
+        <!-- Mob Psycho 100 -->
+        <div class="anime-card">
+          <img src="../img/Mob Psycho 100 S1.jpg" alt="Mob Psycho 100">
+          <div class="anime-info">
+            <h3>Mob Psycho 100</h3>
+            <p>Un estudiante con poderes psíquicos intenta vivir una vida normal.</p>
+            <div class="anime-status">
+              <span class="status-badge">Completo</span>
+              <span class="anime-rating">⭐ 8.8</span>
+            </div>
+          </div>
+          <a href="../ANIME TEMPORADAS CON EPISODIOS/mob-psycho-100/temporadas.html" class="anime-link"></a>
+        </div>
+
+        <!-- Solo Leveling -->
+        <div class="anime-card">
+          <img src="../img/Solo Leveling season 1.jpg" alt="Solo Leveling">
+          <div class="anime-info">
+            <h3>Solo Leveling</h3>
+            <p>Sung Jin-Woo evoluciona de ser el cazador más débil al más fuerte.</p>
+            <div class="anime-status">
+              <span class="status-badge">En emisión</span>
+              <span class="anime-rating">⭐ 8.9</span>
+            </div>
+          </div>
+          <a href="../ANIME TEMPORADAS CON EPISODIOS/solo-leveling/temporadas.html" class="anime-link"></a>
+        </div>
+
+        <!-- Chainsaw Man -->
+        <div class="anime-card">
+          <img src="../img/Chainsaw Man S1.jpg" alt="Chainsaw Man">
+          <div class="anime-info">
+            <h3>Chainsaw Man</h3>
+            <p>Denji se fusiona con su demonio mascota para convertirse en Chainsaw Man.</p>
+            <div class="anime-status">
+              <span class="status-badge">En emisión</span>
+              <span class="anime-rating">⭐ 8.4</span>
+            </div>
+          </div>
+          <a href="../ANIME TEMPORADAS CON EPISODIOS/chainsaw-man/temporadas.html" class="anime-link"></a>
+        </div>
+
+        <!-- Re:Zero -->
+        <div class="anime-card">
+          <img src="../img/rezeroS1.png" alt="Re:Zero">
+          <div class="anime-info">
+            <h3>Re:Zero</h3>
+            <p>Subaru es transportado a otro mundo donde puede regresar de la muerte.</p>
+            <div class="anime-status">
+              <span class="status-badge">En emisión</span>
+              <span class="anime-rating">⭐ 8.2</span>
+            </div>
+          </div>
+          <a href="../ANIME TEMPORADAS CON EPISODIOS/re-zero/temporadas.html" class="anime-link"></a>
+        </div>
+
+        <!-- Mushoku Tensei -->
+        <div class="anime-card">
+          <img src="../img/Mushoku Tensei tem 1.png" alt="Mushoku Tensei">
+          <div class="anime-info">
+            <h3>Mushoku Tensei</h3>
+            <p>Un hombre reencarna en un mundo de magia y busca una segunda oportunidad.</p>
+            <div class="anime-status">
+              <span class="status-badge">En emisión</span>
+              <span class="anime-rating">⭐ 8.6</span>
+            </div>
+          </div>
+          <a href="../ANIME TEMPORADAS CON EPISODIOS/mushoku-tensei/temporadas.html" class="anime-link"></a>
+        </div>
+
+        <!-- Classroom of the Elite -->
+        <div class="anime-card">
+          <img src="../img/classroom of the elite  season 1.png" alt="Classroom of the Elite">
+          <div class="anime-info">
+            <h3>Classroom of the Elite</h3>
+            <p>Estudiantes compiten en una escuela de élite con un sistema único.</p>
+            <div class="anime-status">
+              <span class="status-badge">En emisión</span>
+              <span class="anime-rating">⭐ 7.9</span>
+            </div>
+          </div>
+          <a href="../ANIME TEMPORADAS CON EPISODIOS/classroom-of-the-elite/temporadas.html" class="anime-link"></a>
+        </div>
+
+        <!-- Mashle -->
+        <div class="anime-card">
+          <img src="../img/Mashle  temporada 1.png" alt="Mashle">
+          <div class="anime-info">
+            <h3>Mashle</h3>
+            <p>En un mundo de magia, Mash usa solo su fuerza física.</p>
+            <div class="anime-status">
+              <span class="status-badge">En emisión</span>
+              <span class="anime-rating">⭐ 8.1</span>
+            </div>
+          </div>
+          <a href="../ANIME TEMPORADAS CON EPISODIOS/mashle/temporadas.html" class="anime-link"></a>
+        </div>
+
+        <!-- DanMachi -->
+        <div class="anime-card">
+          <img src="../img/DanMachi tem 1.png" alt="DanMachi">
+          <div class="anime-info">
+            <h3>DanMachi</h3>
+            <p>Bell Cranel explora mazmorras y busca convertirse en un gran aventurero.</p>
+            <div class="anime-status">
+              <span class="status-badge">En emisión</span>
+              <span class="anime-rating">⭐ 7.5</span>
+            </div>
+          </div>
+          <a href="../ANIME TEMPORADAS CON EPISODIOS/danmachi/temporadas.html" class="anime-link"></a>
+        </div>
+
+        <!-- Horimiya -->
+        <div class="anime-card">
+          <img src="../img/horimiya-the-missing-pieces-key-visual-tall.png" alt="Horimiya">
+          <div class="anime-info">
+            <h3>Horimiya</h3>
+            <p>La dulce historia de amor entre Hori y Miyamura en el instituto.</p>
+            <div class="anime-status">
+              <span class="status-badge">Completo</span>
+              <span class="anime-rating">⭐ 8.3</span>
+            </div>
+          </div>
+          <a href="../ANIME TEMPORADAS CON EPISODIOS/horimiya/temporadas.html" class="anime-link"></a>
+        </div>
+
+        <!-- Sakamoto Days -->
+        <div class="anime-card">
+          <img src="../img/sakamoto-days-art.jpg" alt="Sakamoto Days">
+          <div class="anime-info">
+            <h3>Sakamoto Days</h3>
+            <p>Un ex-asesino retirado debe volver a la acción para proteger a su familia.</p>
+            <div class="anime-status">
+              <span class="status-badge">Próximamente</span>
+              <span class="anime-rating">⭐ 8.7</span>
+            </div>
+          </div>
+          <a href="../ANIME TEMPORADAS CON EPISODIOS/sakamoto-days/temporadas.html" class="anime-link"></a>
+        </div>
+
+        <!-- Nanatsu no Taizai -->
+        <div class="anime-card">
+          <img src="../img/Nanatsu no taizai TEM  1.jpg" alt="Nanatsu no Taizai">
+          <div class="anime-info">
+            <h3>Nanatsu no Taizai</h3>
+            <p>Los Siete Pecados Capitales luchan para salvar el reino de Britannia.</p>
+            <div class="anime-status">
+              <span class="status-badge">Completo</span>
+              <span class="anime-rating">⭐ 7.7</span>
+            </div>
+          </div>
+          <a href="../ANIME TEMPORADAS CON EPISODIOS/nanatsu-no-taizai/temporadas.html" class="anime-link"></a>
+        </div>
+
+        <!-- Bungo Stray Dogs -->
+        <div class="anime-card">
+          <img src="../img/Bungou Stray Dogs S1.jpg" alt="Bungo Stray Dogs">
+          <div class="anime-info">
+            <h3>Bungo Stray Dogs</h3>
+            <p>Atsushi se une a una agencia de detectives con habilidades sobrenaturales.</p>
+            <div class="anime-status">
+              <span class="status-badge">En emisión</span>
+              <span class="anime-rating">⭐ 8.1</span>
+            </div>
+          </div>
+          <a href="../ANIME TEMPORADAS CON EPISODIOS/bungo-stray-dogs/temporadas.html" class="anime-link"></a>
+        </div>
+
+        <!-- Dragon Ball Heroes -->
+        <div class="anime-card">
+          <img src="../img/DRAGON BALL HEROES.png" alt="Dragon Ball Heroes">
+          <div class="anime-info">
+            <h3>Dragon Ball Heroes</h3>
+            <p>Aventuras alternativas en el universo de Dragon Ball.</p>
+            <div class="anime-status">
+              <span class="status-badge">En emisión</span>
+              <span class="anime-rating">⭐ 7.2</span>
+            </div>
+          </div>
+          <a href="../ANIME TEMPORADAS CON EPISODIOS/dragon-ball-heroes/temporadas.html" class="anime-link"></a>
+        </div>
+
+        <!-- Even Given the Worthless -->
+        <div class="anime-card">
+          <img src="../img/Even Given the Worthless tem 1.png" alt="Even Given the Worthless">
+          <div class="anime-info">
+            <h3>Even Given the Worthless</h3>
+            <p>Un héroe aparentemente inútil demuestra su verdadero valor.</p>
+            <div class="anime-status">
+              <span class="status-badge">En emisión</span>
+              <span class="anime-rating">⭐ 7.4</span>
+            </div>
+          </div>
+          <a href="../ANIME TEMPORADAS CON EPISODIOS/even-given-the-worthless/temporadas.html" class="anime-link"></a>
+        </div>
+
+        <!-- Kono Oto Tomare -->
+        <div class="anime-card">
+          <img src="../img/Kono oto tomaré Season 1.png" alt="Kono Oto Tomare">
+          <div class="anime-info">
+            <h3>Kono Oto Tomare</h3>
+            <p>Estudiantes reviven el club de koto y compiten en torneos musicales.</p>
+            <div class="anime-status">
+              <span class="status-badge">Completo</span>
+              <span class="anime-rating">⭐ 8.2</span>
+            </div>
+          </div>
+          <a href="../ANIME TEMPORADAS CON EPISODIOS/kono-oto-tomare/temporadas.html" class="anime-link"></a>
+        </div>
+
+        <!-- Nazo no Kanojo X -->
+        <div class="anime-card">
+          <img src="../img/NAZO NO KANOJO X S1.jpg" alt="Nazo no Kanojo X">
+          <div class="anime-info">
+            <h3>Nazo no Kanojo X</h3>
+            <p>Una extraña pero tierna historia de amor adolescente.</p>
+            <div class="anime-status">
+              <span class="status-badge">Completo</span>
+              <span class="anime-rating">⭐ 7.1</span>
+            </div>
+          </div>
+          <a href="../ANIME TEMPORADAS CON EPISODIOS/nazo-no-kanojo-x/temporadas.html" class="anime-link"></a>
+        </div>
+
+        <!-- Papa no Iukoto o Kikinasai -->
+        <div class="anime-card">
+          <img src="../img/Papa no Iukoto o Kikinasai.png" alt="Papa no Iukoto o Kikinasai">
+          <div class="anime-info">
+            <h3>Papa no Iukoto o Kikinasai</h3>
+            <p>Un estudiante universitario debe cuidar a tres niñas huérfanas.</p>
+            <div class="anime-status">
+              <span class="status-badge">Completo</span>
+              <span class="anime-rating">⭐ 7.3</span>
+            </div>
+          </div>
+          <a href="../ANIME TEMPORADAS CON EPISODIOS/papa-no-iukoto-o-kikinasai/temporadas.html" class="anime-link"></a>
+        </div>
+
+        <!-- SAO Progressive -->
+        <div class="anime-card">
+          <img src="../img/Sword Art Online Progressive Movie.png" alt="SAO Progressive">
+          <div class="anime-info">
+            <h3>SAO Progressive</h3>
+            <p>La historia detallada de Kirito y Asuna en Aincrad.</p>
+            <div class="anime-status">
+              <span class="status-badge">Película</span>
+              <span class="anime-rating">⭐ 8.0</span>
+            </div>
+          </div>
+          <a href="../ANIME TEMPORADAS CON EPISODIOS/sao-progressive/temporadas.html" class="anime-link"></a>
+        </div>
+
+        <!-- Urusei Yatsura -->
+        <div class="anime-card">
+          <img src="../img/Urusei Yatsura temporada 1.jpg" alt="Urusei Yatsura">
+          <div class="anime-info">
+            <h3>Urusei Yatsura</h3>
+            <p>Las aventuras cómicas de Ataru y la alienígena Lum.</p>
+            <div class="anime-status">
+              <span class="status-badge">En emisión</span>
+              <span class="anime-rating">⭐ 7.8</span>
+            </div>
+          </div>
+          <a href="../ANIME TEMPORADAS CON EPISODIOS/urusei-yatsura/temporadas.html" class="anime-link"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Función de búsqueda
+    function buscarAnime() {
+      const searchTerm = document.getElementById('search-input').value.toLowerCase();
+      const animeCards = document.querySelectorAll('.anime-card');
+      
+      animeCards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        const description = card.querySelector('p').textContent.toLowerCase();
+        if (title.includes(searchTerm) || description.includes(searchTerm)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+    
+    // Búsqueda en tiempo real
+    document.getElementById('search-input').addEventListener('input', buscarAnime);
+    
+    // Navegación del sidebar
+    document.querySelectorAll('.sidebar-nav a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        if (!this.href.includes('http')) {
+          e.preventDefault();
+          document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
+          this.classList.add('active');
+        }
+      });
+    });
+
+    // Hacer las tarjetas clickeables
+    document.querySelectorAll('.anime-card').forEach(card => {
+      card.addEventListener('click', function() {
+        const link = this.querySelector('.anime-link');
+        if (link) {
+          window.location.href = link.href;
+        }
+      });
+    });
+    // Añadir CSS para el enlace invisible
+    const style = document.createElement('style');
+    style.textContent = `
+      .anime-link {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        text-decoration: none;
+      }
+      
+      .anime-card {
+        position: relative;
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Función de búsqueda
+    function buscarAnime() {
+      const terminoBusqueda = document.getElementById('search-input').value.toLowerCase();
+      const tarjetasAnime = document.querySelectorAll('.anime-card');
+      
+      tarjetasAnime.forEach(tarjeta => {
+        const titulo = tarjeta.querySelector('h3').textContent.toLowerCase();
+        const descripcion = tarjeta.querySelector('p').textContent.toLowerCase();
+        if (titulo.includes(terminoBusqueda) || descripcion.includes(terminoBusqueda)) {
+          tarjeta.style.display = 'block';
+        } else {
+          tarjeta.style.display = 'none';
+        }
+      });
+    }
+
+    // Búsqueda en tiempo real
+    document.getElementById('search-input').addEventListener('input', buscarAnime);
+
+    // Navegación de la barra lateral
+    document.querySelectorAll('.sidebar-nav a').forEach(enlace => {
+      enlace.addEventListener('click', function(e) {
+        if (!this.href.includes('http') && !this.href.includes('../')) {
+          e.preventDefault();
+          document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
+          this.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,764 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f0f23 0%, #2d1b69 50%, #0f0f23 100%);
+      color: #fff;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .header {
+      background: rgba(0, 0, 0, 0.9);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid #ff5cad;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .main-content {
+      padding: 6rem 2rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .back-btn {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      border: none;
+      border-radius: 25px;
+      color: #fff;
+      text-decoration: none;
+      margin-bottom: 2rem;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4);
+    }
+
+    .anime-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .anime-title {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(255, 92, 173, 0.5);
+    }
+
+    .anime-description {
+      font-size: 1.2rem;
+      color: #ccc;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .seasons-container, .seasons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .season-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 2rem;
+      border: 1px solid rgba(255, 92, 173, 0.2);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .season-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(255, 92, 173, 0.3);
+      border-color: #ff5cad;
+    }
+
+    .season-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #ff8a80;
+    }
+
+    .season-description, .season-info {
+      color: #ccc;
+      margin-bottom: 1.5rem;
+    }
+
+    .season-btn, .watch-btn {
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      color: white;
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-block;
+      transition: all 0.3s ease;
+      width: 100%;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .season-btn:hover, .watch-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4);
+    }
+
+    .contenedor-video {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 2rem;
+      border: 1px solid rgba(255, 92, 173, 0.2);
+      margin-bottom: 2rem;
+    }
+
+    .player-options {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .player-btn {
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .player-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4);
+    }
+
+    .player-btn.active {
+      background: linear-gradient(45deg, #4CAF50, #45a049);
+    }
+
+    .reproductor-video {
+      height: 500px;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .player-container {
+      display: none;
+      width: 100%;
+      height: 100%;
+    }
+
+    .player-container.active {
+      display: block;
+    }
+
+    .player-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .seasons-container, .seasons-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .anime-title {
+        font-size: 2rem;
+      }
+      
+      .header {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .main-content {
+        padding: 8rem 1rem 2rem;
+      }
+    }
+  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boku no Hero Academia - Temporada 3 | StudioOtaku</title>
+  <link rel="icon" type="image/x-icon" href="../../img/demon-slayer.ico">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    .header {
+      background: #1a1a1a;
+      padding: 1rem 2rem;
+      border-bottom: 2px solid #333;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ff5cad;
+    }
+
+    .back-btn {
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      color: white;
+      text-decoration: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 92, 173, 0.3);
+    }
+
+    .main-content {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .season-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .season-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .season-description {
+      font-size: 1.1rem;
+      color: #ccc;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .episodes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .episode-card {
+      background: #2a2a2a;
+      border-radius: 12px;
+      padding: 1.5rem;
+      border: 1px solid #444;
+      transition: all 0.3s ease;
+    }
+
+    .episode-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(255, 92, 173, 0.2);
+      border-color: #ff5cad;
+    }
+
+    .episode-number {
+      color: #ff5cad;
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .episode-title {
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+      color: #fff;
+    }
+
+    .episode-description {
+      color: #ccc;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+
+    .download-links {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .download-link {
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .download-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 92, 173, 0.3);
+    }
+
+    .progress-section {
+      background: #2a2a2a;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border: 1px solid #444;
+    }
+
+    .progress-title {
+      color: #ff5cad;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .progress-bar {
+      background: #444;
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+    }
+
+    .progress-fill {
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      height: 100%;
+      transition: width 0.3s ease;
+    }
+
+    .progress-text {
+      text-align: center;
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    .video-container {
+      background: #1a1a1a;
+      border-radius: 15px;
+      padding: 1rem;
+      margin: 2rem 0;
+      border: 2px solid #ff5cad;
+      box-shadow: 0 10px 30px rgba(255, 92, 173, 0.3);
+    }
+
+    .video-player {
+      width: 100%;
+      height: 500px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #000;
+      position: relative;
+    }
+
+    .video-protection {
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      color: white;
+      padding: 0.8rem;
+      border-radius: 8px;
+      text-align: center;
+      margin-top: 1rem;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+  
+    .contenedor-video {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 2rem;
+      border: 1px solid rgba(255, 92, 173, 0.2);
+      margin-bottom: 2rem;
+    }
+
+    .player-options {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .player-btn {
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .player-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 92, 173, 0.3);
+    }
+
+    .player-btn.active {
+      background: linear-gradient(45deg, #4CAF50, #45a049);
+    }
+
+    .reproductor-video {
+      position: relative;
+      width: 100%;
+      height: 500px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .player-container {
+      display: none;
+      width: 100%;
+      height: 100%;
+    }
+
+    .player-container.active {
+      display: block;
+    }
+
+    .player-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo">🧧StudioOtaku</div>
+    <a href="../../html/index.html" class="back-btn">🏠 Inicio</a>
+  </div>
+
+  <div class="main-content">
+    <a href="temporadas.html" class="back-btn">← Volver a Boku no Hero Academia</a>
+    
+    <div class="season-header">
+      <h1 class="season-title">🦸‍♂️ Boku no Hero Academia - Temporada 3</h1>
+      <p class="season-description">
+        El Campamento de Entrenamiento en el Bosque y la batalla contra la Liga de Villanos. 
+        Los estudiantes enfrentan su mayor desafío hasta ahora mientras All Might revela su secreto.
+      </p>
+    </div>
+
+    <div class="video-container">
+      <div class="player-options">
+        <button class="player-btn active" onclick="switchPlayer('option1')" id="option1-btn">📺 OPCIÓN 1</button>
+        <button class="player-btn" onclick="switchPlayer('option2')" id="option2-btn">🎬 OPCIÓN 2</button>
+        <button class="player-btn" onclick="switchPlayer('option3')" id="option3-btn">🎭 OPCIÓN 3</button>
+        <button class="player-btn" onclick="switchPlayer('option4')" id="option4-btn">🎪 OPCIÓN 4</button>
+      </div>
+      <div class="video-player">
+        <div id="option1-player" class="player-container active" style="position: relative;">
+          <iframe src="https://sendvid.com/embed/qdmgw3vu" style="width: 100%; height: 100%; border: none; margin-top: -40px; transform: scale(1.05);" allowfullscreen></iframe>
+          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 40px; background: #000; z-index: 10;"></div>
+        </div>
+        <div id="option2-player" class="player-container">
+          <div style="display: flex; align-items: center; justify-content: center; height: 100%; background: #1a1a1a; color: #ff5cad; font-size: 1.2rem;">
+            🔧 Próximamente - Opción 2
+          </div>
+        </div>
+        <div id="option3-player" class="player-container">
+          <div style="display: flex; align-items: center; justify-content: center; height: 100%; background: #1a1a1a; color: #ff5cad; font-size: 1.2rem;">
+            🔧 Próximamente - Opción 3
+          </div>
+        </div>
+        <div id="option4-player" class="player-container">
+          <div style="display: flex; align-items: center; justify-content: center; height: 100%; background: #1a1a1a; color: #ff5cad; font-size: 1.2rem;">
+            🔧 Próximamente - Opción 4
+          </div>
+        </div>
+      </div>
+      <div class="video-protection">
+        🔒 Reproductor Protegido - Contenido encriptado para máxima seguridad
+      </div>
+    </div>
+
+    <div class="progress-section">
+      <div class="progress-title">📊 Progreso de la Temporada</div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="season-progress" style="width: 0%"></div>
+      </div>
+      <div class="progress-text" id="progress-text">0 de 25 episodios vistos</div>
+    </div>
+
+    <div class="episodes-grid">
+      <!-- Episodio 1 -->
+      <div class="episode-card">
+        <div class="episode-number">Episodio 1</div>
+        <div class="episode-title">Juego, Set, Match</div>
+        <div class="episode-description">
+          Los exámenes finales comienzan con enfrentamientos contra los profesores de U.A.
+        </div>
+        <div class="download-links">
+          <a href="https://exe.io/BokunoHeroAcademiaS3E1" target="_blank" class="download-link">📥 Descargar</a>
+        </div>
+      </div>
+
+      <!-- Episodio 2 -->
+      <div class="episode-card">
+        <div class="episode-number">Episodio 2</div>
+        <div class="episode-title">Salvaje, Salvaje, Gatos Pussycats</div>
+        <div class="episode-description">
+          Los estudiantes llegan al campamento de entrenamiento en el bosque con los Wild Wild Pussycats.
+        </div>
+        <div class="download-links">
+          <a href="https://exe.io/BokunoHeroAcademiaS3E2" target="_blank" class="download-link">📥 Descargar</a>
+        </div>
+      </div>
+
+      <!-- Episodio 3 -->
+      <div class="episode-card">
+        <div class="episode-number">Episodio 3</div>
+        <div class="episode-title">Kota</div>
+        <div class="episode-description">
+          Midoriya conoce a Kota, un niño que odia a los héroes debido a su trágico pasado.
+        </div>
+        <div class="download-links">
+          <a href="https://exe.io/BokunoHeroAcademiaS3E3" target="_blank" class="download-link">📥 Descargar</a>
+        </div>
+      </div>
+
+      <!-- Episodio 4 -->
+      <div class="episode-card">
+        <div class="episode-number">Episodio 4</div>
+        <div class="episode-title">Mi Héroe</div>
+        <div class="episode-description">
+          La Liga de Villanos ataca el campamento. Midoriya debe proteger a Kota del villano Muscular.
+        </div>
+        <div class="download-links">
+          <a href="https://exe.io/BokunoHeroAcademiaS3E4" target="_blank" class="download-link">📥 Descargar</a>
+        </div>
+      </div>
+
+      <!-- Episodio 5 -->
+      <div class="episode-card">
+        <div class="episode-number">Episodio 5</div>
+        <div class="episode-title">Conducir y Arrastrar</div>
+        <div class="episode-description">
+          Los estudiantes luchan desesperadamente contra los villanos mientras Bakugo es secuestrado.
+        </div>
+        <div class="download-links">
+          <a href="https://exe.io/BokunoHeroAcademiaS3E5" target="_blank" class="download-link">📥 Descargar</a>
+        </div>
+      </div>
+
+      <!-- Episodio 6 -->
+      <div class="episode-card">
+        <div class="episode-number">Episodio 6</div>
+        <div class="episode-title">Roaring Upheaval</div>
+        <div class="episode-description">
+          Las consecuencias del ataque al campamento y la búsqueda desesperada de Bakugo.
+        </div>
+        <div class="download-links">
+          <a href="https://exe.io/BokunoHeroAcademiaS3E6" target="_blank" class="download-link">📥 Descargar</a>
+        </div>
+      </div>
+
+      <!-- Episodio 7 -->
+      <div class="episode-card">
+        <div class="episode-number">Episodio 7</div>
+        <div class="episode-title">¿Qué Debo Hacer Ahora?</div>
+        <div class="episode-description">
+          Midoriya y sus amigos planean una misión de rescate no autorizada para salvar a Bakugo.
+        </div>
+        <div class="download-links">
+          <a href="https://exe.io/BokunoHeroAcademiaS3E7" target="_blank" class="download-link">📥 Descargar</a>
+        </div>
+      </div>
+
+      <!-- Episodio 8 -->
+      <div class="episode-card">
+        <div class="episode-number">Episodio 8</div>
+        <div class="episode-title">De Iida a Midoriya</div>
+        <div class="episode-description">
+          Iida confronta a Midoriya sobre su plan de rescate mientras los héroes profesionales actúan.
+        </div>
+        <div class="download-links">
+          <a href="https://exe.io/BokunoHeroAcademiaS3E8" target="_blank" class="download-link">📥 Descargar</a>
+        </div>
+      </div>
+
+      <!-- Episodio 9 -->
+      <div class="episode-card">
+        <div class="episode-number">Episodio 9</div>
+        <div class="episode-title">All For One</div>
+        <div class="episode-description">
+          Se revela el verdadero líder de la Liga de Villanos: All For One, el némesis de All Might.
+        </div>
+        <div class="download-links">
+          <a href="https://exe.io/BokunoHeroAcademiaS3E9" target="_blank" class="download-link">📥 Descargar</a>
+        </div>
+      </div>
+
+      <!-- Episodio 10 -->
+      <div class="episode-card">
+        <div class="episode-number">Episodio 10</div>
+        <div class="episode-title">Símbolo de Paz</div>
+        <div class="episode-description">
+          La batalla épica entre All Might y All For One que cambiará el mundo de los héroes para siempre.
+        </div>
+        <div class="download-links">
+          <a href="https://exe.io/BokunoHeroAcademiaS3E10" target="_blank" class="download-link">📥 Descargar</a>
+        </div>
+      </div>
+
+      <!-- Episodio 11 -->
+      <div class="episode-card">
+        <div class="episode-number">Episodio 11</div>
+        <div class="episode-title">One For All</div>
+        <div class="episode-description">
+          All Might usa sus últimas fuerzas para derrotar a All For One y revelar su verdadera forma al mundo.
+        </div>
+        <div class="download-links">
+          <a href="https://exe.io/BokunoHeroAcademiaS3E11" target="_blank" class="download-link">📥 Descargar</a>
+        </div>
+      </div>
+
+      <!-- Episodio 12 -->
+      <div class="episode-card">
+        <div class="episode-number">Episodio 12</div>
+        <div class="episode-title">Fin del Comienzo, Comienzo del Final</div>
+        <div class="episode-description">
+          Las consecuencias de la batalla y el nuevo mundo sin All Might como Símbolo de Paz.
+        </div>
+        <div class="download-links">
+          <a href="https://exe.io/BokunoHeroAcademiaS3E12" target="_blank" class="download-link">📥 Descargar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <script>
+    function switchPlayer(option) {
+      const playerButtons = document.querySelectorAll('.player-btn');
+      const playerContainers = document.querySelectorAll('.player-container');
+      
+      playerButtons.forEach(btn => btn.classList.remove('active'));
+      playerContainers.forEach(container => container.classList.remove('active'));
+      
+      document.getElementById(${option}-btn).classList.add('active');
+      document.getElementById(${option}-player).classList.add('active');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const firstPlayerBtn = document.querySelector('.player-btn');
+      if (firstPlayerBtn) {
+        firstPlayerBtn.click();
+      }
+    });
+  </script>
+  
+  <script>
+    function switchPlayer(option) {
+      const playerButtons = document.querySelectorAll('.player-btn');
+      const playerContainers = document.querySelectorAll('.player-container');
+      
+      playerButtons.forEach(btn => btn.classList.remove('active'));
+      playerContainers.forEach(container => container.classList.remove('active'));
+      
+      document.getElementById(${option}-btn).classList.add('active');
+      document.getElementById(${option}-player).classList.add('active');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const firstPlayerBtn = document.querySelector('.player-btn');
+      if (firstPlayerBtn) {
+        firstPlayerBtn.click();
+      }
+    });
+  </script>
+</body>
+</html>
+
+

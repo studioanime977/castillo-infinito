@@ -1,0 +1,795 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f0f23 0%, #2d1b69 50%, #0f0f23 100%);
+      color: #fff;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .header {
+      background: rgba(0, 0, 0, 0.9);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid #ff5cad;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .main-content {
+      padding: 6rem 2rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .back-btn {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      border: none;
+      border-radius: 25px;
+      color: #fff;
+      text-decoration: none;
+      margin-bottom: 2rem;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4);
+    }
+
+    .anime-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .anime-title {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(255, 92, 173, 0.5);
+    }
+
+    .anime-description {
+      font-size: 1.2rem;
+      color: #ccc;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .seasons-container, .seasons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .season-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 2rem;
+      border: 1px solid rgba(255, 92, 173, 0.2);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .season-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(255, 92, 173, 0.3);
+      border-color: #ff5cad;
+    }
+
+    .season-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #ff8a80;
+    }
+
+    .season-description, .season-info {
+      color: #ccc;
+      margin-bottom: 1.5rem;
+    }
+
+    .season-btn, .watch-btn {
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      color: white;
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-block;
+      transition: all 0.3s ease;
+      width: 100%;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .season-btn:hover, .watch-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4);
+    }
+
+    .contenedor-video {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 2rem;
+      border: 1px solid rgba(255, 92, 173, 0.2);
+      margin-bottom: 2rem;
+    }
+
+    .player-options {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .player-btn {
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .player-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4);
+    }
+
+    .player-btn.active {
+      background: linear-gradient(45deg, #4CAF50, #45a049);
+    }
+
+    .reproductor-video {
+      height: 500px;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .player-container {
+      display: none;
+      width: 100%;
+      height: 100%;
+    }
+
+    .player-container.active {
+      display: block;
+    }
+
+    .player-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .seasons-container, .seasons-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .anime-title {
+        font-size: 2rem;
+      }
+      
+      .header {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .main-content {
+        padding: 8rem 1rem 2rem;
+      }
+    }
+  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mushoku Tensei - Todas las Temporadas | StudioOtaku</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    .header {
+      background: rgba(0, 0, 0, 0.9);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid #ff5cad;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .search-bar {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .search-bar input {
+      padding: 0.5rem 1rem;
+      border: 2px solid #ff5cad;
+      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      outline: none;
+      width: 300px;
+    }
+
+    .search-bar button {
+      padding: 0.5rem 1rem;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      border: none;
+      border-radius: 25px;
+      color: #fff;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .user-actions {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .auth-btn {
+      padding: 0.5rem 1rem;
+      background: transparent;
+      border: 2px solid #ff5cad;
+      border-radius: 25px;
+      color: #fff;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .auth-btn:hover {
+      background: #ff5cad;
+      transform: translateY(-2px);
+    }
+
+    .main-content {
+      padding: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .back-btn {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: rgba(255, 92, 173, 0.2);
+      border: 2px solid #ff5cad;
+      border-radius: 25px;
+      color: #fff;
+      text-decoration: none;
+      margin-bottom: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background: #ff5cad;
+      transform: translateX(-5px);
+    }
+
+    .anime-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .anime-title {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(255, 92, 173, 0.5);
+    }
+
+    .anime-description {
+      font-size: 1.2rem;
+      color: #ccc;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .seasons-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .season-card {
+      background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .season-card:hover {
+      transform: translateY(-10px);
+      border-color: #ff5cad;
+      box-shadow: 0 20px 40px rgba(255, 92, 173, 0.3);
+    }
+
+    .season-thumbnail {
+      position: relative;
+      height: 300px;
+      overflow: hidden;
+    }
+
+    .season-thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .season-card:hover .season-thumbnail img {
+      transform: scale(1.1);
+    }
+
+    .season-number {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .season-play-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 92, 173, 0.9);
+      color: #fff;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      cursor: pointer;
+    }
+
+    .season-card:hover .season-play-overlay {
+      opacity: 1;
+    }
+
+    .season-info {
+      padding: 1.5rem;
+    }
+
+    .season-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: #ff5cad;
+    }
+
+    .season-description {
+      color: #ccc;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+
+    .season-stats {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .episode-count {
+      color: #ff8a80;
+      font-weight: bold;
+    }
+
+    .season-year {
+      color: #aaa;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: #333;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #ff5cad, #ff8a80);
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+
+    .progress-text {
+      font-size: 0.8rem;
+      color: #aaa;
+      margin-bottom: 1rem;
+    }
+
+    .watch-btn {
+      width: 100%;
+      padding: 0.8rem;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      border: none;
+      border-radius: 25px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-bottom: 1rem;
+    }
+
+    .watch-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4);
+    }
+
+    .download-servers-section {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #333;
+    }
+
+    .servers-title {
+      font-size: 0.9rem;
+      color: #ff5cad;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    .servers-grid-compact {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+    }
+
+    .download-link {
+      padding: 0.4rem 0.6rem;
+      background: rgba(255, 92, 173, 0.1);
+      border: 1px solid #ff5cad;
+      border-radius: 15px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.8rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      display: block;
+    }
+
+    .download-link:hover {
+      background: rgba(255, 92, 173, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .download-link.terabox {
+      border-color: #4CAF50;
+      background: rgba(76, 175, 80, 0.1);
+    }
+
+    .download-link.unavailable-server {
+      opacity: 0.5;
+      cursor: not-allowed;
+      background: rgba(128, 128, 128, 0.1);
+      border-color: #666;
+    }
+
+    .download-link.unavailable-server:hover {
+      transform: none;
+      background: rgba(128, 128, 128, 0.1);
+    }
+
+    .language-selector {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+
+    .language-selector select {
+      background: #333;
+      color: #fff;
+      border: 1px solid #ff5cad;
+      border-radius: 5px;
+      padding: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .seasons-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .anime-title {
+        font-size: 2rem;
+      }
+      
+      .header {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .search-bar input {
+        width: 200px;
+      }
+    }
+  
+    .contenedor-video {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 2rem;
+      border: 1px solid rgba(255, 92, 173, 0.2);
+      margin-bottom: 2rem;
+    }
+
+    .player-options {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .player-btn {
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .player-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 92, 173, 0.3);
+    }
+
+    .player-btn.active {
+      background: linear-gradient(45deg, #4CAF50, #45a049);
+    }
+
+    .reproductor-video {
+      position: relative;
+      width: 100%;
+      height: 500px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .player-container {
+      display: none;
+      width: 100%;
+      height: 100%;
+    }
+
+    .player-container.active {
+      display: block;
+    }
+
+    .player-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Language Selector -->
+  <div class="language-selector">
+    <select id="language-select" onchange="changeLanguage()">
+      <option value="es">🇪🇸 Español</option>
+      <option value="en">🇺🇸 English</option>
+      <option value="pt">🇧🇷 Português</option>
+      <option value="fr">🇫🇷 Français</option>
+      <option value="ja">🇯🇵 日本語</option>
+    </select>
+  </div>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">🧧StudioOtaku</div>
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar anime..." id="search-input">
+      <button onclick="searchAnime()">🔍</button>
+    </div>
+    <div class="user-actions">
+      <button class="auth-btn">🔒 Login</button>
+      <button class="auth-btn">✎ Registro</button>
+      <a href="../../html/index.html" class="auth-btn">🏠 Inicio</a>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <a href="../../html/index.html" class="back-btn">← Volver al Catálogo</a>
+    
+    <div class="anime-header">
+      <h1 class="anime-title">🏰 Mushoku Tensei</h1>
+      <p class="anime-description">
+        Un hombre de 34 años sin trabajo es atropellado por un camión y reencarna como Rudeus Greyrat en un mundo de espada y magia. Determinado a vivir su nueva vida al máximo, utiliza el conocimiento de su vida anterior para convertirse en un poderoso mago desde una edad temprana. Una historia épica de redención, crecimiento personal y aventuras en un mundo fantástico.
+      </p>
+      <!-- Top Banner -->
+  <div class="banner-ad" style="text-align: center; margin: 1rem 0; padding: 1rem; background: rgba(0,0,0,0.1); border-radius: 10px;">
+    <a href="https://exe.io/ref/studiootaku" target="_blank"><img src="https://exe.io/img/ref/r1.gif" title="CuT URLs - Earn money by shortening links with the highest CPMs Ever!" style="max-width: 100%; height: auto; border-radius: 5px;" /></a>
+  </div>
+  <!-- End Top Banner -->
+</div>
+
+    <div class="seasons-container">
+      <!-- Mushoku Tensei Season 1 -->
+      <div class="season-card">
+        <div class="season-thumbnail">
+          <img src="../../img/Mushoku Tensei tem 1.png" alt="Mushoku Tensei S1">
+          <div class="season-number">S1</div>
+          <div class="season-play-overlay">▶</div>
+        </div>
+        <div class="season-info">
+          <div class="season-title">Mushoku Tensei - Temporada 1</div>
+          <div class="season-description">
+            Rudeus Greyrat comienza su nueva vida en un mundo de magia y espada. Desde bebé, demuestra habilidades mágicas excepcionales y comienza su entrenamiento como mago bajo la tutela de Roxy Migurdia.
+          </div>
+          <div class="season-stats">
+            <div class="episode-count">🏰 23 Episodios</div>
+            <div class="season-year">2021</div>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="s1-progress" style="width: 0%"></div>
+          </div>
+          <div class="progress-text" id="s1-progress-text">No iniciado</div>
+          <button class="watch-btn" id="s1-btn" onclick="goToSeason('season1.html')">🏰 Ver Temporada</button>
+          
+          <div class="download-servers-section">
+            <div class="servers-title">📥 Descargar Temporada Completa</div>
+            <div class="servers-grid-compact">
+              <a href="https://exe.io/MushokuTenseitem1" target="_blank" class="download-link terabox">📦 TeraBox</a>
+              <a href="#" onclick="showUnavailableAlert('MEGA'); return false;" class="download-link mega unavailable-server">📦 MEGA</a>
+              <a href="#" onclick="showUnavailableAlert('MediaFire'); return false;" class="download-link mediafire unavailable-server">🔥 MediaFire</a>
+              <a href="#" onclick="showUnavailableAlert('Dropbox'); return false;" class="download-link dropbox unavailable-server">📁 Dropbox</a>
+              <a href="#" onclick="showUnavailableAlert('1Fichier'); return false;" class="download-link fichier unavailable-server">📂 1Fichier</a>
+              <a href="#" onclick="showUnavailableAlert('Stape'); return false;" class="download-link stape unavailable-server">🔗 Stape</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mushoku Tensei Season 2 -->
+      <div class="season-card">
+        <div class="season-thumbnail">
+          <img src="../../img/MushokuTenseiS2.jpg" alt="Mushoku Tensei S2">
+          <div class="season-number">S2</div>
+          <div class="season-play-overlay">▶</div>
+        </div>
+        <div class="season-info">
+          <div class="season-title">Mushoku Tensei - Temporada 2</div>
+          <div class="season-description">
+            Rudeus continúa su crecimiento como mago y aventurero. Enfrenta nuevos desafíos, conoce nuevos compañeros y se adentra más profundamente en los misterios de este mundo mágico.
+          </div>
+          <div class="season-stats">
+            <div class="episode-count">⚔️ 24 Episodios</div>
+            <div class="season-year">2023</div>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="s2-progress" style="width: 0%"></div>
+          </div>
+          <div class="progress-text" id="s2-progress-text">No iniciado</div>
+          <button class="watch-btn" id="s2-btn" onclick="goToSeason('season2.html')">⚔️ Ver Temporada</button>
+          
+          <div class="download-servers-section">
+            <div class="servers-title">📥 Descargar Temporada Completa</div>
+            <div class="servers-grid-compact">
+              <a href="https://exe.io/MushokuTenseiS2" target="_blank" class="download-link terabox">📦 TeraBox</a>
+              <a href="#" onclick="showUnavailableAlert('MEGA'); return false;" class="download-link mega unavailable-server">📦 MEGA</a>
+              <a href="#" onclick="showUnavailableAlert('MediaFire'); return false;" class="download-link mediafire unavailable-server">🔥 MediaFire</a>
+              <a href="#" onclick="showUnavailableAlert('Dropbox'); return false;" class="download-link dropbox unavailable-server">📁 Dropbox</a>
+              <a href="#" onclick="showUnavailableAlert('1Fichier'); return false;" class="download-link fichier unavailable-server">📂 1Fichier</a>
+              <a href="#" onclick="showUnavailableAlert('Stape'); return false;" class="download-link stape unavailable-server">🔗 Stape</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+  <!-- Bottom Banner -->
+  <div class="banner-ad" style="text-align: center; margin: 2rem 0; padding: 1rem; background: rgba(0,0,0,0.1); border-radius: 10px;">
+    <a href="https://exe.io/ref/studiootaku" target="_blank"><img src="https://exe.io/img/ref/r4.png" title="CuT URLs - Earn money by shortening links with the highest CPMs Ever!" style="max-width: 100%; height: auto; border-radius: 5px;" /></a>
+  </div>
+  <!-- End Bottom Banner -->
+</div>
+  </div>
+
+  
+  <script>
+    function switchPlayer(option) {
+      const playerButtons = document.querySelectorAll('.player-btn');
+      const playerContainers = document.querySelectorAll('.player-container');
+      
+      playerButtons.forEach(btn => btn.classList.remove('active'));
+      playerContainers.forEach(container => container.classList.remove('active'));
+      
+      document.getElementById(option + '-btn').classList.add('active');
+      document.getElementById(option + '-player').classList.add('active');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const firstPlayerBtn = document.querySelector('.player-btn');
+      if (firstPlayerBtn) {
+        firstPlayerBtn.click();
+      }
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+

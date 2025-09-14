@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bungo Stray Dogs - Temporada 3 | StudioOtaku</title>
+  <link rel="icon" type="image/x-icon" href="../../img/bungo-stray-dogs.ico">
+  <style>
+    :root {
+      --primary-color: #ff5cad;
+      --secondary-color: #ff8a80;
+      --background-start: #0f0f23;
+      --background-end: #2d1b69;
+      --card-background: rgba(255, 255, 255, 0.05);
+      --card-border: rgba(255, 92, 173, 0.2);
+      --text-color: #fff;
+      --text-muted: #ccc;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--background-start) 0%, var(--background-end) 50%, var(--background-start) 100%);
+      color: var(--text-color);
+      margin: 0;
+    }
+
+    .header {
+      background: rgba(0, 0, 0, 0.85);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--primary-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .main-content {
+      padding: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 500;
+      margin-bottom: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4);
+    }
+
+    .video-and-episodes {
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      gap: 2rem;
+    }
+
+    .video-player-section {
+      position: sticky;
+      top: 100px;
+      align-self: start;
+    }
+    
+    .video-player-container {
+      background: var(--card-background);
+      border-radius: 15px;
+      padding: 1rem;
+      border: 1px solid var(--card-border);
+    }
+
+    .player-options {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .player-btn {
+      background: #333;
+      color: white;
+      border: 1px solid transparent;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .player-btn:hover {
+      background: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+
+    .player-btn.active {
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      font-weight: bold;
+    }
+
+    .video-player {
+      position: relative;
+      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+      background-color: #000;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .video-player iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .episode-title-display {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: rgba(0,0,0,0.3);
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    #current-episode-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .episodes-list-section {
+      max-height: 80vh;
+      overflow-y: auto;
+      padding-right: 1rem;
+    }
+
+    .episode-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.75rem;
+      background: var(--card-background);
+      border: 1px solid transparent;
+      border-radius: 10px;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .episode-item:hover {
+      border-color: var(--primary-color);
+      transform: translateX(5px);
+    }
+
+    .episode-item.active {
+      border-color: var(--secondary-color);
+      background: rgba(255, 138, 128, 0.1);
+    }
+
+    .ep-number {
+      font-size: 1rem;
+      font-weight: bold;
+      color: var(--text-muted);
+    }
+
+    .ep-title {
+      font-size: 0.9rem;
+      flex-grow: 1;
+    }
+
+    @media (max-width: 1024px) {
+      .video-and-episodes {
+        grid-template-columns: 1fr;
+      }
+      .video-player-section { position: static; }
+      .episodes-list-section { max-height: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="logo">StudioOtaku</div>
+    <a href="../../html/index.html" class="back-btn" style="margin: 0;">🏠 Inicio</a>
+  </header>
+
+  <main class="main-content">
+    <a href="temporadas.html" class="back-btn">← Volver a Temporadas</a>
+
+    <div class="video-and-episodes">
+      <div class="video-player-section">
+        <div class="video-player-container">
+          <div class="player-options">
+            <button class="player-btn active" id="opcion1-btn" onclick="switchPlayer('opcion1')">Opción 1</button>
+            <button class="player-btn" id="opcion2-btn" onclick="switchPlayer('opcion2')">Opción 2</button>
+            <button class="player-btn" id="opcion3-btn" onclick="switchPlayer('opcion3')">Opción 3</button>
+          </div>
+          <div class="video-player">
+            <iframe id="video-iframe" src="" allowfullscreen></iframe>
+          </div>
+          <div class="episode-title-display">
+            <h2 id="current-episode-title">Cargando...</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="episodes-list-section" id="episodes-list">
+        <!-- La lista de episodios se generará aquí -->
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const episodes = [
+        { num: 1, title: 'Dazai, Chuuya, quince años', op1: 'URL_OP1_EP1', op2: 'URL_OP2_EP1', op3: 'URL_OP3_EP1' },
+        { num: 2, title: 'El dios del fuego', op1: 'URL_OP1_EP2', op2: 'URL_OP2_EP2', op3: 'URL_OP3_EP2' },
+        { num: 3, title: 'Solo un diamante puede pulir a otro', op1: 'URL_OP1_EP3', op2: 'URL_OP2_EP3', op3: 'URL_OP3_EP3' },
+        { num: 4, title: 'Mi regalo es no tener que morir', op1: 'URL_OP1_EP4', op2: 'URL_OP2_EP4', op3: 'URL_OP3_EP4' },
+        { num: 5, title: 'El retrato de un padre', op1: 'URL_OP1_EP5', op2: 'URL_OP2_EP5', op3: 'URL_OP3_EP5' },
+        { num: 6, title: 'Fitzgerald en ascenso', op1: 'URL_OP1_EP6', op2: 'URL_OP2_EP6', op3: 'URL_OP3_EP6' },
+        { num: 7, title: 'El hombre de la máscara', op1: 'URL_OP1_EP7', op2: 'URL_OP2_EP7', op3: 'URL_OP3_EP7' },
+        { num: 8, title: 'Canibalismo (Parte 1)', op1: 'URL_OP1_EP8', op2: 'URL_OP2_EP8', op3: 'URL_OP3_EP8' },
+        { num: 9, title: 'Canibalismo (Parte 2)', op1: 'URL_OP1_EP9', op2: 'URL_OP2_EP9', op3: 'URL_OP3_EP9' },
+        { num: 10, title: 'Canibalismo (Parte 3)', op1: 'URL_OP1_EP10', op2: 'URL_OP2_EP10', op3: 'URL_OP3_EP10' },
+        { num: 11, title: 'El eco', op1: 'URL_OP1_EP11', op2: 'URL_OP2_EP11', op3: 'URL_OP3_EP11' },
+        { num: 12, title: 'El eco de la vanidad', op1: 'URL_OP1_EP12', op2: 'URL_OP2_EP12', op3: 'URL_OP3_EP12' }
+    ];
+
+    const episodesList = document.getElementById('episodes-list');
+    const videoIframe = document.getElementById('video-iframe');
+    const currentEpisodeTitle = document.getElementById('current-episode-title');
+    let activePlayer = 'op1';
+
+    function loadEpisode(episode) {
+      videoIframe.src = episode[activePlayer];
+      currentEpisodeTitle.textContent = `Ep. ${episode.num}: ${episode.title}`;
+
+      document.querySelectorAll('.episode-item').forEach(item => item.classList.remove('active'));
+      document.getElementById(`ep-${episode.num}`).classList.add('active');
+    }
+
+    function switchPlayer(option) {
+      activePlayer = option.replace('opcion', 'op');
+      document.querySelectorAll('.player-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(`${option}-btn`).classList.add('active');
+      
+      const activeEpisodeNum = document.querySelector('.episode-item.active')?.id.split('-')[1];
+      if (activeEpisodeNum) {
+        const episode = episodes.find(ep => ep.num == activeEpisodeNum);
+        videoIframe.src = episode[activePlayer];
+      }
+    }
+
+    episodes.forEach(ep => {
+      const epItem = document.createElement('div');
+      epItem.className = 'episode-item';
+      epItem.id = `ep-${ep.num}`;
+      epItem.innerHTML = `<span class="ep-number">${ep.num}</span><span class="ep-title">${ep.title}</span>`;
+      epItem.addEventListener('click', () => loadEpisode(ep));
+      episodesList.appendChild(epItem);
+    });
+
+    // Cargar el primer episodio por defecto
+    if (episodes.length > 0) {
+      loadEpisode(episodes[0]);
+    }
+
+  </script>
+</body>
+</html>

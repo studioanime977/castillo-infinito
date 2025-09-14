@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f0f23 0%, #2d1b69 50%, #0f0f23 100%);
+      color: #fff;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .header {
+      background: rgba(0, 0, 0, 0.9);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid #ff5cad;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .main-content {
+      padding: 6rem 2rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .back-btn {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      border: none;
+      border-radius: 25px;
+      color: #fff;
+      text-decoration: none;
+      margin-bottom: 2rem;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4);
+    }
+
+    .anime-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .anime-title {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(255, 92, 173, 0.5);
+    }
+
+    .anime-description {
+      font-size: 1.2rem;
+      color: #ccc;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .seasons-container, .seasons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .season-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      border: 1px solid rgba(255, 92, 173, 0.2);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .season-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(255, 92, 173, 0.3);
+      border-color: #ff5cad;
+    }
+
+    .season-thumbnail {
+      position: relative;
+      height: 250px;
+      overflow: hidden;
+    }
+
+    .season-thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .season-card:hover .season-thumbnail img {
+      transform: scale(1.1);
+    }
+
+    .season-number {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .season-play-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 92, 173, 0.9);
+      color: #fff;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .season-card:hover .season-play-overlay {
+      opacity: 1;
+    }
+
+    .season-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #ff8a80;
+    }
+
+    .season-description {
+      color: #ccc;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem; /* Ajuste de tamaño */
+    }
+    
+    .season-info {
+      padding: 1.5rem;
+    }
+
+    .season-btn, .watch-btn {
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      color: white;
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-block;
+      transition: all 0.3s ease;
+      width: 100%;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .season-btn:hover, .watch-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4);
+    }
+
+    .download-servers-section {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #333;
+    }
+
+    .servers-title {
+      font-size: 0.9rem;
+      color: #ff5cad;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    .servers-grid-compact {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      gap: 0.5rem;
+    }
+
+    .download-link {
+      padding: 0.5rem 0.8rem;
+      background: rgba(255, 92, 173, 0.1);
+      border: 1px solid #ff5cad;
+      border-radius: 8px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      display: block;
+      font-weight: 500;
+    }
+
+    .download-link:hover {
+      background: rgba(255, 92, 173, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .download-link.terabox {
+      border-color: #4CAF50;
+      background: rgba(76, 175, 80, 0.1);
+      color: #4CAF50;
+    }
+    .download-link.terabox:hover {
+      background: rgba(76, 175, 80, 0.3);
+    }
+
+    .download-link.mediafire {
+      border-color: #FF9800;
+      background: rgba(255, 152, 0, 0.1);
+      color: #FF9800;
+    }
+    .download-link.mediafire:hover {
+      background: rgba(255, 152, 0, 0.3);
+    }
+
+    .download-link.mega {
+        border-color: #ff3c3c;
+        background: rgba(255, 60, 60, 0.1);
+        color: #ff3c3c;
+    }
+    .download-link.mega:hover {
+        background: rgba(255, 60, 60, 0.3);
+    }
+
+    .download-link.unavailable-server {
+      opacity: 0.4;
+      cursor: not-allowed;
+      background: rgba(128, 128, 128, 0.1);
+      border-color: #666;
+      color: #888;
+    }
+
+    .download-link.unavailable-server:hover {
+      transform: none;
+      background: rgba(128, 128, 128, 0.1);
+    }
+
+    .contenedor-video {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 2rem;
+      border: 1px solid rgba(255, 92, 173, 0.2);
+      margin-bottom: 2rem;
+    }
+
+    .player-options {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .player-btn {
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .player-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4);
+    }
+
+    .player-btn.active {
+      background: linear-gradient(45deg, #4CAF50, #45a049);
+    }
+
+    .reproductor-video {
+      height: 500px;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .player-container {
+      display: none;
+      width: 100%;
+      height: 100%;
+    }
+
+    .player-container.active {
+      display: block;
+    }
+
+    .player-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .seasons-container, .seasons-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .anime-title {
+        font-size: 2rem;
+      }
+      
+      .header {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .main-content {
+        padding: 8rem 1rem 2rem;
+      }
+    }
+  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jujutsu Kaisen - Todas las Temporadas | StudioOtaku</title>
+</head>
+<body>
+  <!-- Language Selector -->
+  <div class="language-selector">
+    <select id="language-select" onchange="changeLanguage()">
+      <option value="es">🇪🇸 Español</option>
+      <option value="en">🇺🇸 English</option>
+      <option value="pt">🇧🇷 Português</option>
+      <option value="fr">🇫🇷 Français</option>
+      <option value="ja">🇯🇵 日本語</option>
+    </select>
+  </div>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">🧧StudioOtaku</div>
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar anime..." id="search-input">
+      <button onclick="searchAnime()">🔍</button>
+    </div>
+    <div class="user-actions">
+      <button class="auth-btn">🔒 Login</button>
+      <button class="auth-btn">✎ Registro</button>
+      <a href="../../html/index.html" class="auth-btn">🏠 Inicio</a>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <a href="../../html/index.html" class="back-btn">← Volver al Catálogo</a>
+    
+    <div class="anime-header">
+      <h1 class="anime-title">🔮 Jujutsu Kaisen</h1>
+      <p class="anime-description">
+        En un mundo donde las emociones negativas se convierten en maldiciones, Yuji Itadori se convierte en el anfitrión del Rey de las Maldiciones, Sukuna. Junto a sus compañeros hechiceros, debe enfrentar maldiciones mortales mientras lucha por mantener su humanidad en esta épica historia de acción sobrenatural.
+      </p>
+      <!-- Top Banner -->
+  <div class="banner-ad" style="text-align: center; margin: 1rem 0; padding: 1rem; background: rgba(0,0,0,0.1); border-radius: 10px;">
+    <a href="https://exe.io/ref/studiootaku" target="_blank"><img src="https://exe.io/img/ref/r1.gif" title="CuT URLs - Earn money by shortening links with the highest CPMs Ever!" style="max-width: 100%; height: auto; border-radius: 5px;" /></a>
+  </div>
+  <!-- End Top Banner -->
+</div>
+
+    <div class="seasons-container">
+      <!-- Season 1 -->
+      <div class="season-card">
+        <div class="season-thumbnail">
+          <img src="../../img/Jujutsu Kaisen S1.jpg" alt="Jujutsu Kaisen Season 1">
+          <div class="season-number">T1</div>
+          <div class="season-play-overlay">▶</div>
+        </div>
+        <div class="season-info">
+          <div class="season-title">Temporada 1</div>
+          <div class="season-description">
+            El mundo de los hechiceros. Yuji Itadori se convierte en el anfitrión de Sukuna y entra al mundo de la hechicería para proteger a las personas.
+          </div>
+          <div class="season-stats">
+            <div class="episode-count">🔮 24 Episodios</div>
+            <div class="season-year">2020-2021</div>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="s1-progress" style="width: 0%"></div>
+          </div>
+          <div class="progress-text" id="s1-progress-text">No iniciado</div>
+          <button class="watch-btn" id="s1-btn" onclick="goToSeason('temporada-1.html')">🔮 Ver Temporada</button>
+          
+          <!-- Download Servers Section -->
+          <div class="download-servers-section">
+            <div class="servers-title">📥 Descargar Temporada Completa</div>
+            <div class="servers-grid-compact">
+              <a href="https://exe.io/JujutsuKaisenS1" target="_blank" class="download-link terabox">📦 TeraBox</a>
+              <a href="#" onclick="showUnavailableAlert('MEGA'); return false;" class="download-link mega unavailable-server">📦 MEGA</a>
+              <a href="#" onclick="showUnavailableAlert('MediaFire'); return false;" class="download-link mediafire unavailable-server">🔥 MediaFire</a>
+              <a href="#" onclick="showUnavailableAlert('Dropbox'); return false;" class="download-link dropbox unavailable-server">📁 Dropbox</a>
+              <a href="#" onclick="showUnavailableAlert('1Fichier'); return false;" class="download-link fichier unavailable-server">📂 1Fichier</a>
+              <a href="#" onclick="showUnavailableAlert('Stape'); return false;" class="download-link stape unavailable-server">🔗 Stape</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Season 2 -->
+      <div class="season-card">
+        <div class="season-thumbnail">
+          <img src="../../img/Jujutsu Kaisen S2.jpg" alt="Jujutsu Kaisen Season 2">
+          <div class="season-number">T2</div>
+          <div class="season-play-overlay">▶</div>
+        </div>
+        <div class="season-info">
+          <div class="season-title">Temporada 2</div>
+          <div class="season-description">
+            El Arco de Shibuya. Los hechiceros enfrentan su mayor crisis cuando las maldiciones atacan durante Halloween en el distrito de Shibuya.
+          </div>
+          <div class="season-stats">
+            <div class="episode-count">👹 23 Episodios</div>
+            <div class="season-year">2023</div>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="s2-progress" style="width: 0%"></div>
+          </div>
+          <div class="progress-text" id="s2-progress-text">No iniciado</div>
+          <button class="watch-btn" id="s2-btn" onclick="goToSeason('temporada-2.html')">👹 Ver Temporada</button>
+          
+          <!-- Download Servers Section -->
+          <div class="download-servers-section">
+            <div class="servers-title">📥 Descargar Temporada Completa</div>
+            <div class="servers-grid-compact">
+              <a href="https://exe.io/JujutsuKaisenS2" target="_blank" class="download-link terabox">📦 TeraBox</a>
+              <a href="#" onclick="showUnavailableAlert('MEGA'); return false;" class="download-link mega unavailable-server">📦 MEGA</a>
+              <a href="#" onclick="showUnavailableAlert('MediaFire'); return false;" class="download-link mediafire unavailable-server">🔥 MediaFire</a>
+              <a href="#" onclick="showUnavailableAlert('Dropbox'); return false;" class="download-link dropbox unavailable-server">📁 Dropbox</a>
+              <a href="#" onclick="showUnavailableAlert('1Fichier'); return false;" class="download-link fichier unavailable-server">📂 1Fichier</a>
+              <a href="#" onclick="showUnavailableAlert('Stape'); return false;" class="download-link stape unavailable-server">🔗 Stape</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Movie -->
+      <div class="season-card">
+        <div class="season-thumbnail">
+          <img src="../../img/Jujutsu Kaisen Movie.jpg" alt="Jujutsu Kaisen Movie">
+          <div class="season-number">🎬</div>
+          <div class="season-play-overlay">▶</div>
+        </div>
+        <div class="season-info">
+          <div class="season-title">Película: Jujutsu Kaisen 0</div>
+          <div class="season-description">
+            La historia de Yuta Okkotsu y su maldición especial Rika antes de los eventos de la serie principal. Una precuela épica llena de acción.
+          </div>
+          <div class="season-stats">
+            <div class="episode-count">🎬 1 Película</div>
+            <div class="season-year">2021</div>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="movie-progress" style="width: 0%"></div>
+          </div>
+          <div class="progress-text" id="movie-progress-text">No iniciado</div>
+          <button class="watch-btn" id="movie-btn" onclick="goToSeason('pelicula-0.html')">🎬 Ver Película</button>
+          
+          <!-- Download Servers Section -->
+          <div class="download-servers-section">
+            <div class="servers-title">📥 Descargar Película Completa</div>
+            <div class="servers-grid-compact">
+              <a href="https://exe.io/JujutsuKaisenMovie" target="_blank" class="download-link terabox">📦 TeraBox</a>
+              <a href="#" onclick="showUnavailableAlert('MEGA'); return false;" class="download-link mega unavailable-server">📦 MEGA</a>
+              <a href="#" onclick="showUnavailableAlert('MediaFire'); return false;" class="download-link mediafire unavailable-server">🔥 MediaFire</a>
+              <a href="#" onclick="showUnavailableAlert('Dropbox'); return false;" class="download-link dropbox unavailable-server">📁 Dropbox</a>
+              <a href="#" onclick="showUnavailableAlert('1Fichier'); return false;" class="download-link fichier unavailable-server">📂 1Fichier</a>
+              <a href="#" onclick="showUnavailableAlert('Stape'); return false;" class="download-link stape unavailable-server">🔗 Stape</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+  <!-- Bottom Banner -->
+  <div class="banner-ad" style="text-align: center; margin: 2rem 0; padding: 1rem; background: rgba(0,0,0,0.1); border-radius: 10px;">
+    <a href="https://exe.io/ref/studiootaku" target="_blank"><img src="https://exe.io/img/ref/r4.png" title="CuT URLs - Earn money by shortening links with the highest CPMs Ever!" style="max-width: 100%; height: auto; border-radius: 5px;" /></a>
+  </div>
+  <!-- End Bottom Banner -->
+</div>
+  </div>
+
+  
+  <script>
+    function goToSeason(url) {
+      window.location.href = url;
+    }
+
+    function showUnavailableAlert(serverName) {
+      alert(`El servidor de ${serverName} no está disponible actualmente. Por favor, intente con otra opción.`);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Aquí puedes agregar lógica de seguimiento de progreso si es necesario en el futuro
+    });
+  </script>
+</body>
+</html>

@@ -227,7 +227,39 @@ body {
 
 .anime-card:hover {
   transform: translateY(-5px);
-  border-color: #ff5cad;
+  box-shadow: 0 10px 25px rgba(255, 92, 173, 0.3);
+}
+
+.featured-movie {
+  border: 2px solid #ff5cad;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a1a2a 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.featured-movie::before {
+  content: '🎬 ESTRENO';
+  position: absolute;
+  top: 10px;
+  right: -30px;
+  background: linear-gradient(45deg, #ff5cad, #ff8a80);
+  color: white;
+  padding: 5px 40px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  transform: rotate(45deg);
+  z-index: 2;
+}
+
+.movie-badge {
+  background: linear-gradient(45deg, #ff5cad, #ff8a80) !important;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
 }
 
 .anime-card img {

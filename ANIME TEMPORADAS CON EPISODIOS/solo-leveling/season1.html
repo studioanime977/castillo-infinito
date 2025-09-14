@@ -1,0 +1,668 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f0f23 0%, #2d1b69 50%, #0f0f23 100%);
+      color: #fff;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .header {
+      background: rgba(0, 0, 0, 0.9);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid #ff5cad;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .main-content {
+      padding: 6rem 2rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .back-btn {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      border: none;
+      border-radius: 25px;
+      color: #fff;
+      text-decoration: none;
+      margin-bottom: 2rem;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4);
+    }
+
+    .anime-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .anime-title {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(255, 92, 173, 0.5);
+    }
+
+    .anime-description {
+      font-size: 1.2rem;
+      color: #ccc;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .seasons-container, .seasons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .season-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 2rem;
+      border: 1px solid rgba(255, 92, 173, 0.2);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .season-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(255, 92, 173, 0.3);
+      border-color: #ff5cad;
+    }
+
+    .season-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #ff8a80;
+    }
+
+    .season-description, .season-info {
+      color: #ccc;
+      margin-bottom: 1.5rem;
+    }
+
+    .season-btn, .watch-btn {
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      color: white;
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-block;
+      transition: all 0.3s ease;
+      width: 100%;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .season-btn:hover, .watch-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4);
+    }
+
+    .contenedor-video {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 2rem;
+      border: 1px solid rgba(255, 92, 173, 0.2);
+      margin-bottom: 2rem;
+    }
+
+    .player-options {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .player-btn {
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .player-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4);
+    }
+
+    .player-btn.active {
+      background: linear-gradient(45deg, #4CAF50, #45a049);
+    }
+
+    .reproductor-video {
+      height: 500px;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .player-container {
+      display: none;
+      width: 100%;
+      height: 100%;
+    }
+
+    .player-container.active {
+      display: block;
+    }
+
+    .player-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .seasons-container, .seasons-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .anime-title {
+        font-size: 2rem;
+      }
+      
+      .header {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .main-content {
+        padding: 8rem 1rem 2rem;
+      }
+    }
+  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solo Leveling - Temporada 1 | StudioOtaku</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    .header {
+      background: rgba(0, 0, 0, 0.9);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid #ff5cad;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .back-btn {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 92, 173, 0.4);
+    }
+
+    .main-content {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .season-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .season-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .season-description {
+      font-size: 1.1rem;
+      color: #ccc;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .episodes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .episode-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 1.5rem;
+      border: 1px solid rgba(255, 92, 173, 0.2);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .episode-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(255, 92, 173, 0.3);
+      border-color: #ff5cad;
+    }
+
+    .episode-number {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #ff5cad;
+      margin-bottom: 0.5rem;
+    }
+
+    .episode-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 0.8rem;
+      color: #fff;
+    }
+
+    .episode-description {
+      font-size: 0.9rem;
+      color: #ccc;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+
+    .download-section {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 92, 173, 0.2);
+    }
+
+    .download-title {
+      font-size: 0.9rem;
+      color: #ff5cad;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    .download-links {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem;
+    }
+
+    .download-link {
+      padding: 0.4rem 0.6rem;
+      background: rgba(255, 92, 173, 0.1);
+      border: 1px solid #ff5cad;
+      border-radius: 10px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.8rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      display: block;
+    }
+
+    .download-link:hover {
+      background: rgba(255, 92, 173, 0.3);
+      transform: translateY(-1px);
+    }
+
+    .download-link.terabox { background: linear-gradient(45deg, #ff9800, #ffb74d); }
+    .download-link.mega { background: linear-gradient(45deg, #d9272e, #ff4444); }
+    .download-link.mediafire { background: linear-gradient(45deg, #ff5722, #ff8a65); }
+    .download-link.dropbox { background: linear-gradient(45deg, #0061ff, #4285f4); }
+
+    .unavailable-server {
+      opacity: 0.6;
+      cursor: not-allowed;
+      background: rgba(128, 128, 128, 0.3) !important;
+    }
+
+    .unavailable-server:hover {
+      transform: none;
+    }
+
+    .progress-section {
+      background: rgba(255, 92, 173, 0.1);
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 1rem 0;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      transition: width 0.3s ease;
+    }
+
+    @media (max-width: 768px) {
+      .episodes-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .season-title {
+        font-size: 2rem;
+      }
+      
+      .main-content {
+        padding: 1rem;
+      }
+    }
+  
+    .contenedor-video {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 2rem;
+      border: 1px solid rgba(255, 92, 173, 0.2);
+      margin-bottom: 2rem;
+    }
+
+    .player-options {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .player-btn {
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .player-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 92, 173, 0.3);
+    }
+
+    .player-btn.active {
+      background: linear-gradient(45deg, #4CAF50, #45a049);
+    }
+
+    .reproductor-video {
+      position: relative;
+      width: 100%;
+      height: 500px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .player-container {
+      display: none;
+      width: 100%;
+      height: 100%;
+    }
+
+    .player-container.active {
+      display: block;
+    }
+
+    .player-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">🧧StudioOtaku</div>
+    <div class="user-actions">
+      <a href="../../html/index.html" class="auth-btn">🏠 Inicio</a>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <a href="temporadas.html" class="back-btn">← Volver a Solo Leveling</a>
+    
+    <div class="season-header">
+      <h1 class="season-title">👑 Solo Leveling - Temporada 1</h1>
+      <div class="season-description">
+        Sung Jin-Woo es conocido como el cazador más débil de toda la humanidad. 
+        Después de un encuentro con una mazmorra de doble mazmorra, obtiene una misteriosa 
+        habilidad de programa que le permite subir de nivel de maneras que otros no pueden.
+      </div>
+    </div>
+
+    <div class="progress-section">
+      <h3>Progreso de la Temporada</h3>
+      <div class="progress-bar">
+        <div class="progress-fill" id="season-progress" style="width: 0%"></div>
+      </div>
+      <div id="progress-text">0/12 episodios vistos</div>
+    </div>
+
+    <div class="episodes-grid">
+      <!-- Episode 1 -->
+      <div class="episode-card">
+        <div class="episode-number">Episodio 1</div>
+        <div class="episode-title">Soy solo un cazador E-Rank</div>
+        <div class="episode-description">
+          Sung Jin-Woo es el cazador más débil del mundo, clasificado como E-Rank. 
+          A pesar de los peligros, continúa cazando para pagar las facturas médicas de su madre.
+        </div>
+        <div class="download-section">
+          <div class="download-title">📥 Descargar Episodio</div>
+          <div class="download-links">
+            <a href="https://exe.io/sololevelingS1" target="_blank" class="download-link terabox">📦 TeraBox</a>
+            <span class="download-link unavailable-server">📦 MEGA</span>
+            <span class="download-link unavailable-server">🔥 MediaFire</span>
+            <span class="download-link unavailable-server">📁 Dropbox</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Episode 2 -->
+      <div class="episode-card">
+        <div class="episode-number">Episodio 2</div>
+        <div class="episode-title">Si no puedo ser fuerte, al menos seré útil</div>
+        <div class="episode-description">
+          Jin-Woo y su grupo entran en una mazmorra de doble mazmorra. 
+          Se enfrentan a estatuas gigantes y Jin-Woo debe tomar decisiones que cambiarán su vida.
+        </div>
+        <div class="download-section">
+          <div class="download-title">📥 Descargar Episodio</div>
+          <div class="download-links">
+            <a href="https://exe.io/sololevelingS1" target="_blank" class="download-link terabox">📦 TeraBox</a>
+            <span class="download-link unavailable-server">📦 MEGA</span>
+            <span class="download-link unavailable-server">🔥 MediaFire</span>
+            <span class="download-link unavailable-server">📁 Dropbox</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Episode 3 -->
+      <div class="episode-card">
+        <div class="episode-number">Episodio 3</div>
+        <div class="episode-title">Es como un videojuego</div>
+        <div class="episode-description">
+          Jin-Woo despierta con un misterioso sistema que le permite subir de nivel como en un videojuego. 
+          Comienza su entrenamiento para volverse más fuerte.
+        </div>
+        <div class="download-section">
+          <div class="download-title">📥 Descargar Episodio</div>
+          <div class="download-links">
+            <a href="https://exe.io/sololevelingS1" target="_blank" class="download-link terabox">📦 TeraBox</a>
+            <span class="download-link unavailable-server">📦 MEGA</span>
+            <span class="download-link unavailable-server">🔥 MediaFire</span>
+            <span class="download-link unavailable-server">📁 Dropbox</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Episode 4 -->
+      <div class="episode-card">
+        <div class="episode-number">Episodio 4</div>
+        <div class="episode-title">Yo solo subo de nivel</div>
+        <div class="episode-description">
+          Jin-Woo continúa entrenando y completando misiones del sistema. 
+          Su fuerza aumenta dramáticamente, pero debe mantenerlo en secreto.
+        </div>
+        <div class="download-section">
+          <div class="download-title">📥 Descargar Episodio</div>
+          <div class="download-links">
+            <a href="https://exe.io/sololevelingS1" target="_blank" class="download-link terabox">📦 TeraBox</a>
+            <span class="download-link unavailable-server">📦 MEGA</span>
+            <span class="download-link unavailable-server">🔥 MediaFire</span>
+            <span class="download-link unavailable-server">📁 Dropbox</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Episode 5 -->
+      <div class="episode-card">
+        <div class="episode-number">Episodio 5</div>
+        <div class="episode-title">Una razón para volverse fuerte</div>
+        <div class="episode-description">
+          Jin-Woo enfrenta su primera mazmorra real después de su transformación. 
+          Demuestra sus nuevas habilidades mientras protege a otros cazadores.
+        </div>
+        <div class="download-section">
+          <div class="download-title">📥 Descargar Episodio</div>
+          <div class="download-links">
+            <a href="https://exe.io/sololevelingS1" target="_blank" class="download-link terabox">📦 TeraBox</a>
+            <span class="download-link unavailable-server">📦 MEGA</span>
+            <span class="download-link unavailable-server">🔥 MediaFire</span>
+            <span class="download-link unavailable-server">📁 Dropbox</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Continue with more episodes... -->
+      <div class="episode-card">
+        <div class="episode-number">Episodios 6-12</div>
+        <div class="episode-title">Temporada Completa Disponible</div>
+        <div class="episode-description">
+          Descarga la temporada completa de Solo Leveling Season 1 con todos los 12 episodios 
+          en alta calidad con subtítulos en español. Sigue la transformación de Jin-Woo 
+          de cazador más débil a uno de los más poderosos.
+        </div>
+        <div class="download-section">
+          <div class="download-title">📥 Descargar Temporada Completa</div>
+          <div class="download-links">
+            <a href="https://exe.io/sololevelingS1" target="_blank" class="download-link terabox">📦 TeraBox Completa</a>
+            <span class="download-link unavailable-server">📦 MEGA</span>
+            <span class="download-link unavailable-server">🔥 MediaFire</span>
+            <span class="download-link unavailable-server">📁 Dropbox</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <script>
+    function switchPlayer(option) {
+      const playerButtons = document.querySelectorAll('.player-btn');
+      const playerContainers = document.querySelectorAll('.player-container');
+      
+      playerButtons.forEach(btn => btn.classList.remove('active'));
+      playerContainers.forEach(container => container.classList.remove('active'));
+      
+      document.getElementById(${option}-btn).classList.add('active');
+      document.getElementById(${option}-player).classList.add('active');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const firstPlayerBtn = document.querySelector('.player-btn');
+      if (firstPlayerBtn) {
+        firstPlayerBtn.click();
+      }
+    });
+  </script>
+</body>
+</html>
+
+

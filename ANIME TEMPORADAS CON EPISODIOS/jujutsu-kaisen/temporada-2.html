@@ -1,0 +1,315 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jujutsu Kaisen Temporada 2 - StudioOtaku</title>
+  <style>
+    :root {
+      --primary-color: #ff5cad;
+      --secondary-color: #ff8a80;
+      --background-start: #0f0f23;
+      --background-end: #2d1b69;
+      --text-color: #fff;
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --border-color: rgba(255, 92, 173, 0.2);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--background-start) 0%, var(--background-end) 50%, var(--background-start) 100%);
+      color: var(--text-color);
+      min-height: 100vh;
+    }
+
+    .header {
+      background: rgba(0, 0, 0, 0.9);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--primary-color);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .main-content {
+      padding: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .back-btn {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      border: none;
+      border-radius: 25px;
+      color: var(--text-color);
+      text-decoration: none;
+      margin-bottom: 2rem;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4);
+    }
+
+    .title-container {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .season-title {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .episode-title {
+        font-size: 1.5rem;
+        color: var(--secondary-color);
+    }
+
+    .contenedor-video {
+      background: var(--card-bg);
+      border-radius: 15px;
+      padding: 2rem;
+      border: 1px solid var(--border-color);
+      margin-bottom: 2rem;
+    }
+
+    .player-options {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .player-btn {
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .player-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4);
+    }
+
+    .player-btn.active {
+      background: linear-gradient(45deg, #4CAF50, #45a049);
+      box-shadow: 0 0 15px #4CAF50;
+    }
+
+    .reproductor-video {
+      height: 500px;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      background: #000;
+    }
+
+    .player-container {
+      display: none;
+      width: 100%;
+      height: 100%;
+    }
+
+    .player-container.active {
+      display: block;
+    }
+
+    .player-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .episodes-container {
+        background: var(--card-bg);
+        border-radius: 15px;
+        padding: 2rem;
+        border: 1px solid var(--border-color);
+    }
+
+    .episodes-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+
+    .episode-item {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--text-color);
+        padding: 1rem;
+        border-radius: 10px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 1px solid transparent;
+    }
+
+    .episode-item:hover, .episode-item.active {
+        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        transform: translateY(-3px);
+        border-color: var(--primary-color);
+    }
+
+    @media (max-width: 768px) {
+        .episodes-grid {
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        }
+        .reproductor-video {
+            height: 300px;
+        }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="logo">🧧StudioOtaku</div>
+  </div>
+
+  <div class="main-content">
+    <a href="temporadas.html" class="back-btn">← Volver a las Temporadas</a>
+
+    <div class="title-container">
+        <h1 class="season-title">Jujutsu Kaisen - Temporada 2</h1>
+        <h2 class="episode-title" id="current-episode-title">Cargando...</h2>
+    </div>
+
+    <div class="contenedor-video">
+      <div class="player-options">
+        <button id="opcion1-btn" class="player-btn" onclick="switchPlayer('opcion1')">OPCIÓN 1</button>
+        <button id="opcion2-btn" class="player-btn" onclick="switchPlayer('opcion2')">OPCIÓN 2</button>
+        <button id="opcion3-btn" class="player-btn" onclick="switchPlayer('opcion3')">OPCIÓN 3</button>
+        <button id="opcion4-btn" class="player-btn" onclick="switchPlayer('opcion4')">OPCIÓN 4</button>
+      </div>
+      <div class="reproductor-video">
+        <div id="opcion1-player" class="player-container">
+          <iframe src="" allowfullscreen></iframe>
+        </div>
+        <div id="opcion2-player" class="player-container">
+          <iframe src="" allowfullscreen></iframe>
+        </div>
+        <div id="opcion3-player" class="player-container">
+          <iframe src="" allowfullscreen></iframe>
+        </div>
+        <div id="opcion4-player" class="player-container">
+          <iframe src="" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="episodes-container">
+        <h3 style="text-align:center; margin-bottom: 1.5rem; font-size: 1.8rem;">Episodios</h3>
+        <div class="episodes-grid" id="episodes-grid">
+            <!-- Los episodios se generarán con JavaScript -->
+        </div>
+    </div>
+
+  </div>
+
+  <script>
+    const episodes = [
+        { num: 1, title: "Inventario oculto", op1: "URL_OP1_E1", op2: "URL_OP2_E1", op3: "URL_OP3_E1", op4: "URL_OP4_E1" },
+        { num: 2, title: "Inventario oculto 2", op1: "URL_OP1_E2", op2: "URL_OP2_E2", op3: "URL_OP3_E2", op4: "URL_OP4_E2" },
+        { num: 3, title: "Inventario oculto 3", op1: "URL_OP1_E3", op2: "URL_OP2_E3", op3: "URL_OP3_E3", op4: "URL_OP4_E3" },
+        { num: 4, title: "Inventario oculto 4", op1: "URL_OP1_E4", op2: "URL_OP2_E4", op3: "URL_OP3_E4", op4: "URL_OP4_E4" },
+        { num: 5, title: "Muerte prematura", op1: "URL_OP1_E5", op2: "URL_OP2_E5", op3: "URL_OP3_E5", op4: "URL_OP4_E5" },
+        { num: 6, title: "Así es", op1: "URL_OP1_E6", op2: "URL_OP2_E6", op3: "URL_OP3_E6", op4: "URL_OP4_E6" },
+        { num: 7, title: "Festival vespertino", op1: "URL_OP1_E7", op2: "URL_OP2_E7", op3: "URL_OP3_E7", op4: "URL_OP4_E7" },
+        { num: 8, title: "El incidente de Shibuya", op1: "URL_OP1_E8", op2: "URL_OP2_E8", op3: "URL_OP3_E8", op4: "URL_OP4_E8" },
+        { num: 9, title: "La puerta de Shibuya se abre", op1: "URL_OP1_E9", op2: "URL_OP2_E9", op3: "URL_OP3_E9", op4: "URL_OP4_E9" },
+        { num: 10, title: "Pandemonio", op1: "URL_OP1_E10", op2: "URL_OP2_E10", op3: "URL_OP3_E10", op4: "URL_OP4_E10" },
+        { num: 11, title: "Invocación", op1: "URL_OP1_E11", op2: "URL_OP2_E11", op3: "URL_OP3_E11", op4: "URL_OP4_E11" },
+        { num: 12, title: "Cuchilla roma", op1: "URL_OP1_E12", op2: "URL_OP2_E12", op3: "URL_OP3_E12", op4: "URL_OP4_E12" },
+        { num: 13, title: "Escamas rojas", op1: "URL_OP1_E13", op2: "URL_OP2_E13", op3: "URL_OP3_E13", op4: "URL_OP4_E13" },
+        { num: 14, title: "Bamboleo", op1: "URL_OP1_E14", op2: "URL_OP2_E14", op3: "URL_OP3_E14", op4: "URL_OP4_E14" },
+        { num: 15, title: "Bamboleo, parte 2", op1: "URL_OP1_E15", op2: "URL_OP2_E15", op3: "URL_OP3_E15", op4: "URL_OP4_E15" },
+        { num: 16, title: "El incidente de Shibuya: Cierre", op1: "URL_OP1_E16", op2: "URL_OP2_E16", op3: "URL_OP3_E16", op4: "URL_OP4_E16" },
+        { num: 17, title: "Retumbar, parte 2", op1: "URL_OP1_E17", op2: "URL_OP2_E17", op3: "URL_OP3_E17", op4: "URL_OP4_E17" },
+        { num: 18, title: "Lo correcto", op1: "URL_OP1_E18", op2: "URL_OP2_E18", op3: "URL_OP3_E18", op4: "URL_OP4_E18" },
+        { num: 19, title: "Razón", op1: "URL_OP1_E19", op2: "URL_OP2_E19", op3: "URL_OP3_E19", op4: "URL_OP4_E19" },
+        { num: 20, title: "Razón, parte 2", op1: "URL_OP1_E20", op2: "URL_OP2_E20", op3: "URL_OP3_E20", op4: "URL_OP4_E20" },
+        { num: 21, title: "Transformación", op1: "URL_OP1_E21", op2: "URL_OP2_E21", op3: "URL_OP3_E21", op4: "URL_OP4_E21" },
+        { num: 22, title: "Metamorfosis, parte 2", op1: "URL_OP1_E22", op2: "URL_OP2_E22", op3: "URL_OP3_E22", op4: "URL_OP4_E22" },
+        { num: 23, title: "El incidente de Shibuya: Cierre", op1: "URL_OP1_E23", op2: "URL_OP2_E23", op3: "URL_OP3_E23", op4: "URL_OP4_E23" }
+    ];
+
+    const episodesGrid = document.getElementById('episodes-grid');
+    const currentEpisodeTitle = document.getElementById('current-episode-title');
+    const playerIframes = {
+        opcion1: document.querySelector('#opcion1-player iframe'),
+        opcion2: document.querySelector('#opcion2-player iframe'),
+        opcion3: document.querySelector('#opcion3-player iframe'),
+        opcion4: document.querySelector('#opcion4-player iframe')
+    };
+
+    function switchPlayer(option) {
+      document.querySelectorAll('.player-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.player-container').forEach(container => container.classList.remove('active'));
+      
+      document.getElementById(option + '-btn').classList.add('active');
+      document.getElementById(option + '-player').classList.add('active');
+    }
+
+    function loadEpisode(episode) {
+        currentEpisodeTitle.textContent = `Episodio ${episode.num}: ${episode.title}`;
+
+        playerIframes.opcion1.src = episode.op1;
+        playerIframes.opcion2.src = episode.op2;
+        playerIframes.opcion3.src = episode.op3;
+        playerIframes.opcion4.src = episode.op4;
+
+        document.querySelectorAll('.episode-item').forEach(item => item.classList.remove('active'));
+        document.getElementById(`ep-${episode.num}`).classList.add('active');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        episodes.forEach(ep => {
+            const epItem = document.createElement('div');
+            epItem.className = 'episode-item';
+            epItem.id = `ep-${ep.num}`;
+            epItem.textContent = `Episodio ${ep.num}`;
+            epItem.onclick = () => loadEpisode(ep);
+            episodesGrid.appendChild(epItem);
+        });
+
+        // Cargar el primer episodio por defecto
+        if (episodes.length > 0) {
+            loadEpisode(episodes[0]);
+        }
+
+        // Activar el primer reproductor por defecto
+        switchPlayer('opcion1');
+    });
+  </script>
+</body>
+</html>

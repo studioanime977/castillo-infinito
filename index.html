@@ -3,9 +3,296 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StudioOtaku - Ver Anime Online</title>
+  <title>StudioOtaku - Tu destino definitivo para anime en español latino</title>
   <link rel="icon" type="image/x-icon" href="img/demon-slayer.ico">
-  <link rel="stylesheet" href="css/homepage.css">
+  <script>
+    window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/speed-insights/script.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f0f23 0%, #2d1b69 50%, #0f0f23 100%);
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .header {
+      background: rgba(0, 0, 0, 0.9);
+      padding: 1rem 2rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid #ff5cad;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-menu a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+    }
+
+    .nav-menu a:hover {
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      transform: translateY(-2px);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 2rem;
+      background: linear-gradient(135deg, rgba(15, 15, 35, 0.9), rgba(45, 27, 105, 0.9));
+    }
+
+    .hero-content h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-content p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      color: #b0b0b0;
+      animation: fadeInUp 1s ease-out 0.3s both;
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      color: #888;
+      max-width: 600px;
+      margin: 0 auto 3rem;
+      line-height: 1.6;
+      animation: fadeInUp 1s ease-out 0.6s both;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      animation: fadeInUp 1s ease-out 0.9s both;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(255, 92, 173, 0.4);
+    }
+
+    /* Features Section */
+    .features {
+      padding: 6rem 2rem;
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .features h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 4rem;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2.5rem;
+      border-radius: 20px;
+      text-align: center;
+      border: 1px solid rgba(255, 92, 173, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .feature:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(255, 92, 173, 0.2);
+      border-color: rgba(255, 92, 173, 0.5);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .feature h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .feature p {
+      color: #b0b0b0;
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    .footer {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 3rem 2rem 1rem;
+      border-top: 2px solid #ff5cad;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h3 {
+      color: #ff5cad;
+      margin-bottom: 1rem;
+    }
+
+    .footer-section p,
+    .footer-section ul {
+      color: #b0b0b0;
+      line-height: 1.6;
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-section a {
+      color: #b0b0b0;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-section a:hover {
+      color: #ff5cad;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .social-links a {
+      padding: 0.5rem 1rem;
+      background: rgba(255, 92, 173, 0.1);
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      background: rgba(255, 92, 173, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .footer-text {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 92, 173, 0.2);
+      color: #888;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+      }
+      
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero-content p {
+        font-size: 1.1rem;
+      }
+      
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .social-links {
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- Header -->
@@ -14,7 +301,7 @@
       <div class="logo">🧧 StudioOtaku</div>
       <ul class="nav-menu">
         <li><a href="#inicio">Inicio</a></li>
-        <li><a href="animes/index.html">Anime</a></li>
+        <li><a href="html/index.html">Anime</a></li>
         <li><a href="#peliculas">Películas</a></li>
         <li><a href="#generos">Géneros</a></li>
         <li><a href="https://exe.io/ANIMETV" target="_blank">APK</a></li>
@@ -23,44 +310,37 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="hero">
+  <section class="hero" id="inicio">
     <div class="hero-content">
-      <h1 class="hero-title">StudioOtaku</h1>
-      <p class="hero-subtitle">Tu destino definitivo para anime en español latino</p>
-      <p class="hero-description">
-        Descubre la mejor colección de anime con audio latino de alta calidad. 
-        Desde los clásicos hasta los últimos estrenos, tenemos todo lo que necesitas 
-        para disfrutar de tus series favoritas.
-      </p>
-      <a href="animes/index.html" class="cta-button">Ver Catálogo Completo</a>
+      <h1>StudioOtaku</h1>
+      <p>Tu destino definitivo para anime en español latino</p>
+      <div class="hero-description">
+        Descubre la mejor colección de anime con audio latino de alta calidad. Desde los clásicos hasta los 
+        últimos estrenos, tenemos todo lo que necesitas para disfrutar de tus series favoritas.
+      </div>
+      <a href="html/index.html" class="cta-button">VER CATÁLOGO COMPLETO</a>
     </div>
   </section>
 
   <!-- Features Section -->
   <section class="features">
-    <div class="features-container">
-      <h2 class="features-title">¿Por qué elegir StudioOtaku?</h2>
+    <div class="container">
+      <h2>¿Por qué elegir StudioOtaku?</h2>
       <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">🎌</div>
-          <h3 class="feature-title">Audio Latino</h3>
-          <p class="feature-description">
-            Todos nuestros animes están disponibles con doblaje latino de alta calidad
-          </p>
+        <div class="feature">
+          <div class="feature-icon">🎭</div>
+          <h3>Audio Latino</h3>
+          <p>Todos nuestros animes están disponibles con doblaje latino de alta calidad</p>
         </div>
-        <div class="feature-card">
+        <div class="feature">
           <div class="feature-icon">⚡</div>
-          <h3 class="feature-title">Descargas Rápidas</h3>
-          <p class="feature-description">
-            Enlaces directos y seguros para descargar tus animes favoritos al instante
-          </p>
+          <h3>Descargas Rápidas</h3>
+          <p>Enlaces directos y seguros para descargar tus animes favoritos al instante</p>
         </div>
-        <div class="feature-card">
+        <div class="feature">
           <div class="feature-icon">📱</div>
-          <h3 class="feature-title">Multiplataforma</h3>
-          <p class="feature-description">
-            Disponible en web y nuestra aplicación móvil para Android
-          </p>
+          <h3>Multiplataforma</h3>
+          <p>Disponible en web y nuestra aplicación móvil para Android</p>
         </div>
       </div>
     </div>
@@ -68,44 +348,35 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <div class="footer-content">
-      <div class="social-links">
-        <a href="https://www.facebook.com/STUDIOOTAKU1" target="_blank">📘</a>
-        <a href="https://www.youtube.com/@STUDIOOTAKU1" target="_blank">📺</a>
-        <a href="https://rumble.com/c/c-6184817" target="_blank">📹</a>
-        <a href="https://chat.whatsapp.com/LgQP3YXx2eS2XRav5ashRm" target="_blank">💬</a>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>StudioOtaku</h3>
+          <p>Tu plataforma favorita para ver anime en español latino</p>
+        </div>
+        <div class="footer-section">
+          <h3>Enlaces</h3>
+          <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="html/index.html">Catálogo</a></li>
+            <li><a href="#generos">Géneros</a></li>
+            <li><a href="https://exe.io/ANIMETV" target="_blank">Aplicación APK</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Síguenos</h3>
+          <div class="social-links">
+            <a href="https://www.facebook.com/STUDIOOTAKU1" target="_blank">📘</a>
+            <a href="https://www.youtube.com/@STUDIOOTAKU1" target="_blank">📺</a>
+            <a href="https://rumble.com/c/c-6184817" target="_blank">📹</a>
+            <a href="https://chat.whatsapp.com/LgQP3YXx2eS2XRav5ashRm" target="_blank">💬</a>
+          </div>
+        </div>
       </div>
       <p class="footer-text">
         © 2024 StudioOtaku. Todos los derechos reservados.
       </p>
     </div>
   </footer>
-
-  <script>
-    // Función de búsqueda
-    function searchAnime() {
-      const searchTerm = document.getElementById('search-input').value.toLowerCase();
-      const animeCards = document.querySelectorAll('.anime-card');
-      
-      animeCards.forEach(card => {
-        const title = card.querySelector('h3').textContent.toLowerCase();
-        card.style.display = title.includes(searchTerm) ? 'block' : 'none';
-      });
-    }
-    
-    // Búsqueda en tiempo real
-    document.getElementById('search-input').addEventListener('input', searchAnime);
-    
-    // Navegación del sidebar
-    document.querySelectorAll('.sidebar-nav a').forEach(link => {
-      link.addEventListener('click', function(e) {
-        if (!this.href.includes('http')) {
-          e.preventDefault();
-          document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
-          this.classList.add('active');
-        }
-      });
-    });
-  </script>
 </body>
 </html>

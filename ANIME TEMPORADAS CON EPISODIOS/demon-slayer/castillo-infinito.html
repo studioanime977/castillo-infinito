@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demon Slayer: Castillo Infinito - StudioOtaku</title>
+  <link rel="icon" type="image/x-icon" href="../../img/demon-slayer.ico">
+  <style>
+    :root {
+      --primary-color: #ff5cad;
+      --secondary-color: #ff8a80;
+      --background-start: #0f0f23;
+      --background-end: #2d1b69;
+      --text-color: #fff;
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --border-color: rgba(255, 92, 173, 0.2);
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--background-start) 0%, var(--background-end) 50%, var(--background-start) 100%);
+      color: var(--text-color);
+      margin: 0;
+    }
+    .header { background: rgba(0,0,0,0.9); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(10px); border-bottom: 2px solid var(--primary-color); position: sticky; top: 0; z-index: 1000; }
+    .logo { font-size: 1.8rem; font-weight: bold; background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .main-content { padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .back-btn { display: inline-block; padding: .75rem 2rem; background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); border: none; border-radius: 25px; color: var(--text-color); text-decoration: none; margin-bottom: 2rem; transition: all .3s ease; font-weight: 500; }
+    .back-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255,92,173,0.4); }
+    .title-container { text-align: center; margin-bottom: 2rem; }
+    .movie-title { font-size: 2.5rem; }
+    .contenedor-video { background: var(--card-bg); border-radius: 15px; padding: 2rem; border: 1px solid var(--border-color); margin-bottom: 2rem; }
+    .language-options { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; }
+    .lang-btn { background: #333; color: #fff; border: 1px solid var(--border-color); padding: .6rem 1.2rem; border-radius: 20px; cursor: pointer; transition: all .3s ease; }
+    .lang-btn.active { background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); border-color: var(--primary-color); }
+    .player-group { display: none; }
+    .player-group.active { display: block; }
+    .player-options { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1rem; }
+    .player-btn { background: #444; color: white; border: none; padding: .5rem 1rem; border-radius: 20px; cursor: pointer; transition: all .3s ease; }
+    .player-btn.active { background: linear-gradient(45deg, #4CAF50, #45a049); }
+    .reproductor-video { height: 450px; border-radius: 10px; overflow: hidden; position: relative; background: #000; }
+    .player-container { width: 100%; height: 100%; display: none; }
+    .player-container.active { display: block; }
+    .player-container iframe, .player-container > div { width: 100%; height: 100%; } 
+    .player-container iframe { border: none; }
+    .download-section { background: var(--card-bg); border-radius: 15px; padding: 2rem; border: 1px solid var(--border-color); text-align: center; }
+    .section-title { font-size: 1.8rem; margin-bottom: 1.5rem; }
+    .download-category { margin-bottom: 1.5rem; }
+    .download-category h3 { font-size: 1.2rem; color: var(--secondary-color); margin-bottom: .5rem; }
+    .download-link { display: inline-block; text-decoration: none; color: #fff; padding: .6rem 1.2rem; border-radius: 20px; margin: 5px; transition: all .3s ease; }
+    .download-link:hover { transform: translateY(-2px); }
+    .download-link.mediafire { background: #ff5722; }
+    .download-link.dropbox { background: #0061ff; }
+    .download-link.drive { background: #4285f4; }
+    .download-link.app { background: #8e44ad; }
+  </style>
+</head>
+<body>
+  <script>!function(r,u,m,b,l,e){r._Rumble=b,r[b]||(r[b]=function(){(r[b]._=r[b]._||[]).push(arguments);if(r[b]._.length==1){l=u.createElement(m),e=u.getElementsByTagName(m)[0],l.async=1,l.src="https://rumble.com/embedJS/u3hv8rz"+(arguments[1].video?"."+arguments[1].video:"")+"/?url="+encodeURIComponent(location.href)+"&args="+encodeURIComponent(JSON.stringify([].slice.apply(arguments))),e.parentNode.insertBefore(l,e)}})}(window,document,"script","Rumble");</script>
+
+  <div class="header">
+    <div class="logo">🧧StudioOtaku</div>
+  </div>
+
+  <div class="main-content">
+    <a href="temporadas.html" class="back-btn">← Volver a las Temporadas</a>
+
+    <div class="title-container">
+        <h1 class="movie-title">Demon Slayer: Castillo Infinito</h1>
+    </div>
+
+    <div class="contenedor-video">
+      <div class="language-options">
+        <button id="latino-lang-btn" class="lang-btn active" onclick="switchLanguage('latino')">Español Latino</button>
+        <button id="sub-lang-btn" class="lang-btn" onclick="switchLanguage('sub')">Sub Español</button>
+      </div>
+
+      <div id="latino-players" class="player-group active">
+        <div class="player-options">
+          <button id="latino1-btn" class="player-btn" onclick="switchPlayer('latino1')">Reproductor 1</button>
+          <button id="latino2-btn" class="player-btn" onclick="switchPlayer('latino2')">Reproductor 2</button>
+        </div>
+        <div class="reproductor-video">
+          <div id="latino1-player" class="player-container"><div id="rumble_v6wpv6g"></div><script>Rumble("play", {"video":"v6wpv6g","div":"rumble_v6wpv6g"});</script></div>
+          <div id="latino2-player" class="player-container"><iframe src="https://sendvid.com/embed/yw3hk68s" allowfullscreen></iframe></div>
+        </div>
+      </div>
+
+      <div id="sub-players" class="player-group">
+        <div class="player-options">
+          <button id="sub1-btn" class="player-btn" onclick="switchPlayer('sub1')">Reproductor 3</button>
+          <button id="sub2-btn" class="player-btn" onclick="switchPlayer('sub2')">Reproductor 4</button>
+        </div>
+        <div class="reproductor-video">
+          <div id="sub1-player" class="player-container"><div id="rumble_v6urewg"></div><script>Rumble("play", {"video":"v6urewg","div":"rumble_v6urewg"});</script></div>
+          <div id="sub2-player" class="player-container"><iframe src="https://sendvid.com/embed/qdmgw3vu" allowfullscreen></iframe></div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+
+<script>
+  let activeLanguage = 'latino';
+  let activePlayers = { latino: 'latino1', sub: 'sub1' };
+
+  function switchLanguage(lang) {
+    activeLanguage = lang;
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    document.getElementById(lang + '-lang-btn').classList.add('active');
+
+    document.querySelectorAll('.player-group').forEach(group => group.classList.remove('active'));
+    document.getElementById(lang + '-players').classList.add('active');
+
+    switchPlayer(activePlayers[lang]);
+  }
+
+  function switchPlayer(player) {
+    activePlayers[activeLanguage] = player;
+    const playerGroup = document.getElementById(activeLanguage + '-players');
+
+    playerGroup.querySelectorAll('.player-btn').forEach(btn => btn.classList.remove('active'));
+    playerGroup.querySelector('#' + player + '-btn').classList.add('active');
+
+    playerGroup.querySelectorAll('.player-container').forEach(container => container.classList.remove('active'));
+    playerGroup.querySelector('#' + player + '-player').classList.add('active');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    switchLanguage('latino');
+  });
+</script>
+</body>
+</html>

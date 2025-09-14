@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demon Slayer - Temporadas | StudioOtaku</title>
+  <link rel="icon" type="image/x-icon" href="../../img/demon-slayer.ico">
+  <style>
+    :root {
+      --primary-color: #ff5cad;
+      --secondary-color: #ff8a80;
+      --background-start: #0f0f23;
+      --background-end: #2d1b69;
+      --card-background: rgba(255, 255, 255, 0.05);
+      --card-border: rgba(255, 92, 173, 0.2);
+      --text-color: #fff;
+      --text-muted: #ccc;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--background-start) 0%, var(--background-end) 50%, var(--background-start) 100%);
+      color: var(--text-color);
+      margin: 0;
+    }
+
+    .header {
+      background: rgba(0, 0, 0, 0.85);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--primary-color);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .main-content {
+      padding: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 500;
+      margin-bottom: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4);
+    }
+
+    .anime-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .anime-title {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .anime-description {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .seasons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .season-card {
+      background: var(--card-background);
+      border-radius: 15px;
+      border: 1px solid var(--card-border);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .season-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(255, 92, 173, 0.3);
+      border-color: var(--primary-color);
+    }
+
+    .season-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .season-info {
+      padding: 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .season-title {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .season-description {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+
+    .watch-btn, .download-btn {
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 500;
+      display: block;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .watch-btn:hover, .download-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4);
+    }
+    
+    .download-links {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .download-link {
+        background: #333;
+        color: #fff;
+        padding: 8px 12px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 0.9em;
+        transition: background 0.3s;
+    }
+    .servers-title {
+      font-size: 0.9rem;
+      color: #ff5cad;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    .servers-grid-compact {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      gap: 0.5rem;
+    }
+    .download-link {
+      padding: 0.5rem 0.8rem;
+      background: rgba(255, 92, 173, 0.1);
+      border: 1px solid #ff5cad;
+      border-radius: 8px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      display: block;
+      font-weight: 500;
+    }
+    .download-link:hover { background: rgba(255, 92, 173, 0.3); transform: translateY(-2px); }
+    .download-link.mediafire { border-color: #FF9800; background: rgba(255, 152, 0, 0.1); color: #FF9800; }
+    .download-link.mediafire:hover { background: rgba(255, 152, 0, 0.3); }
+    .download-link.dropbox { border-color: #007ee5; background: rgba(0, 126, 229, 0.1); color: #007ee5; }
+    .download-link.dropbox:hover { background: rgba(0, 126, 229, 0.3); }
+    .download-link.drive { border-color: #4285f4; background: rgba(66, 133, 244, 0.1); color: #4285f4; }
+    .download-link.drive:hover { background: rgba(66, 133, 244, 0.3); }
+
+    .unavailable { color: #888; font-style: italic; padding: 8px 12px; }
+
+    @media (max-width: 768px) {
+      .anime-title { font-size: 2.2rem; }
+      .seasons-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="logo">StudioOtaku</div>
+    <a href="../../html/index.html" class="back-btn" style="margin: 0;">🏠 Inicio</a>
+  </header>
+
+  <main class="main-content">
+    <a href="../../html/index.html" class="back-btn">← Volver al Catálogo</a>
+
+    <div class="anime-header">
+      <h1 class="anime-title">Demon Slayer: Kimetsu no Yaiba</h1>
+      <p class="anime-description">
+        Sigue a Tanjiro Kamado, un joven que se convierte en cazador de demonios después de que su familia es masacrada y su hermana menor, Nezuko, es convertida en un demonio.
+      </p>
+    </div>
+
+    <div class="seasons-grid">
+        <div class="season-card">
+            <img src="../../img/Kimetsu No Yaiba temporada 1.png" alt="Kimetsu No Yaiba T1">
+            <div class="season-info">
+                <h2 class="season-title">Temporada 1</h2>
+                <a href="temporada-1.html" class="watch-btn">Ver Temporada</a>
+                <a href="https://exe.io/KimetsuNoYaibaS1" target="_blank" class="download-btn" style="margin-top: 10px;">Descargar</a>
+            </div>
+        </div>
+        <div class="season-card">
+            <img src="../../img/tem 2 Kimetsu no Yaiba.png" alt="Kimetsu No Yaiba T2">
+            <div class="season-info">
+                <h2 class="season-title">Temporada 2</h2>
+                <a href="temporada-2.html" class="watch-btn">Ver Temporada</a>
+                <a href="https://exe.io/tem2KimetsunoYaiba" target="_blank" class="download-btn" style="margin-top: 10px;">Descargar</a>
+            </div>
+        </div>
+        <div class="season-card">
+            <img src="../../img/Kimetsu No Yaiba temporada 3.jpg" alt="Kimetsu No Yaiba T3">
+            <div class="season-info">
+                <h2 class="season-title">Temporada 3</h2>
+                <a href="temporada-3.html" class="watch-btn">Ver Temporada</a>
+                <a href="https://exe.io/kimetsuS3" target="_blank" class="download-btn" style="margin-top: 10px;">Descargar</a>
+            </div>
+        </div>
+        <div class="season-card">
+            <img src="../../img/kimetsu tem 4.png" alt="Kimetsu No Yaiba T4">
+            <div class="season-info">
+                <h2 class="season-title">Temporada 4</h2>
+                <a href="temporada-4.html" class="watch-btn">Ver Temporada</a>
+                <a href="https://exe.io/kimetsuS4" target="_blank" class="download-btn" style="margin-top: 10px;">Descargar</a>
+            </div>
+        </div>
+        <div class="season-card">
+            <img src="../../img/Kimetsu no Yaiba Tren Infino.png" alt="Kimetsu No Yaiba Tren Infinito">
+            <div class="season-info">
+                <h2 class="season-title">Película: Tren Infinito</h2>
+                <a href="tren-infinito.html" class="watch-btn">Ver Película</a>
+                <a href="https://exe.io/KimetsunoYaibaTrenInfino" target="_blank" class="download-btn" style="margin-top: 10px;">Descargar</a>
+            </div>
+        </div>
+        <div class="season-card">
+            <img src="../../img/entrenamiento pilar.png" alt="Kimetsu No Yaiba Entrenamiento Pilar">
+            <div class="season-info">
+                <h2 class="season-title">Película: Entrenamiento Pilar</h2>
+                <a href="#" class="watch-btn">Próximamente</a>
+                <a href="https://exe.io/entrenamientopilar" target="_blank" class="download-btn" style="margin-top: 10px;">Descargar</a>
+            </div>
+        </div>
+        <div class="season-card">
+            <img src="../../img/demon_slayer_kimetsu_no_yaiba_infinity_castle.jpg" alt="Castillo Infinito">
+            <div class="season-info">
+                <h2 class="season-title">Película: Castillo Infinito</h2>
+                <a href="castillo-infinito.html" class="watch-btn">Ver Película</a>
+                <div class="download-servers-section" style="margin-top: 15px;">
+                  <div class="servers-title">Descargar Película</div>
+                  <div class="servers-grid-compact">
+                    <a href="https://exe.io/CastilloInfinitoMP42025" target="_blank" class="download-link mediafire">LAT-MF</a>
+                    <a href="https://exe.io/CastilloInfinitodropbox2025" target="_blank" class="download-link dropbox">LAT-DB</a>
+                    <a href="https://exe-links.com/SUBTCastillofullhd" target="_blank" class="download-link drive">SUB-DR</a>
+                    <a href="https://exe.io/CastilloInfinito2025" target="_blank" class="download-link mediafire">SUB-MF</a>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="season-card">
+            <img src="../../img/Demon Slayer Kimetsu No Yaiba rugido de victoria.png" alt="Kimetsu No Yaiba Rugido de Victoria">
+            <div class="season-info">
+                <h2 class="season-title">Película: Rugido de Victoria</h2>
+                <a href="rugido-de-victoria.html" class="watch-btn">Ver Película</a>
+                <a href="https://exe.io/KimetsuNoYaibarugidodevictoria" target="_blank" class="download-btn" style="margin-top: 10px;">Descargar</a>
+            </div>
+        </div>
+    </div>
+  </main>
+
+  <script>
+    function showDownloadOptions(id) {
+        const options = document.getElementById(id + '-options');
+        if (options.style.display === 'none') {
+            options.style.display = 'block';
+        } else {
+            options.style.display = 'none';
+        }
+
+        if (id === 'castillo') {
+            const mediafireLink = document.getElementById('castillo-mediafire');
+            const exeLink = document.getElementById('castillo-exe');
+            const now = new Date().getTime();
+            // Link de MediaFire expira en 24 horas (en milisegundos)
+            const expirationTime = new Date('2025-09-14T19:00:00Z').getTime(); 
+
+            if (now < expirationTime) {
+                mediafireLink.style.display = 'block';
+                exeLink.style.display = 'none';
+            } else {
+                mediafireLink.style.display = 'none';
+                exeLink.style.display = 'block';
+            }
+        }
+    }
+  </script>
+</body>
+</html>
