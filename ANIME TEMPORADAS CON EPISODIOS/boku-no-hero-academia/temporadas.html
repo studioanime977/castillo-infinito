@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <style>
@@ -97,10 +97,12 @@
     .season-card {
       background: rgba(255, 255, 255, 0.05);
       border-radius: 15px;
-      padding: 2rem;
       border: 1px solid rgba(255, 92, 173, 0.2);
       transition: all 0.3s ease;
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
     }
 
     .season-card:hover {
@@ -109,15 +111,71 @@
       border-color: #ff5cad;
     }
 
+    .season-thumbnail {
+      position: relative;
+      height: 250px;
+      overflow: hidden;
+    }
+
+    .season-thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .season-card:hover .season-thumbnail img {
+      transform: scale(1.1);
+    }
+
+    .season-number {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .season-play-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 92, 173, 0.9);
+      color: #fff;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .season-card:hover .season-play-overlay {
+      opacity: 1;
+    }
+
     .season-title {
       font-size: 1.5rem;
       margin-bottom: 1rem;
       color: #ff8a80;
     }
 
-    .season-description, .season-info {
+    .season-description {
       color: #ccc;
       margin-bottom: 1.5rem;
+      font-size: 0.9rem; /* Ajuste de tamaño */
+    }
+    
+    .season-info {
+      padding: 1.5rem;
     }
 
     .season-btn, .watch-btn {
@@ -138,6 +196,84 @@
     .season-btn:hover, .watch-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4);
+    }
+
+    .download-servers-section {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #333;
+    }
+
+    .servers-title {
+      font-size: 0.9rem;
+      color: #ff5cad;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    .servers-grid-compact {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      gap: 0.5rem;
+    }
+
+    .download-link {
+      padding: 0.5rem 0.8rem;
+      background: rgba(255, 92, 173, 0.1);
+      border: 1px solid #ff5cad;
+      border-radius: 8px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      display: block;
+      font-weight: 500;
+    }
+
+    .download-link:hover {
+      background: rgba(255, 92, 173, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .download-link.terabox {
+      border-color: #4CAF50;
+      background: rgba(76, 175, 80, 0.1);
+      color: #4CAF50;
+    }
+    .download-link.terabox:hover {
+      background: rgba(76, 175, 80, 0.3);
+    }
+
+    .download-link.mediafire {
+      border-color: #FF9800;
+      background: rgba(255, 152, 0, 0.1);
+      color: #FF9800;
+    }
+    .download-link.mediafire:hover {
+      background: rgba(255, 152, 0, 0.3);
+    }
+
+    .download-link.mega {
+        border-color: #ff3c3c;
+        background: rgba(255, 60, 60, 0.1);
+        color: #ff3c3c;
+    }
+    .download-link.mega:hover {
+        background: rgba(255, 60, 60, 0.3);
+    }
+
+    .download-link.unavailable-server {
+      opacity: 0.4;
+      cursor: not-allowed;
+      background: rgba(128, 128, 128, 0.1);
+      border-color: #666;
+      color: #888;
+    }
+
+    .download-link.unavailable-server:hover {
+      transform: none;
+      background: rgba(128, 128, 128, 0.1);
     }
 
     .contenedor-video {
@@ -223,443 +359,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Boku no Hero Academia - Todas las Temporadas | StudioOtaku</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
-      color: #fff;
-      min-height: 100vh;
-    }
-
-    .header {
-      background: rgba(0, 0, 0, 0.9);
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      backdrop-filter: blur(10px);
-      border-bottom: 2px solid #ff5cad;
-    }
-
-    .logo {
-      font-size: 1.8rem;
-      font-weight: bold;
-      background: linear-gradient(45deg, #ff5cad, #ff8a80);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .search-bar {
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    .search-bar input {
-      padding: 0.5rem 1rem;
-      border: 2px solid #ff5cad;
-      border-radius: 25px;
-      background: rgba(255, 255, 255, 0.1);
-      color: #fff;
-      outline: none;
-      width: 300px;
-    }
-
-    .search-bar button {
-      padding: 0.5rem 1rem;
-      background: linear-gradient(45deg, #ff5cad, #ff8a80);
-      border: none;
-      border-radius: 25px;
-      color: #fff;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .user-actions {
-      display: flex;
-      gap: 1rem;
-    }
-
-    .auth-btn {
-      padding: 0.5rem 1rem;
-      background: transparent;
-      border: 2px solid #ff5cad;
-      border-radius: 25px;
-      color: #fff;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    .auth-btn:hover {
-      background: #ff5cad;
-      transform: translateY(-2px);
-    }
-
-    .main-content {
-      padding: 2rem;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .back-btn {
-      display: inline-block;
-      padding: 0.5rem 1rem;
-      background: rgba(255, 92, 173, 0.2);
-      border: 2px solid #ff5cad;
-      border-radius: 25px;
-      color: #fff;
-      text-decoration: none;
-      margin-bottom: 2rem;
-      transition: all 0.3s ease;
-    }
-
-    .back-btn:hover {
-      background: #ff5cad;
-      transform: translateX(-5px);
-    }
-
-    .anime-header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-
-    .anime-title {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      background: linear-gradient(45deg, #ff5cad, #ff8a80);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 30px rgba(255, 92, 173, 0.5);
-    }
-
-    .anime-description {
-      font-size: 1.2rem;
-      color: #ccc;
-      max-width: 800px;
-      margin: 0 auto;
-      line-height: 1.6;
-    }
-
-    .seasons-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .season-card {
-      background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      transition: all 0.3s ease;
-      border: 2px solid transparent;
-    }
-
-    .season-card:hover {
-      transform: translateY(-10px);
-      border-color: #ff5cad;
-      box-shadow: 0 20px 40px rgba(255, 92, 173, 0.3);
-    }
-
-    .season-thumbnail {
-      position: relative;
-      height: 300px;
-      overflow: hidden;
-    }
-
-    .season-thumbnail img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s ease;
-    }
-
-    .season-card:hover .season-thumbnail img {
-      transform: scale(1.1);
-    }
-
-    .season-number {
-      position: absolute;
-      top: 15px;
-      left: 15px;
-      background: linear-gradient(45deg, #ff5cad, #ff8a80);
-      color: #fff;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      font-weight: bold;
-      font-size: 1.1rem;
-    }
-
-    .season-play-overlay {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(255, 92, 173, 0.9);
-      color: #fff;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      cursor: pointer;
-    }
-
-    .season-card:hover .season-play-overlay {
-      opacity: 1;
-    }
-
-    .season-info {
-      padding: 1.5rem;
-    }
-
-    .season-title {
-      font-size: 1.5rem;
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-      color: #ff5cad;
-    }
-
-    .season-description {
-      color: #ccc;
-      line-height: 1.5;
-      margin-bottom: 1rem;
-    }
-
-    .season-stats {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 1rem;
-      font-size: 0.9rem;
-    }
-
-    .episode-count {
-      color: #ff8a80;
-      font-weight: bold;
-    }
-
-    .season-year {
-      color: #aaa;
-    }
-
-    .progress-bar {
-      width: 100%;
-      height: 6px;
-      background: #333;
-      border-radius: 3px;
-      overflow: hidden;
-      margin-bottom: 0.5rem;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #ff5cad, #ff8a80);
-      border-radius: 3px;
-      transition: width 0.3s ease;
-    }
-
-    .progress-text {
-      font-size: 0.8rem;
-      color: #aaa;
-      margin-bottom: 1rem;
-    }
-
-    .watch-btn {
-      width: 100%;
-      padding: 0.8rem;
-      background: linear-gradient(45deg, #ff5cad, #ff8a80);
-      border: none;
-      border-radius: 25px;
-      color: #fff;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      margin-bottom: 1rem;
-    }
-
-    .watch-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4);
-    }
-
-    .download-servers-section {
-      margin-top: 1rem;
-      padding-top: 1rem;
-      border-top: 1px solid #333;
-    }
-
-    .servers-title {
-      font-size: 0.9rem;
-      color: #ff5cad;
-      margin-bottom: 0.5rem;
-      font-weight: bold;
-    }
-
-    .servers-grid-compact {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.5rem;
-    }
-
-    .download-link {
-      padding: 0.4rem 0.6rem;
-      background: rgba(255, 92, 173, 0.1);
-      border: 1px solid #ff5cad;
-      border-radius: 15px;
-      color: #fff;
-      text-decoration: none;
-      font-size: 0.8rem;
-      text-align: center;
-      transition: all 0.3s ease;
-      display: block;
-    }
-
-    .download-link:hover {
-      background: rgba(255, 92, 173, 0.3);
-      transform: translateY(-2px);
-    }
-
-    .download-link.terabox {
-      border-color: #4CAF50;
-      background: rgba(76, 175, 80, 0.1);
-    }
-
-    .download-link.unavailable-server {
-      opacity: 0.5;
-      cursor: not-allowed;
-      background: rgba(128, 128, 128, 0.1);
-      border-color: #666;
-    }
-
-    .download-link.unavailable-server:hover {
-      transform: none;
-      background: rgba(128, 128, 128, 0.1);
-    }
-
-    @media (max-width: 768px) {
-      .seasons-container {
-        grid-template-columns: 1fr;
-      }
-      
-      .anime-title {
-        font-size: 2rem;
-      }
-      
-      .header {
-        padding: 1rem;
-        flex-direction: column;
-        gap: 1rem;
-      }
-      
-      .search-bar input {
-        width: 200px;
-      }
-    }
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-  
-    .contenedor-video {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 15px;
-      padding: 2rem;
-      border: 1px solid rgba(255, 92, 173, 0.2);
-      margin-bottom: 2rem;
-    }
-
-    .player-options {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .player-btn {
-      background: linear-gradient(45deg, #ff5cad, #ff8a80);
-      color: white;
-      border: none;
-      padding: 0.8rem 1.5rem;
-      border-radius: 25px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .player-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(255, 92, 173, 0.3);
-    }
-
-    .player-btn.active {
-      background: linear-gradient(45deg, #4CAF50, #45a049);
-    }
-
-    .reproductor-video {
-      position: relative;
-      width: 100%;
-      height: 500px;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    .player-container {
-      display: none;
-      width: 100%;
-      height: 100%;
-    }
-
-    .player-container.active {
-      display: block;
-    }
-
-    .player-container iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      border-radius: 10px;
-    }
-  </style>
 </head>
 <body>
+  <!-- Language Selector -->
+  <div class="language-selector">
+    <select id="language-select" onchange="changeLanguage()">
+      <option value="es">🇪🇸 Español</option>
+      <option value="en">🇺🇸 English</option>
+      <option value="pt">🇧🇷 Português</option>
+      <option value="fr">🇫🇷 Français</option>
+      <option value="ja">🇯🇵 日本語</option>
+    </select>
+  </div>
+
   <!-- Header -->
   <div class="header">
     <div class="logo">🧧StudioOtaku</div>
-    <a href="../../html/index.html" class="back-btn">🏠 Inicio</a>
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar anime..." id="search-input">
+      <button onclick="searchAnime()">🔍</button>
+    </div>
+    <div class="user-actions">
+      <button class="auth-btn">🔒 Login</button>
+      <button class="auth-btn">✎ Registro</button>
+      <a href="../../html/index.html" class="auth-btn">🏠 Inicio</a>
+    </div>
   </div>
 
   <div class="main-content">
-    <a href="../../animes/boku-no-hero-academia.html" class="back-btn">← Volver a My Hero Academia</a>
+    <a href="../../html/index.html" class="back-btn">← Volver al Catálogo</a>
     
     <div class="anime-header">
-      <h1 class="anime-title">🦸 Boku no Hero Academia</h1>
+      <h1 class="anime-title">🦸‍♂️ Boku no Hero Academia</h1>
       <p class="anime-description">
-        En un mundo donde el 80% de la población tiene superpoderes llamados "Quirks", Izuku Midoriya sueña con convertirse en un héroe profesional a pesar de nacer sin poderes. Su encuentro con All Might, el héroe número uno, cambiará su destino para siempre.
+        En un mundo donde el 80% de la población tiene superpoderes, Izuku Midoriya sueña con convertirse en un héroe a pesar de nacer sin un "Quirk". Su vida cambia cuando hereda los poderes del legendario héroe All Might y se inscribe en una prestigiosa academia para héroes.
       </p>
       <!-- Top Banner -->
   <div class="banner-ad" style="text-align: center; margin: 1rem 0; padding: 1rem; background: rgba(0,0,0,0.1); border-radius: 10px;">
@@ -671,56 +404,261 @@
     <div class="seasons-container">
       <!-- Season 1 -->
       <div class="season-card">
-        <div class="season-title">🦸 Temporada 1</div>
-        <div class="season-description">
-          Izuku Midoriya ingresa a la Academia U.A. para entrenar y convertirse en un héroe profesional, enfrentando desafíos y haciendo nuevos amigos. (13 episodios - 2016)
+        <div class="season-thumbnail">
+          <img src="../../img/BokunoHeroAcademia S1.png" alt="Boku no Hero Academia Season 1">
+          <div class="season-number">T1</div>
+          <div class="season-play-overlay">▶</div>
         </div>
-        <a href="temporada-1.html" class="watch-btn">Ver Temporada 1</a>
+        <div class="season-info">
+          <div class="season-title">Temporada 1</div>
+          <div class="season-description">
+            El inicio del viaje de Deku, desde que conoce a All Might hasta su ingreso en la Academia U.A.
+          </div>
+          <div class="season-stats">
+            <div class="episode-count">🦸 13 Episodios</div>
+            <div class="season-year">2016</div>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="s1-progress" style="width: 0%"></div>
+          </div>
+          <div class="progress-text" id="s1-progress-text">No iniciado</div>
+          <button class="watch-btn" id="s1-btn" onclick="goToSeason('temporada-1.html')">🦸 Ver Temporada</button>
+          
+          <!-- Download Servers Section -->
+          <div class="download-servers-section">
+            <div class="servers-title">📥 Descargar Temporada Completa</div>
+            <div class="servers-grid-compact">
+              <a href="https://exe.io/MyHeroAcademiaS1" target="_blank" class="download-link terabox">📦 TeraBox</a>
+              <a href="#" onclick="showUnavailableAlert('MEGA'); return false;" class="download-link mega unavailable-server">📦 MEGA</a>
+              <a href="#" onclick="showUnavailableAlert('MediaFire'); return false;" class="download-link mediafire unavailable-server">🔥 MediaFire</a>
+              <a href="#" onclick="showUnavailableAlert('Dropbox'); return false;" class="download-link dropbox unavailable-server">📁 Dropbox</a>
+              <a href="#" onclick="showUnavailableAlert('1Fichier'); return false;" class="download-link fichier unavailable-server">📂 1Fichier</a>
+              <a href="#" onclick="showUnavailableAlert('Stape'); return false;" class="download-link stape unavailable-server">🔗 Stape</a>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Season 2 -->
       <div class="season-card">
-        <div class="season-title">⚡ Temporada 2</div>
-        <div class="season-description">
-          El Festival Deportivo de U.A. y el enfrentamiento con el Asesino de Héroes Stain marcan nuevos desafíos para los estudiantes. (25 episodios - 2017)
+        <div class="season-thumbnail">
+          <img src="../../img/My Hero Academia S2.jpg" alt="Boku no Hero Academia Season 2">
+          <div class="season-number">T2</div>
+          <div class="season-play-overlay">▶</div>
         </div>
-        <a href="temporada-2.html" class="watch-btn">Ver Temporada 2</a>
+        <div class="season-info">
+          <div class="season-title">Temporada 2</div>
+          <div class="season-description">
+            El Festival Deportivo de la U.A. y el enfrentamiento contra el temible Asesino de Héroes, Stain.
+          </div>
+          <div class="season-stats">
+            <div class="episode-count">⚡ 25 Episodios</div>
+            <div class="season-year">2017</div>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="s2-progress" style="width: 0%"></div>
+          </div>
+          <div class="progress-text" id="s2-progress-text">No iniciado</div>
+          <button class="watch-btn" id="s2-btn" onclick="goToSeason('temporada-2.html')">⚡ Ver Temporada</button>
+          
+          <!-- Download Servers Section -->
+          <div class="download-servers-section">
+            <div class="servers-title">📥 Descargar Temporada Completa</div>
+            <div class="servers-grid-compact">
+              <a href="https://exe.io/MyHeroAcademiaS2" target="_blank" class="download-link terabox">📦 TeraBox</a>
+              <a href="#" onclick="showUnavailableAlert('MEGA'); return false;" class="download-link mega unavailable-server">📦 MEGA</a>
+              <a href="#" onclick="showUnavailableAlert('MediaFire'); return false;" class="download-link mediafire unavailable-server">🔥 MediaFire</a>
+              <a href="#" onclick="showUnavailableAlert('Dropbox'); return false;" class="download-link dropbox unavailable-server">📁 Dropbox</a>
+              <a href="#" onclick="showUnavailableAlert('1Fichier'); return false;" class="download-link fichier unavailable-server">📂 1Fichier</a>
+              <a href="#" onclick="showUnavailableAlert('Stape'); return false;" class="download-link stape unavailable-server">🔗 Stape</a>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Season 3 -->
       <div class="season-card">
-        <div class="season-title">🔥 Temporada 3</div>
-        <div class="season-description">
-          El campamento de entrenamiento y la batalla contra la Liga de Villanos ponen a prueba las habilidades de los estudiantes. (25 episodios - 2018)
+        <div class="season-thumbnail">
+          <img src="../../img/My Hero Academia S3.jpg" alt="Boku no Hero Academia Season 3">
+          <div class="season-number">T3</div>
+          <div class="season-play-overlay">▶</div>
         </div>
-        <a href="temporada-3.html" class="watch-btn">Ver Temporada 3</a>
+        <div class="season-info">
+          <div class="season-title">Temporada 3</div>
+          <div class="season-description">
+            La Liga de Villanos ataca el campamento de entrenamiento y All Might se enfrenta a su archienemigo.
+          </div>
+          <div class="season-stats">
+            <div class="episode-count">💥 25 Episodios</div>
+            <div class="season-year">2018</div>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="s3-progress" style="width: 0%"></div>
+          </div>
+          <div class="progress-text" id="s3-progress-text">No iniciado</div>
+          <button class="watch-btn" id="s3-btn" onclick="goToSeason('temporada-3.html')">💥 Ver Temporada</button>
+          
+          <!-- Download Servers Section -->
+          <div class="download-servers-section">
+            <div class="servers-title">📥 Descargar Temporada Completa</div>
+            <div class="servers-grid-compact">
+              <a href="https://exe.io/MyHeroAcademiaS3" target="_blank" class="download-link terabox">📦 TeraBox</a>
+              <a href="#" onclick="showUnavailableAlert('MEGA'); return false;" class="download-link mega unavailable-server">📦 MEGA</a>
+              <a href="#" onclick="showUnavailableAlert('MediaFire'); return false;" class="download-link mediafire unavailable-server">🔥 MediaFire</a>
+              <a href="#" onclick="showUnavailableAlert('Dropbox'); return false;" class="download-link dropbox unavailable-server">📁 Dropbox</a>
+              <a href="#" onclick="showUnavailableAlert('1Fichier'); return false;" class="download-link fichier unavailable-server">📂 1Fichier</a>
+              <a href="#" onclick="showUnavailableAlert('Stape'); return false;" class="download-link stape unavailable-server">🔗 Stape</a>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Season 4 -->
       <div class="season-card">
-        <div class="season-title">💪 Temporada 4</div>
-        <div class="season-description">
-          La batalla contra Overhaul y el rescate de Eri marcan un punto de inflexión en la serie. (25 episodios - 2019-2020)
+        <div class="season-thumbnail">
+          <img src="../../img/My Hero Academia S4.jpg" alt="Boku no Hero Academia Season 4">
+          <div class="season-number">T4</div>
+          <div class="season-play-overlay">▶</div>
         </div>
-        <a href="temporada-4.html" class="watch-btn">Ver Temporada 4</a>
+        <div class="season-info">
+          <div class="season-title">Temporada 4</div>
+          <div class="season-description">
+            Deku se une a la agencia de Sir Nighteye para luchar contra Overhaul y rescatar a la pequeña Eri.
+          </div>
+          <div class="season-stats">
+            <div class="episode-count">🔥 25 Episodios</div>
+            <div class="season-year">2019-2020</div>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="s4-progress" style="width: 0%"></div>
+          </div>
+          <div class="progress-text" id="s4-progress-text">No iniciado</div>
+          <button class="watch-btn" id="s4-btn" onclick="goToSeason('temporada-4.html')">🔥 Ver Temporada</button>
+          
+          <!-- Download Servers Section -->
+          <div class="download-servers-section">
+            <div class="servers-title">📥 Descargar Temporada Completa</div>
+            <div class="servers-grid-compact">
+              <a href="https://exe.io/MyHeroAcademiaS4" target="_blank" class="download-link terabox">📦 TeraBox</a>
+              <a href="#" onclick="showUnavailableAlert('MEGA'); return false;" class="download-link mega unavailable-server">📦 MEGA</a>
+              <a href="#" onclick="showUnavailableAlert('MediaFire'); return false;" class="download-link mediafire unavailable-server">🔥 MediaFire</a>
+              <a href="#" onclick="showUnavailableAlert('Dropbox'); return false;" class="download-link dropbox unavailable-server">📁 Dropbox</a>
+              <a href="#" onclick="showUnavailableAlert('1Fichier'); return false;" class="download-link fichier unavailable-server">📂 1Fichier</a>
+              <a href="#" onclick="showUnavailableAlert('Stape'); return false;" class="download-link stape unavailable-server">🔗 Stape</a>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Season 5 -->
       <div class="season-card">
-        <div class="season-title">🌟 Temporada 5</div>
-        <div class="season-description">
-          El entrenamiento conjunto entre las clases A y B, y la aparición de nuevas amenazas. (25 episodios - 2021)
+        <div class="season-thumbnail">
+          <img src="../../img/My Hero Academia S5.jpg" alt="Boku no Hero Academia Season 5">
+          <div class="season-number">T5</div>
+          <div class="season-play-overlay">▶</div>
         </div>
-        <a href="temporada-5.html" class="watch-btn">Ver Temporada 5</a>
+        <div class="season-info">
+          <div class="season-title">Temporada 5</div>
+          <div class="season-description">
+            El enfrentamiento entre la Clase 1-A y la Clase 1-B, y el despertar de un nuevo poder en Deku.
+          </div>
+          <div class="season-stats">
+            <div class="episode-count">🌟 25 Episodios</div>
+            <div class="season-year">2021</div>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="s5-progress" style="width: 0%"></div>
+          </div>
+          <div class="progress-text" id="s5-progress-text">No iniciado</div>
+          <button class="watch-btn" id="s5-btn" onclick="goToSeason('temporada-5.html')">🌟 Ver Temporada</button>
+          
+          <!-- Download Servers Section -->
+          <div class="download-servers-section">
+            <div class="servers-title">📥 Descargar Temporada Completa</div>
+            <div class="servers-grid-compact">
+              <a href="https://exe.io/MyHeroAcademiaS5" target="_blank" class="download-link terabox">📦 TeraBox</a>
+              <a href="#" onclick="showUnavailableAlert('MEGA'); return false;" class="download-link mega unavailable-server">📦 MEGA</a>
+              <a href="#" onclick="showUnavailableAlert('MediaFire'); return false;" class="download-link mediafire unavailable-server">🔥 MediaFire</a>
+              <a href="#" onclick="showUnavailableAlert('Dropbox'); return false;" class="download-link dropbox unavailable-server">📁 Dropbox</a>
+              <a href="#" onclick="showUnavailableAlert('1Fichier'); return false;" class="download-link fichier unavailable-server">📂 1Fichier</a>
+              <a href="#" onclick="showUnavailableAlert('Stape'); return false;" class="download-link stape unavailable-server">🔗 Stape</a>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Season 6 -->
       <div class="season-card">
-        <div class="season-title">⚔️ Temporada 6</div>
-        <div class="season-description">
-          La guerra entre héroes y villanos alcanza su punto culminante con batallas épicas. (25 episodios - 2022-2023)
+        <div class="season-thumbnail">
+          <img src="../../img/My Hero Academia S6.jpg" alt="Boku no Hero Academia Season 6">
+          <div class="season-number">T6</div>
+          <div class="season-play-overlay">▶</div>
         </div>
-        <a href="temporada-6.html" class="watch-btn">Ver Temporada 6</a>
+        <div class="season-info">
+          <div class="season-title">Temporada 6</div>
+          <div class="season-description">
+            La guerra total entre héroes y el Frente de Liberación Paranormal liderado por Tomura Shigaraki.
+          </div>
+          <div class="season-stats">
+            <div class="episode-count">⚔️ 25 Episodios</div>
+            <div class="season-year">2022-2023</div>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="s6-progress" style="width: 0%"></div>
+          </div>
+          <div class="progress-text" id="s6-progress-text">No iniciado</div>
+          <button class="watch-btn" id="s6-btn" onclick="goToSeason('temporada-6.html')">⚔️ Ver Temporada</button>
+          
+          <!-- Download Servers Section -->
+          <div class="download-servers-section">
+            <div class="servers-title">📥 Descargar Temporada Completa</div>
+            <div class="servers-grid-compact">
+              <a href="https://exe.io/MyHeroAcademiaS6" target="_blank" class="download-link terabox">📦 TeraBox</a>
+              <a href="#" onclick="showUnavailableAlert('MEGA'); return false;" class="download-link mega unavailable-server">📦 MEGA</a>
+              <a href="#" onclick="showUnavailableAlert('MediaFire'); return false;" class="download-link mediafire unavailable-server">🔥 MediaFire</a>
+              <a href="#" onclick="showUnavailableAlert('Dropbox'); return false;" class="download-link dropbox unavailable-server">📁 Dropbox</a>
+              <a href="#" onclick="showUnavailableAlert('1Fichier'); return false;" class="download-link fichier unavailable-server">📂 1Fichier</a>
+              <a href="#" onclick="showUnavailableAlert('Stape'); return false;" class="download-link stape unavailable-server">🔗 Stape</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Season 7 -->
+      <div class="season-card">
+        <div class="season-thumbnail">
+          <img src="../../img/My Hero Academia S7.jpg" alt="Boku no Hero Academia Season 7">
+          <div class="season-number">T7</div>
+          <div class="season-play-overlay">▶</div>
+        </div>
+        <div class="season-info">
+          <div class="season-title">Temporada 7</div>
+          <div class="season-description">
+            Las secuelas de la guerra y la caza de los villanos fugados mientras la sociedad de héroes se desmorona.
+          </div>
+          <div class="season-stats">
+            <div class="episode-count">🔚 21 Episodios</div>
+            <div class="season-year">2024</div>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="s7-progress" style="width: 0%"></div>
+          </div>
+          <div class="progress-text" id="s7-progress-text">No iniciado</div>
+          <button class="watch-btn" id="s7-btn" onclick="goToSeason('temporada-7.html')">🔚 Ver Temporada</button>
+          
+          <!-- Download Servers Section -->
+          <div class="download-servers-section">
+            <div class="servers-title">📥 Descargar Temporada Completa</div>
+            <div class="servers-grid-compact">
+              <a href="https://exe.io/MyHeroAcademiaS7" target="_blank" class="download-link terabox">📦 TeraBox</a>
+              <a href="#" onclick="showUnavailableAlert('MEGA'); return false;" class="download-link mega unavailable-server">📦 MEGA</a>
+              <a href="#" onclick="showUnavailableAlert('MediaFire'); return false;" class="download-link mediafire unavailable-server">🔥 MediaFire</a>
+              <a href="#" onclick="showUnavailableAlert('Dropbox'); return false;" class="download-link dropbox unavailable-server">📁 Dropbox</a>
+              <a href="#" onclick="showUnavailableAlert('1Fichier'); return false;" class="download-link fichier unavailable-server">📂 1Fichier</a>
+              <a href="#" onclick="showUnavailableAlert('Stape'); return false;" class="download-link stape unavailable-server">🔗 Stape</a>
+            </div>
+          </div>
+        </div>
       </div>
       
   <!-- Bottom Banner -->
@@ -733,29 +671,17 @@
 
   
   <script>
-    function switchPlayer(option) {
-      const playerButtons = document.querySelectorAll('.player-btn');
-      const playerContainers = document.querySelectorAll('.player-container');
-      
-      playerButtons.forEach(btn => btn.classList.remove('active'));
-      playerContainers.forEach(container => container.classList.remove('active'));
-      
-      document.getElementById(option + '-btn').classList.add('active');
-      document.getElementById(option + '-player').classList.add('active');
+    function goToSeason(url) {
+      window.location.href = url;
+    }
+
+    function showUnavailableAlert(serverName) {
+      alert(`El servidor de ${serverName} no está disponible actualmente. Por favor, intente con otra opción.`);
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-      const firstPlayerBtn = document.querySelector('.player-btn');
-      if (firstPlayerBtn) {
-        firstPlayerBtn.click();
-      }
+      // Aquí puedes agregar lógica de seguimiento de progreso si es necesario en el futuro
     });
   </script>
 </body>
 </html>
-
-
-
-
-
-

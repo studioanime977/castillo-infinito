@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <style>
@@ -514,32 +514,103 @@
   </style>
 </head>
 <body>
-  <div class="header">
-    <div class="logo">🧧StudioOtaku</div>
-    <a href="../../html/index.html" class="back-btn">🏠 Inicio</a>
-  </div>
+  <header class="header">
+    <div class="logo">StudioOtaku</div>
+    <a href="../../html/index.html" class="back-btn" style="margin:0;">🏠 Inicio</a>
+  </header>
 
-  <div class="main-content">
-    <a href="temporadas.html" class="back-btn">← Volver a Boku no Hero Academia</a>
+  <main class="main-content">
+    <a href="temporadas.html" class="back-btn">← Volver a Temporadas</a>
     
     <div class="season-header">
-      <h1 class="season-title">🦸‍♂️ Boku no Hero Academia - Temporada 1</h1>
-      <p class="season-description">
-        Izuku Midoriya nace sin poderes en un mundo donde el 80% de la población los tiene. 
-        Su encuentro con All Might cambiará su destino para convertirse en el mejor héroe.
-      </p>
+      <h1 class="season-title">Boku no Hero Academia - Temporada 1</h1>
+      <p class="season-description">Izuku Midoriya nace sin poderes en un mundo donde casi todos los tienen. A pesar de ello, sueña con convertirse en un héroe. Su vida cambia cuando conoce a su ídolo, All Might, quien le transfiere su poder y lo inscribe en una prestigiosa academia para héroes.</p>
     </div>
 
-    <div class="video-container">
+    <div class="contenedor-video">
       <div class="player-options">
-        <button class="player-btn active" onclick="switchPlayer('option1')" id="option1-btn">📺 OPCIÓN 1 (SUB)</button>
-        <button class="player-btn" onclick="switchPlayer('option2')" id="option2-btn">🎬 OPCIÓN 2</button>
-        <button class="player-btn" onclick="switchPlayer('option3')" id="option3-btn">🎭 OPCIÓN 3 (SIN SUB)</button>
-        <button class="player-btn" onclick="switchPlayer('option4')" id="option4-btn">🎪 OPCIÓN 4</button>
+        <button class="player-btn active" onclick="switchPlayer('option1')" id="option1-btn">OPCIÓN 1</button>
+        <button class="player-btn" onclick="switchPlayer('option2')" id="option2-btn">OPCIÓN 2</button>
       </div>
-      <div class="video-player">
+      <div class="reproductor-video">
         <div id="option1-player" class="player-container active">
-          
+          <iframe src="https://www.yourupload.com/embed/1o7g2G7IqU3e" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div id="option2-player" class="player-container">
+          <iframe src="https://uqload.to/embed-example" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="episodes-grid">
+      <!-- Episodio 1 -->
+      <div class="episode-card">
+        <h3 class="episode-title">Episodio 1: Izuku Midoriya: Origen</h3>
+        <a href="https://exe.io/BNHAS1E1" class="download-btn" target="_blank">Descargar</a>
+      </div>
+      <!-- Episodio 2 -->
+      <div class="episode-card">
+        <h3 class="episode-title">Episodio 2: Lo que se necesita para ser un héroe</h3>
+        <a href="https://exe.io/BNHAS1E2" class="download-btn" target="_blank">Descargar</a>
+      </div>
+      <!-- Episodio 3 -->
+      <div class="episode-card">
+        <h3 class="episode-title">Episodio 3: Músculos rugientes</h3>
+        <a href="https://exe.io/BNHAS1E3" class="download-btn" target="_blank">Descargar</a>
+      </div>
+      <!-- Episodio 4 -->
+      <div class="episode-card">
+        <h3 class="episode-title">Episodio 4: Línea de partida</h3>
+        <a href="https://exe.io/BNHAS1E4" class="download-btn" target="_blank">Descargar</a>
+      </div>
+      <!-- Episodio 5 -->
+      <div class="episode-card">
+        <h3 class="episode-title">Episodio 5: Lo que puedo hacer por ahora</h3>
+        <a href="https://exe.io/BNHAS1E5" class="download-btn" target="_blank">Descargar</a>
+      </div>
+      <!-- Episodio 6 -->
+      <div class="episode-card">
+        <h3 class="episode-title">Episodio 6: ¡Enfurece, maldito nerd!</h3>
+        <a href="https://exe.io/BNHAS1E6" class="download-btn" target="_blank">Descargar</a>
+      </div>
+      <!-- Episodio 7 -->
+      <div class="episode-card">
+        <h3 class="episode-title">Episodio 7: Deku vs. Kacchan</h3>
+        <a href="https://exe.io/BNHAS1E7" class="download-btn" target="_blank">Descargar</a>
+      </div>
+      <!-- Episodio 8 -->
+      <div class="episode-card">
+        <h3 class="episode-title">Episodio 8: La línea de salida de Bakugo</h3>
+        <a href="https://exe.io/BNHAS1E8" class="download-btn" target="_blank">Descargar</a>
+      </div>
+      <!-- Episodio 9 -->
+      <div class="episode-card">
+        <h3 class="episode-title">Episodio 9: ¡Sí, solo da lo mejor de ti, Iida!</h3>
+        <a href="https://exe.io/BNHAS1E9" class="download-btn" target="_blank">Descargar</a>
+      </div>
+      <!-- Episodio 10 -->
+      <div class="episode-card">
+        <h3 class="episode-title">Episodio 10: Encuentro con lo desconocido</h3>
+        <a href="https://exe.io/BNHAS1E10" class="download-btn" target="_blank">Descargar</a>
+      </div>
+      <!-- Episodio 11 -->
+      <div class="episode-card">
+        <h3 class="episode-title">Episodio 11: Fin del juego</h3>
+        <a href="https://exe.io/BNHAS1E11" class="download-btn" target="_blank">Descargar</a>
+      </div>
+      <!-- Episodio 12 -->
+      <div class="episode-card">
+        <h3 class="episode-title">Episodio 12: All Might</h3>
+        <a href="https://exe.io/BNHAS1E12" class="download-btn" target="_blank">Descargar</a>
+      </div>
+      <!-- Episodio 13 -->
+      <div class="episode-card">
+        <h3 class="episode-title">Episodio 13: En cada uno de nuestros corazones</h3>
+        <a href="https://exe.io/BNHAS1E13" class="download-btn" target="_blank">Descargar</a>
+      </div>
+    </div>
+  </main>
+
   <script>
     function switchPlayer(option) {
       const playerButtons = document.querySelectorAll('.player-btn');
@@ -548,36 +619,9 @@
       playerButtons.forEach(btn => btn.classList.remove('active'));
       playerContainers.forEach(container => container.classList.remove('active'));
       
-      document.getElementById(${option}-btn).classList.add('active');
-      document.getElementById(${option}-player).classList.add('active');
+      document.getElementById(option + '-btn').classList.add('active');
+      document.getElementById(option + '-player').classList.add('active');
     }
-
-    document.addEventListener('DOMContentLoaded', function() {
-      const firstPlayerBtn = document.querySelector('.player-btn');
-      if (firstPlayerBtn) {
-        firstPlayerBtn.click();
-      }
-    });
-  </script>
-  
-  <script>
-    function switchPlayer(option) {
-      const playerButtons = document.querySelectorAll('.player-btn');
-      const playerContainers = document.querySelectorAll('.player-container');
-      
-      playerButtons.forEach(btn => btn.classList.remove('active'));
-      playerContainers.forEach(container => container.classList.remove('active'));
-      
-      document.getElementById(${option}-btn).classList.add('active');
-      document.getElementById(${option}-player).classList.add('active');
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-      const firstPlayerBtn = document.querySelector('.player-btn');
-      if (firstPlayerBtn) {
-        firstPlayerBtn.click();
-      }
-    });
   </script>
 </body>
 </html>

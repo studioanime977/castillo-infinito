@@ -5,120 +5,478 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Attack on Titan - Todas las Temporadas | StudioOtaku</title>
   <style>
-    :root {
-      --primary-color: #ff5cad;
-      --secondary-color: #ff8a80;
-      --background-start: #0f0f23;
-      --background-end: #2d1b69;
-      --card-background: rgba(255, 255, 255, 0.05);
-      --card-border: rgba(255, 92, 173, 0.2);
-      --text-color: #fff;
-      --text-muted: #ccc;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, var(--background-start) 0%, var(--background-end) 50%, var(--background-start) 100%); color: var(--text-color); margin: 0; }
-    .header { background: rgba(0, 0, 0, 0.85); padding: 1rem 2rem; position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px); border-bottom: 2px solid var(--primary-color); display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-size: 1.8rem; font-weight: bold; background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-    .main-content { padding: 2rem; max-width: 1400px; margin: 0 auto; }
-    .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 25px; text-decoration: none; font-weight: 500; margin-bottom: 2rem; transition: all 0.3s ease; }
-    .back-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4); }
-    .anime-header { text-align: center; margin-bottom: 3rem; }
-    .anime-title { font-size: 3rem; margin-bottom: 1rem; }
-    .anime-description { font-size: 1.1rem; color: var(--text-muted); max-width: 800px; margin: 0 auto; line-height: 1.6; }
-    .seasons-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
-    .season-card { background: var(--card-background); border-radius: 15px; border: 1px solid var(--card-border); overflow: hidden; transition: all 0.3s ease; display: flex; flex-direction: column; }
-    .season-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(255, 92, 173, 0.3); border-color: var(--primary-color); }
-    .season-card img { width: 100%; height: 250px; object-fit: cover; }
-    .season-info { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
-    .season-title { font-size: 1.4rem; margin-bottom: 0.5rem; }
-    .season-description { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; flex-grow: 1; }
-    .watch-btn { background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 25px; text-decoration: none; font-weight: 500; display: block; text-align: center; transition: all 0.3s ease; }
-    .watch-btn:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4); }
-    .servers-title { font-size: 0.9rem; color: #ff5cad; margin-bottom: 0.5rem; font-weight: bold; margin-top: 1rem; }
-    .servers-grid-compact { display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 0.5rem; }
-    .download-link { padding: 0.5rem 0.8rem; background: rgba(255, 92, 173, 0.1); border: 1px solid #ff5cad; border-radius: 8px; color: #fff; text-decoration: none; font-size: 0.9rem; text-align: center; transition: all 0.3s ease; display: block; font-weight: 500; }
-    .download-link:hover { background: rgba(255, 92, 173, 0.3); transform: translateY(-2px); }
-    .download-link.terabox { border-color: #4CAF50; background: rgba(76, 175, 80, 0.1); color: #4CAF50; }
-    .download-link.terabox:hover { background: rgba(76, 175, 80, 0.3); }
-    @media (max-width: 768px) { .anime-title { font-size: 2.2rem; } .seasons-grid { grid-template-columns: 1fr; } }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f0f23 0%, #2d1b69 50%, #0f0f23 100%);
+      color: #fff;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .header {
+      background: rgba(0, 0, 0, 0.9);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid #ff5cad;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .main-content {
+      padding: 6rem 2rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .back-btn {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      border: none;
+      border-radius: 25px;
+      color: #fff;
+      text-decoration: none;
+      margin-bottom: 2rem;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4);
+    }
+
+    .anime-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .anime-title {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(255, 92, 173, 0.5);
+    }
+
+    .anime-description {
+      font-size: 1.2rem;
+      color: #ccc;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .seasons-container, .seasons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .season-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      border: 1px solid rgba(255, 92, 173, 0.2);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .season-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(255, 92, 173, 0.3);
+      border-color: #ff5cad;
+    }
+
+    .season-thumbnail {
+      position: relative;
+      height: 250px;
+      overflow: hidden;
+    }
+
+    .season-thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .season-card:hover .season-thumbnail img {
+      transform: scale(1.1);
+    }
+
+    .season-number {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .season-play-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 92, 173, 0.9);
+      color: #fff;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .season-card:hover .season-play-overlay {
+      opacity: 1;
+    }
+
+    .season-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #ff8a80;
+    }
+
+    .season-description {
+      color: #ccc;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem; /* Ajuste de tamaño */
+    }
+    
+    .season-info {
+      padding: 1.5rem;
+    }
+
+    .season-btn, .watch-btn {
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      color: white;
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-block;
+      transition: all 0.3s ease;
+      width: 100%;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .season-btn:hover, .watch-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4);
+    }
+
+    .download-servers-section {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #333;
+    }
+
+    .servers-title {
+      font-size: 0.9rem;
+      color: #ff5cad;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    .servers-grid-compact {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      gap: 0.5rem;
+    }
+
+    .download-link {
+      padding: 0.5rem 0.8rem;
+      background: rgba(255, 92, 173, 0.1);
+      border: 1px solid #ff5cad;
+      border-radius: 8px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      display: block;
+      font-weight: 500;
+    }
+
+    .download-link:hover {
+      background: rgba(255, 92, 173, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .download-link.terabox {
+      border-color: #4CAF50;
+      background: rgba(76, 175, 80, 0.1);
+      color: #4CAF50;
+    }
+    .download-link.terabox:hover {
+      background: rgba(76, 175, 80, 0.3);
+    }
+
+    .download-link.mediafire {
+      border-color: #FF9800;
+      background: rgba(255, 152, 0, 0.1);
+      color: #FF9800;
+    }
+    .download-link.mediafire:hover {
+      background: rgba(255, 152, 0, 0.3);
+    }
+
+    .download-link.mega {
+        border-color: #ff3c3c;
+        background: rgba(255, 60, 60, 0.1);
+        color: #ff3c3c;
+    }
+    .download-link.mega:hover {
+        background: rgba(255, 60, 60, 0.3);
+    }
+
+    .download-link.unavailable-server {
+      opacity: 0.4;
+      cursor: not-allowed;
+      background: rgba(128, 128, 128, 0.1);
+      border-color: #666;
+      color: #888;
+    }
+
+    .download-link.unavailable-server:hover {
+      transform: none;
+      background: rgba(128, 128, 128, 0.1);
+    }
+
+    .contenedor-video {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 2rem;
+      border: 1px solid rgba(255, 92, 173, 0.2);
+      margin-bottom: 2rem;
+    }
+
+    .player-options {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .player-btn {
+      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .player-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4);
+    }
+
+    .player-btn.active {
+      background: linear-gradient(45deg, #4CAF50, #45a049);
+    }
+
+    .reproductor-video {
+      height: 500px;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .player-container {
+      display: none;
+      width: 100%;
+      height: 100%;
+    }
+
+    .player-container.active {
+      display: block;
+    }
+
+    .player-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .seasons-container, .seasons-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .anime-title {
+        font-size: 2rem;
+      }
+      
+      .header {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .main-content {
+        padding: 8rem 1rem 2rem;
+      }
+    }
   </style>
 </head>
 <body>
 
   <header class="header">
     <div class="logo">StudioOtaku</div>
-    <a href="../../html/index.html" class="back-btn" style="margin: 0;">🏠 Inicio</a>
+    <a href="../../index.html" class="back-btn" style="margin: 0;">🏠 Inicio</a>
   </header>
 
   <main class="main-content">
-    <a href="../../html/index.html" class="back-btn">← Volver al Catálogo</a>
-
+    <a href="../../index.html" class="back-btn">← Volver al Catálogo</a>
+    
     <div class="anime-header">
-      <h1 class="anime-title">Attack on Titan</h1>
+      <h1 class="anime-title">⚔️ Attack on Titan</h1>
       <p class="anime-description">
         En un mundo donde la humanidad está al borde de la extinción por culpa de gigantes devoradores de hombres llamados Titanes, Eren Yeager jura exterminarlos a todos después de que uno de ellos destruyera su ciudad natal y matara a su madre.
       </p>
     </div>
 
-    <div class="seasons-grid">
-      <!-- Temporada 1 -->
+    <div class="seasons-container">
+      <!-- Season 1 -->
       <div class="season-card">
-        <img src="../../img/Attack on Titan S1.jpg" alt="Temporada 1">
+        <div class="season-thumbnail">
+          <img src="../../img/Attack on Titan S1.jpg" alt="Temporada 1">
+          <div class="season-number">T1</div>
+          <div class="season-play-overlay">▶</div>
+        </div>
         <div class="season-info">
-          <h2 class="season-title">Temporada 1</h2>
-          <p class="season-description">La caída de Shiganshina. La humanidad recibe un brutal recordatorio de que viven con miedo a los Titanes.</p>
-          <a href="temporada-1.html" class="watch-btn">Ver Temporada</a>
-          <div class="servers-title">Descargar Temporada</div>
-          <div class="servers-grid-compact">
-            <a href="#" class="download-link terabox">TeraBox</a>
+          <div class="season-title">Temporada 1</div>
+          <div class="season-description">La caída de Shiganshina. La humanidad recibe un brutal recordatorio de que viven con miedo a los Titanes.</div>
+          <button class="watch-btn" onclick="goToSeason('temporada-1.html')">Ver Temporada</button>
+          <div class="download-servers-section">
+            <div class="servers-title">📥 Descargar Temporada Completa</div>
+            <div class="servers-grid-compact">
+              <a href="https://exe.io/AttackOnTitanS1" target="_blank" class="download-link terabox">📦 TeraBox</a>
+              <a href="#" onclick="showUnavailableAlert('MEGA'); return false;" class="download-link mega unavailable-server">📦 MEGA</a>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Temporada 2 -->
+      <!-- Season 2 -->
       <div class="season-card">
-        <img src="../../img/Attack on Titan S2.jpg" alt="Temporada 2">
+        <div class="season-thumbnail">
+          <img src="../../img/Attack on Titan S2.jpg" alt="Temporada 2">
+          <div class="season-number">T2</div>
+          <div class="season-play-overlay">▶</div>
+        </div>
         <div class="season-info">
-          <h2 class="season-title">Temporada 2</h2>
-          <p class="season-description">El Titán Bestia. Un nuevo y aterrador enemigo aparece, y la verdad sobre los Titanes dentro de los muros sale a la luz.</p>
-          <a href="temporada-2.html" class="watch-btn">Ver Temporada</a>
-          <div class="servers-title">Descargar Temporada</div>
-          <div class="servers-grid-compact">
-            <a href="#" class="download-link terabox">TeraBox</a>
+          <div class="season-title">Temporada 2</div>
+          <div class="season-description">El Titán Bestia. Un nuevo y aterrador enemigo aparece, y la verdad sobre los Titanes dentro de los muros sale a la luz.</div>
+          <button class="watch-btn" onclick="goToSeason('temporada-2.html')">Ver Temporada</button>
+          <div class="download-servers-section">
+            <div class="servers-title">📥 Descargar Temporada Completa</div>
+            <div class="servers-grid-compact">
+              <a href="https://exe.io/AttackOnTitanS2" target="_blank" class="download-link terabox">📦 TeraBox</a>
+              <a href="#" onclick="showUnavailableAlert('MEGA'); return false;" class="download-link mega unavailable-server">📦 MEGA</a>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Temporada 3 -->
+      <!-- Season 3 -->
       <div class="season-card">
-        <img src="../../img/Attack on Titan S3.jpg" alt="Temporada 3">
+        <div class="season-thumbnail">
+          <img src="../../img/Attack on Titan S3.jpg" alt="Temporada 3">
+          <div class="season-number">T3</div>
+          <div class="season-play-overlay">▶</div>
+        </div>
         <div class="season-info">
-          <h2 class="season-title">Temporada 3</h2>
-          <p class="season-description">El levantamiento. La Legión de Reconocimiento se enfrenta a una conspiración interna mientras lucha por la supervivencia.</p>
-          <a href="temporada-3.html" class="watch-btn">Ver Temporada</a>
-          <div class="servers-title">Descargar Temporada</div>
-          <div class="servers-grid-compact">
-            <a href="#" class="download-link terabox">TeraBox</a>
+          <div class="season-title">Temporada 3</div>
+          <div class="season-description">El levantamiento. La Legión de Reconocimiento se enfrenta a una conspiración interna mientras lucha por la supervivencia.</div>
+          <button class="watch-btn" onclick="goToSeason('temporada-3.html')">Ver Temporada</button>
+          <div class="download-servers-section">
+            <div class="servers-title">📥 Descargar Temporada Completa</div>
+            <div class="servers-grid-compact">
+              <a href="https://exe.io/AttackOnTitanS3" target="_blank" class="download-link terabox">📦 TeraBox</a>
+              <a href="#" onclick="showUnavailableAlert('MEGA'); return false;" class="download-link mega unavailable-server">📦 MEGA</a>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Temporada 4 -->
+      <!-- Season 4 -->
       <div class="season-card">
-        <img src="../../img/Attack on Titan S4.jpg" alt="Temporada 4">
+        <div class="season-thumbnail">
+          <img src="../../img/Attack on Titan S4.jpg" alt="Temporada 4">
+          <div class="season-number">T4</div>
+          <div class="season-play-overlay">▶</div>
+        </div>
         <div class="season-info">
-          <h2 class="season-title">Temporada 4</h2>
-          <p class="season-description">La Guerra de Paradis. La batalla final por la libertad y la supervivencia llega a su clímax.</p>
-          <a href="temporada-4.html" class="watch-btn">Ver Temporada</a>
-          <div class="servers-title">Descargar Temporada</div>
-          <div class="servers-grid-compact">
-            <a href="#" class="download-link terabox">TeraBox</a>
+          <div class="season-title">Temporada 4</div>
+          <div class="season-description">La Guerra de Paradis. La batalla final por la libertad y la supervivencia llega a su clímax.</div>
+          <button class="watch-btn" onclick="goToSeason('temporada-4.html')">Ver Temporada</button>
+          <div class="download-servers-section">
+            <div class="servers-title">📥 Descargar Temporada Completa</div>
+            <div class="servers-grid-compact">
+              <a href="https://exe.io/AttackOnTitanS4" target="_blank" class="download-link terabox">📦 TeraBox</a>
+              <a href="#" onclick="showUnavailableAlert('MEGA'); return false;" class="download-link mega unavailable-server">📦 MEGA</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
   </main>
 
+  <script>
+    function goToSeason(url) {
+      window.location.href = url;
+    }
+
+    function showUnavailableAlert(serverName) {
+      alert(`El servidor de ${serverName} no está disponible actualmente. Por favor, intente con otra opción.`);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Aquí puedes agregar lógica de seguimiento de progreso si es necesario en el futuro
+    });
+  </script>
 </body>
 </html>
 
