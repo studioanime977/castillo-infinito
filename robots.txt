@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://castillo-infinito.vercel.app/sitemap.xml
+
+# Permitir acceso a todas las páginas importantes
+Allow: /html/
+Allow: /ANIME%20TEMPORADAS%20CON%20EPISODIOS/
+Allow: /img/
+Allow: /css/
+
+# Bloquear archivos innecesarios
+Disallow: /php/
+Disallow: /base%20de%20datos/
+Disallow: /.git/
+Disallow: /md/
+
+# Crawl-delay para no sobrecargar el servidor
+Crawl-delay: 1
