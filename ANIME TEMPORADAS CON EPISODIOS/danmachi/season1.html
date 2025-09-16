@@ -1,7 +1,20 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DanMachi Temporada 1 - StudioOtaku</title>
   <style>
+    :root {
+      --primary-color: #ff5cad;
+      --secondary-color: #ff8a80;
+      --background-start: #0f0f23;
+      --background-end: #2d1b69;
+      --text-color: #fff;
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --border-color: rgba(255, 92, 173, 0.2);
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -10,10 +23,9 @@
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #0f0f23 0%, #2d1b69 50%, #0f0f23 100%);
-      color: #fff;
+      background: linear-gradient(135deg, var(--background-start) 0%, var(--background-end) 50%, var(--background-start) 100%);
+      color: var(--text-color);
       min-height: 100vh;
-      line-height: 1.6;
     }
 
     .header {
@@ -23,25 +35,23 @@
       justify-content: space-between;
       align-items: center;
       backdrop-filter: blur(10px);
-      border-bottom: 2px solid #ff5cad;
-      position: fixed;
+      border-bottom: 2px solid var(--primary-color);
+      position: sticky;
       top: 0;
-      left: 0;
-      right: 0;
       z-index: 1000;
     }
 
     .logo {
       font-size: 1.8rem;
       font-weight: bold;
-      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .main-content {
-      padding: 6rem 2rem 2rem;
+      padding: 2rem;
       max-width: 1400px;
       margin: 0 auto;
     }
@@ -49,10 +59,10 @@
     .back-btn {
       display: inline-block;
       padding: 0.75rem 2rem;
-      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
       border: none;
       border-radius: 25px;
-      color: #fff;
+      color: var(--text-color);
       text-decoration: none;
       margin-bottom: 2rem;
       transition: all 0.3s ease;
@@ -64,87 +74,26 @@
       box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4);
     }
 
-    .anime-header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-
-    .anime-title {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      background: linear-gradient(45deg, #ff5cad, #ff8a80);
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 30px rgba(255, 92, 173, 0.5);
-    }
-
-    .anime-description {
-      font-size: 1.2rem;
-      color: #ccc;
-      max-width: 800px;
-      margin: 0 auto;
-      line-height: 1.6;
-    }
-
-    .seasons-container, .seasons-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-bottom: 3rem;
-    }
-
-    .season-card {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 15px;
-      padding: 2rem;
-      border: 1px solid rgba(255, 92, 173, 0.2);
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-
-    .season-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(255, 92, 173, 0.3);
-      border-color: #ff5cad;
+    .title-container {
+        text-align: center;
+        margin-bottom: 2rem;
     }
 
     .season-title {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      color: #ff8a80;
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
     }
 
-    .season-description, .season-info {
-      color: #ccc;
-      margin-bottom: 1.5rem;
-    }
-
-    .season-btn, .watch-btn {
-      background: linear-gradient(45deg, #ff5cad, #ff8a80);
-      color: white;
-      padding: 0.75rem 2rem;
-      border: none;
-      border-radius: 25px;
-      text-decoration: none;
-      font-weight: 500;
-      display: inline-block;
-      transition: all 0.3s ease;
-      width: 100%;
-      text-align: center;
-      cursor: pointer;
-    }
-
-    .season-btn:hover, .watch-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4);
+    .episode-title {
+        font-size: 1.5rem;
+        color: var(--secondary-color);
     }
 
     .contenedor-video {
-      background: rgba(255, 255, 255, 0.05);
+      background: var(--card-bg);
       border-radius: 15px;
       padding: 2rem;
-      border: 1px solid rgba(255, 92, 173, 0.2);
+      border: 1px solid var(--border-color);
       margin-bottom: 2rem;
     }
 
@@ -157,7 +106,7 @@
     }
 
     .player-btn {
-      background: linear-gradient(45deg, #ff5cad, #ff8a80);
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
       color: white;
       border: none;
       padding: 0.75rem 1.5rem;
@@ -174,6 +123,7 @@
 
     .player-btn.active {
       background: linear-gradient(45deg, #4CAF50, #45a049);
+      box-shadow: 0 0 15px #4CAF50;
     }
 
     .reproductor-video {
@@ -181,6 +131,7 @@
       border-radius: 10px;
       overflow: hidden;
       position: relative;
+      background: #000;
     }
 
     .player-container {
@@ -197,213 +148,158 @@
       width: 100%;
       height: 100%;
       border: none;
-      border-radius: 10px;
+    }
+
+    .episodes-container {
+        background: var(--card-bg);
+        border-radius: 15px;
+        padding: 2rem;
+        border: 1px solid var(--border-color);
+    }
+
+    .episodes-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+
+    .episode-item {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--text-color);
+        padding: 1rem;
+        border-radius: 10px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 1px solid transparent;
+    }
+
+    .episode-item:hover, .episode-item.active {
+        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        transform: translateY(-3px);
+        border-color: var(--primary-color);
     }
 
     @media (max-width: 768px) {
-      .seasons-container, .seasons-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .anime-title {
-        font-size: 2rem;
-      }
-      
-      .header {
-        padding: 1rem;
-        flex-direction: column;
-        gap: 1rem;
-      }
-      
-      .main-content {
-        padding: 8rem 1rem 2rem;
-      }
-    }
-  </style>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DanMachi - Temporada 1 | StudioOtaku</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%); color: #fff; min-height: 100vh; }
-    .header { background: rgba(0, 0, 0, 0.9); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(10px); border-bottom: 2px solid #ff5cad; }
-    .logo { font-size: 1.8rem; font-weight: bold; background: linear-gradient(45deg, #ff5cad, #ff8a80); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-    .back-btn { display: inline-block; padding: 0.8rem 1.5rem; background: linear-gradient(45deg, #ff5cad, #ff8a80); color: white; text-decoration: none; border-radius: 25px; font-weight: bold; margin-bottom: 2rem; transition: all 0.3s ease; }
-    .back-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(255, 92, 173, 0.4); }
-    .main-content { padding: 2rem; max-width: 1200px; margin: 0 auto; }
-    .season-header { text-align: center; margin-bottom: 3rem; }
-    .season-title { font-size: 2.5rem; margin-bottom: 1rem; background: linear-gradient(45deg, #ff5cad, #ff8a80); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-    .season-description { font-size: 1.1rem; color: #ccc; max-width: 800px; margin: 0 auto; line-height: 1.6; }
-    .episodes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-    .episode-card { background: rgba(255, 255, 255, 0.05); border-radius: 15px; padding: 1.5rem; border: 1px solid rgba(255, 92, 173, 0.2); transition: all 0.3s ease; }
-    .episode-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(255, 92, 173, 0.3); border-color: #ff5cad; }
-    .episode-number { font-size: 1.2rem; font-weight: bold; color: #ff5cad; margin-bottom: 0.5rem; }
-    .episode-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 0.8rem; color: #fff; }
-    .episode-description { font-size: 0.9rem; color: #ccc; line-height: 1.5; margin-bottom: 1rem; }
-    .download-section { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255, 92, 173, 0.2); }
-    .download-title { font-size: 0.9rem; color: #ff5cad; margin-bottom: 0.5rem; font-weight: bold; }
-    .download-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
-    .download-link { padding: 0.4rem 0.6rem; background: rgba(255, 92, 173, 0.1); border: 1px solid #ff5cad; border-radius: 10px; color: #fff; text-decoration: none; font-size: 0.8rem; text-align: center; transition: all 0.3s ease; display: block; }
-    .download-link:hover { background: rgba(255, 92, 173, 0.3); transform: translateY(-1px); }
-    .download-link.terabox { background: linear-gradient(45deg, #ff9800, #ffb74d); }
-    .unavailable-server { opacity: 0.6; cursor: not-allowed; background: rgba(128, 128, 128, 0.3) !important; }
-    .progress-section { background: rgba(255, 92, 173, 0.1); border-radius: 10px; padding: 1rem; margin-bottom: 2rem; text-align: center; }
-    .progress-bar { width: 100%; height: 8px; background: rgba(255, 255, 255, 0.1); border-radius: 4px; overflow: hidden; margin: 1rem 0; }
-    .progress-fill { height: 100%; background: linear-gradient(45deg, #ff5cad, #ff8a80); transition: width 0.3s ease; }
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-  
-    .contenedor-video {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 15px;
-      padding: 2rem;
-      border: 1px solid rgba(255, 92, 173, 0.2);
-      margin-bottom: 2rem;
-    }
-
-    .player-options {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .player-btn {
-      background: linear-gradient(45deg, #ff5cad, #ff8a80);
-      color: white;
-      border: none;
-      padding: 0.8rem 1.5rem;
-      border-radius: 25px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .player-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(255, 92, 173, 0.3);
-    }
-
-    .player-btn.active {
-      background: linear-gradient(45deg, #4CAF50, #45a049);
-    }
-
-    .reproductor-video {
-      position: relative;
-      width: 100%;
-      height: 500px;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    .player-container {
-      display: none;
-      width: 100%;
-      height: 100%;
-    }
-
-    .player-container.active {
-      display: block;
-    }
-
-    .player-container iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      border-radius: 10px;
+        .episodes-grid {
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        }
+        .reproductor-video {
+            height: 300px;
+        }
     }
   </style>
 </head>
 <body>
+
   <div class="header">
     <div class="logo">🧧StudioOtaku</div>
-    <div class="user-actions"><a href="../../html/index.html" class="auth-btn">🏠 Inicio</a></div>
+    <a href="../../html/index.html" class="back-btn">🏠 Inicio</a>
   </div>
 
   <div class="main-content">
     <a href="temporadas.html" class="back-btn">← Volver a DanMachi</a>
-    
-    <div class="season-header">
-      <h1 class="season-title">🗡️ DanMachi - Temporada 1</h1>
-      <div class="season-description">
-        Bell Cranel es un aventurero novato que sueña con convertirse en héroe. 
-        En las mazmorras de Orario, conoce a la diosa Hestia y comienza su aventura.
-      </div>
+
+    <div class="title-container">
+        <h1 class="season-title">DanMachi - Temporada 1</h1>
+        <h2 class="episode-title" id="current-episode-title">Cargando...</h2>
     </div>
 
-    <div class="progress-section">
-      <h3>Progreso de la Temporada</h3>
-      <div class="progress-bar">
-        <div class="progress-fill" id="season-progress" style="width: 0%"></div>
+    <div class="contenedor-video">
+      <div class="player-options">
+        <button id="opcion1-btn" class="player-btn" onclick="switchPlayer('opcion1')">OPCIÓN 1</button>
+        <button id="opcion2-btn" class="player-btn" onclick="switchPlayer('opcion2')">OPCIÓN 2</button>
+        <button id="opcion3-btn" class="player-btn" onclick="switchPlayer('opcion3')">OPCIÓN 3</button>
+        <button id="opcion4-btn" class="player-btn" onclick="switchPlayer('opcion4')">OPCIÓN 4</button>
       </div>
-      <div id="progress-text">0/13 episodios vistos</div>
-    </div>
-
-    <div class="episodes-grid">
-      <div class="episode-card">
-        <div class="episode-number">Episodio 1</div>
-        <div class="episode-title">El encuentro del aventurero y la diosa</div>
-        <div class="episode-description">Bell Cranel conoce a la diosa Hestia y comienza su carrera como aventurero en las mazmorras de Orario.</div>
-        <div class="download-section">
-          <div class="download-title">📥 Descargar Episodio</div>
-          <div class="download-links">
-            <a href="https://exe.io/DanMachitem1" target="_blank" class="download-link terabox">📦 TeraBox</a>
-            <span class="download-link unavailable-server">📦 MEGA</span>
-          </div>
+      <div class="reproductor-video">
+        <div id="opcion1-player" class="player-container">
+          <iframe src="" allowfullscreen></iframe>
         </div>
-      </div>
-
-      <div class="episode-card">
-        <div class="episode-number">Episodios 2-13</div>
-        <div class="episode-title">Temporada Completa</div>
-        <div class="episode-description">Temporada completa de DanMachi con 13 episodios. Sigue las aventuras de Bell en las mazmorras y su crecimiento como aventurero.</div>
-        <div class="download-section">
-          <div class="download-title">📥 Descargar Temporada Completa</div>
-          <div class="download-links">
-            <a href="https://exe.io/DanMachitem1" target="_blank" class="download-link terabox">📦 TeraBox Completa</a>
-            <span class="download-link unavailable-server">📦 MEGA</span>
-          </div>
+        <div id="opcion2-player" class="player-container">
+          <iframe src="" allowfullscreen></iframe>
+        </div>
+        <div id="opcion3-player" class="player-container">
+          <iframe src="" allowfullscreen></iframe>
+        </div>
+        <div id="opcion4-player" class="player-container">
+          <iframe src="" allowfullscreen></iframe>
         </div>
       </div>
     </div>
+
+    <div class="episodes-container">
+        <h3 style="text-align:center; margin-bottom: 1.5rem; font-size: 1.8rem;">Episodios</h3>
+        <div class="episodes-grid" id="episodes-grid">
+            <!-- Los episodios se generarán con JavaScript -->
+        </div>
+    </div>
+
   </div>
 
-  
   <script>
+    const episodes = [
+        { num: 1, title: "El encuentro del aventurero y la diosa", op1: "https://sendvid.com/embed/x7c6g0s7", op2: "URL_OP2_E1", op3: "URL_OP3_E1", op4: "URL_OP4_E1" },
+        { num: 2, title: "Monstruo de las profundidades ~Minotauro~", op1: "https://sendvid.com/embed/4osnc4ng", op2: "URL_OP2_E2", op3: "URL_OP3_E2", op4: "URL_OP4_E2" },
+        { num: 3, title: "La diosa de la forja ~Hephaistos~", op1: "https://sendvid.com/embed/57xxoob3", op2: "URL_OP2_E3", op3: "URL_OP3_E3", op4: "URL_OP4_E3" },
+        { num: 4, title: "El partidario ~Supporter~", op1: "https://sendvid.com/embed/2gxk2wqo", op2: "URL_OP2_E4", op3: "URL_OP3_E4", op4: "URL_OP4_E4" },
+        { num: 5, title: "La magia ~Grimorio~", op1: "https://sendvid.com/embed/al96ti15", op2: "URL_OP2_E5", op3: "URL_OP3_E5", op4: "URL_OP4_E5" },
+        { num: 6, title: "Razón ~Justicia~", op1: "https://sendvid.com/embed/980uwy50", op2: "URL_OP2_E6", op3: "URL_OP3_E6", op4: "URL_OP4_E6" },
+        { num: 7, title: "La espada princesa ~Ais Wallenstein~", op1: "https://sendvid.com/embed/5do9h8im", op2: "URL_OP2_E7", op3: "URL_OP3_E7", op4: "URL_OP4_E7" },
+        { num: 8, title: "El héroe desea ser más fuerte ~Nivel superior~", op1: "https://sendvid.com/embed/mup0q2b3", op2: "URL_OP2_E8", op3: "URL_OP3_E8", op4: "URL_OP4_E8" },
+        { num: 9, title: "Welf Crozzo ~Forjador~", op1: "https://sendvid.com/embed/67djm7tv", op2: "URL_OP2_E9", op3: "URL_OP3_E9", op4: "URL_OP4_E9" },
+        { num: 10, title: "Paso hacia el hogar ~Familia~", op1: "https://sendvid.com/embed/59cs2e4c", op2: "URL_OP2_E10", op3: "URL_OP3_E10", op4: "URL_OP4_E10" },
+        { num: 11, title: "Bajo el resort ~Familia de dioses~", op1: "https://sendvid.com/embed/wedzvto4", op2: "URL_OP2_E11", op3: "URL_OP3_E11", op4: "URL_OP4_E11" },
+        { num: 12, title: "El mal de Orario ~Familia Soma~", op1: "https://sendvid.com/embed/xlkaq309", op2: "URL_OP2_E12", op3: "URL_OP3_E12", op4: "URL_OP4_E12" }
+    ];
+
+    const episodesGrid = document.getElementById('episodes-grid');
+    const currentEpisodeTitle = document.getElementById('current-episode-title');
+    const playerIframes = {
+        opcion1: document.querySelector('#opcion1-player iframe'),
+        opcion2: document.querySelector('#opcion2-player iframe'),
+        opcion3: document.querySelector('#opcion3-player iframe'),
+        opcion4: document.querySelector('#opcion4-player iframe')
+    };
+
     function switchPlayer(option) {
-      const playerButtons = document.querySelectorAll('.player-btn');
-      const playerContainers = document.querySelectorAll('.player-container');
+      document.querySelectorAll('.player-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.player-container').forEach(container => container.classList.remove('active'));
       
-      playerButtons.forEach(btn => btn.classList.remove('active'));
-      playerContainers.forEach(container => container.classList.remove('active'));
-      
-      document.getElementById(${option}-btn).classList.add('active');
-      document.getElementById(${option}-player).classList.add('active');
+      document.getElementById(option + '-btn').classList.add('active');
+      document.getElementById(option + '-player').classList.add('active');
+    }
+
+    function loadEpisode(episode) {
+        currentEpisodeTitle.textContent = `Episodio ${episode.num}: ${episode.title}`;
+
+        playerIframes.opcion1.src = episode.op1;
+        playerIframes.opcion2.src = episode.op2;
+        playerIframes.opcion3.src = episode.op3;
+        playerIframes.opcion4.src = episode.op4;
+
+        document.querySelectorAll('.episode-item').forEach(item => item.classList.remove('active'));
+        document.getElementById(`ep-${episode.num}`).classList.add('active');
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-      const firstPlayerBtn = document.querySelector('.player-btn');
-      if (firstPlayerBtn) {
-        firstPlayerBtn.click();
-      }
+        episodes.forEach(ep => {
+            const epItem = document.createElement('div');
+            epItem.className = 'episode-item';
+            epItem.id = `ep-${ep.num}`;
+            epItem.textContent = `Episodio ${ep.num}`;
+            epItem.onclick = () => loadEpisode(ep);
+            episodesGrid.appendChild(epItem);
+        });
+
+        // Cargar el primer episodio por defecto
+        if (episodes.length > 0) {
+            loadEpisode(episodes[0]);
+        }
+
+        // Activar el primer reproductor por defecto
+        switchPlayer('opcion1');
     });
   </script>
 </body>
 </html>
-
-
