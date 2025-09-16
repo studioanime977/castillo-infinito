@@ -1,112 +1,292 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  
   <!-- Página principal -->
   <url>
     <loc>https://castillo-infinito.vercel.app/</loc>
-    <lastmod>2025-09-15</lastmod>
+    <lastmod>2025-09-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   
-  <!-- Catálogo principal -->
+  <!-- Página de inicio principal -->
+  <url>
+    <loc>https://castillo-infinito.vercel.app/index.html</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Catálogo de anime -->
   <url>
     <loc>https://castillo-infinito.vercel.app/html/index.html</loc>
-    <lastmod>2025-09-15</lastmod>
+    <lastmod>2025-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   
-  <!-- Animes principales con temporadas (URLs que realmente existen) -->
-  <url>
-    <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/demon-slayer/temporadas.html</loc>
-    <lastmod>2025-09-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
+  <!-- Demon Slayer - Castillo Infinito (página principal) -->
   <url>
     <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/demon-slayer/castillo-infinito.html</loc>
-    <lastmod>2025-09-15</lastmod>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Demon Slayer - Temporadas -->
+  <url>
+    <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/demon-slayer/temporadas.html</loc>
+    <lastmod>2025-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   
+  <!-- Attack on Titan -->
   <url>
     <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/attack-on-titan/temporadas.html</loc>
-    <lastmod>2025-09-15</lastmod>
+    <lastmod>2025-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
-  <url>
-    <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/one-piece/temporadas.html</loc>
-    <lastmod>2025-09-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/naruto/temporadas.html</loc>
-    <lastmod>2025-09-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/my-hero-academia/temporadas.html</loc>
-    <lastmod>2025-09-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
+  <!-- Jujutsu Kaisen -->
   <url>
     <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/jujutsu-kaisen/temporadas.html</loc>
-    <lastmod>2025-09-15</lastmod>
+    <lastmod>2025-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
+  <!-- My Hero Academia -->
+  <url>
+    <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/my-hero-academia/temporadas.html</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- One Piece -->
+  <url>
+    <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/one-piece/temporadas.html</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Naruto -->
+  <url>
+    <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/naruto/temporadas.html</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Tokyo Ghoul -->
   <url>
     <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/tokyo-ghoul/temporadas.html</loc>
-    <lastmod>2025-09-15</lastmod>
+    <lastmod>2025-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
+  <!-- Dragon Ball -->
   <url>
     <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/dragon-ball/temporadas.html</loc>
-    <lastmod>2025-09-15</lastmod>
+    <lastmod>2025-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
+  <!-- One Punch Man -->
   <url>
     <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/one-punch-man/temporadas.html</loc>
-    <lastmod>2025-09-15</lastmod>
+    <lastmod>2025-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
+  <!-- Mob Psycho 100 -->
   <url>
     <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/mob-psycho-100/temporadas.html</loc>
-    <lastmod>2025-09-15</lastmod>
+    <lastmod>2025-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  
+  <!-- Boku no Hero Academia -->
+  <url>
+    <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/boku-no-hero-academia/temporadas.html</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Bungo Stray Dogs -->
+  <url>
+    <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/bungo-stray-dogs/temporadas.html</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- Chainsaw Man -->
+  <url>
+    <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/chainsaw-man/season1.html</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- Classroom of the Elite -->
+  <url>
+    <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/classroom-of-the-elite/temporadas.html</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- DanMachi -->
+  <url>
+    <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/danmachi/temporadas.html</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- Dragon Ball Heroes -->
+  <url>
+    <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/dragon-ball-heroes/temporadas.html</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <!-- Even Given the Worthless -->
+  <url>
+    <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/even-given-the-worthless/temporadas.html</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <!-- Horimiya -->
+  <url>
+    <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/horimiya/temporadas.html</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- Kono Oto Tomare -->
+  <url>
+    <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/kono-oto-tomare/temporadas.html</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <!-- Mashle -->
+  <url>
+    <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/mashle/temporadas.html</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- Mushoku Tensei -->
+  <url>
+    <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/mushoku-tensei/temporadas.html</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- Nanatsu no Taizai -->
+  <url>
+    <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/nanatsu-no-taizai/temporadas.html</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- Nazo no Kanojo X -->
+  <url>
+    <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/nazo-no-kanojo-x/temporadas.html</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <!-- Papa no Iukoto o Kikinasai -->
+  <url>
+    <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/papa-no-iukoto-o-kikinasai/temporadas.html</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <!-- Re:Zero -->
+  <url>
+    <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/re-zero/temporadas.html</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- Sakamoto Days -->
+  <url>
+    <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/sakamoto-days/temporadas.html</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- SAO Progressive -->
+  <url>
+    <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/sao-progressive/temporadas.html</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <!-- Solo Leveling -->
+  <url>
+    <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/solo-leveling/temporadas.html</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Urusei Yatsura -->
+  <url>
+    <loc>https://castillo-infinito.vercel.app/ANIME%20TEMPORADAS%20CON%20EPISODIOS/urusei-yatsura/temporadas.html</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <!-- Verificación de Google -->
   <url>
     <loc>https://castillo-infinito.vercel.app/google0dbef0fb91be9d0b.html</loc>
-    <lastmod>2025-09-15</lastmod>
+    <lastmod>2025-09-16</lastmod>
     <changefreq>never</changefreq>
     <priority>0.1</priority>
   </url>
   
-  <!-- Archivos importantes -->
+  <!-- Robots.txt -->
   <url>
     <loc>https://castillo-infinito.vercel.app/robots.txt</loc>
-    <lastmod>2025-09-15</lastmod>
+    <lastmod>2025-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
+  
+  <!-- Sitemap.xml -->
+  <url>
+    <loc>https://castillo-infinito.vercel.app/sitemap.xml</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
 </urlset>
