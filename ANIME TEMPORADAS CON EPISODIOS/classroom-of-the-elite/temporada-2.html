@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Classroom of the Elite Temporada 1 - StudioOtaku</title>
+  <title>Classroom of the Elite Temporada 2 - StudioOtaku</title>
   <style>
     :root {
       --primary-color: #ff5cad;
@@ -168,16 +168,30 @@
         color: var(--text-color);
         padding: 1rem;
         border-radius: 10px;
-        text-align: center;
         cursor: pointer;
         transition: all 0.3s ease;
         border: 1px solid transparent;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
     }
 
     .episode-item:hover, .episode-item.active {
         background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
         transform: translateY(-3px);
         border-color: var(--primary-color);
+    }
+
+    .episode-number {
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+
+    .episode-title-text {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        text-align: center;
     }
 
     @media (max-width: 768px) {
@@ -237,7 +251,7 @@
     <a href="temporadas.html" class="back-btn" id="back-button">← Volver a Classroom of the Elite</a>
 
     <div class="title-container">
-        <h1 class="season-title">Classroom of the Elite - Temporada 1</h1>
+        <h1 class="season-title">Classroom of the Elite - Temporada 2</h1>
         <h2 class="episode-title" id="current-episode-title">Cargando...</h2>
     </div>
 
@@ -250,19 +264,19 @@
       </div>
       <div class="reproductor-video">
         <div class="player-container" id="opcion1-player">
-          <iframe src="https://sendvid.com/embed/x7c6g0s7" frameborder="0" allowfullscreen oncontextmenu="return false;"></iframe>
+          <iframe src="https://sendvid.com/embed/2cjx6qd5" frameborder="0" allowfullscreen oncontextmenu="return false;"></iframe>
           <div class="video-overlay" oncontextmenu="return false;" onmousedown="if(event.button==2) return false;"></div>
         </div>
         <div class="player-container" id="opcion2-player" style="display: none;">
-          <iframe src="https://sendvid.com/embed/x7c6g0s7" frameborder="0" allowfullscreen oncontextmenu="return false;"></iframe>
+          <iframe src="https://sendvid.com/embed/2cjx6qd5" frameborder="0" allowfullscreen oncontextmenu="return false;"></iframe>
           <div class="video-overlay" oncontextmenu="return false;" onmousedown="if(event.button==2) return false;"></div>
         </div>
         <div class="player-container" id="opcion3-player" style="display: none;">
-          <iframe src="https://sendvid.com/embed/x7c6g0s7" frameborder="0" allowfullscreen oncontextmenu="return false;"></iframe>
+          <iframe src="https://sendvid.com/embed/2cjx6qd5" frameborder="0" allowfullscreen oncontextmenu="return false;"></iframe>
           <div class="video-overlay" oncontextmenu="return false;" onmousedown="if(event.button==2) return false;"></div>
         </div>
         <div class="player-container" id="opcion4-player" style="display: none;">
-          <iframe src="https://sendvid.com/embed/x7c6g0s7" frameborder="0" allowfullscreen oncontextmenu="return false;"></iframe>
+          <iframe src="https://sendvid.com/embed/2cjx6qd5" frameborder="0" allowfullscreen oncontextmenu="return false;"></iframe>
           <div class="video-overlay" oncontextmenu="return false;" onmousedown="if(event.button==2) return false;"></div>
         </div>
       </div>
@@ -278,24 +292,25 @@
   </div>
 
   <script>
-    const episodes = [
-        { num: 1, title: "¿Qué es la igualdad?", op1: "https://sendvid.com/embed/x7c6g0s7", op2: "https://sendvid.com/embed/x7c6g0s7", op3: "https://sendvid.com/embed/x7c6g0s7", op4: "https://sendvid.com/embed/x7c6g0s7" },
-        { num: 2, title: "Es mejor ser odiado que ignorado", op1: "https://sendvid.com/embed/4osnc4ng", op2: "https://sendvid.com/embed/4osnc4ng", op3: "https://sendvid.com/embed/4osnc4ng", op4: "https://sendvid.com/embed/4osnc4ng" },
-        { num: 3, title: "El hombre es por naturaleza un animal social", op1: "https://sendvid.com/embed/57xxoob3", op2: "https://sendvid.com/embed/57xxoob3", op3: "https://sendvid.com/embed/57xxoob3", op4: "https://sendvid.com/embed/57xxoob3" },
-        { num: 4, title: "Nunca juzgues a las personas por su apariencia", op1: "https://sendvid.com/embed/2gxk2wqo", op2: "https://sendvid.com/embed/2gxk2wqo", op3: "https://sendvid.com/embed/2gxk2wqo", op4: "https://sendvid.com/embed/2gxk2wqo" },
-        { num: 5, title: "El infierno son los otros", op1: "https://sendvid.com/embed/al96ti15", op2: "https://sendvid.com/embed/al96ti15", op3: "https://sendvid.com/embed/al96ti15", op4: "https://sendvid.com/embed/al96ti15" },
-        { num: 6, title: "No hay nada más desigual que el trato igual de los desiguales", op1: "https://sendvid.com/embed/5xw4v0rf", op2: "", op3: "", op4: "" },
-        { num: 7, title: "Nada es más fácil que culpar a otros de nuestras desgracias", op1: "https://sendvid.com/embed/5do9h8im", op2: "https://sendvid.com/embed/5do9h8im", op3: "https://sendvid.com/embed/5do9h8im", op4: "https://sendvid.com/embed/5do9h8im" },
-        { num: 8, title: "Conoce a tu enemigo y conócete a ti mismo", op1: "https://sendvid.com/embed/7s3yaqlj", op2: "", op3: "", op4: "" },
-        { num: 9, title: "El hombre es un lobo para el hombre", op1: "https://sendvid.com/embed/67djm7tv", op2: "https://sendvid.com/embed/67djm7tv", op3: "https://sendvid.com/embed/67djm7tv", op4: "https://sendvid.com/embed/67djm7tv" },
-        { num: 10, title: "Cada hombre es culpable de todo el bien que no hizo", op1: "https://sendvid.com/embed/59cs2e4c", op2: "https://sendvid.com/embed/59cs2e4c", op3: "https://sendvid.com/embed/59cs2e4c", op4: "https://sendvid.com/embed/59cs2e4c" },
-        { num: 11, title: "Lo que la gente comúnmente llama destino es su propia estupidez", op1: "https://sendvid.com/embed/wedzvto4", op2: "https://sendvid.com/embed/wedzvto4", op3: "https://sendvid.com/embed/wedzvto4", op4: "https://sendvid.com/embed/wedzvto4" },
-        { num: 12, title: "El genio duerme en cada hombre", op1: "https://sendvid.com/embed/xlkaq309", op2: "https://sendvid.com/embed/xlkaq309", op3: "https://sendvid.com/embed/xlkaq309", op4: "https://sendvid.com/embed/xlkaq309" }
+    window.episodes2 = [
+        { num: 1, title: "Un nuevo reto", op1: "https://sendvid.com/embed/2cjx6qd5", op2: "", op3: "", op4: "" },
+        { num: 2, title: "El poder de la alianza", op1: "https://sendvid.com/embed/m4gwsrbq", op2: "", op3: "", op4: "" },
+        { num: 3, title: "La verdad oculta", op1: "https://sendvid.com/embed/uawkjn4i", op2: "", op3: "", op4: "" },
+        { num: 4, title: "La estrategia perfecta", op1: "https://sendvid.com/embed/7o6u6pnx", op2: "", op3: "", op4: "" },
+        { num: 5, title: "El precio de la victoria", op1: "https://sendvid.com/embed/ifgu7fkr", op2: "", op3: "", op4: "" },
+        { num: 6, title: "El juego del destino", op1: "https://sendvid.com/embed/loj5ac85", op2: "", op3: "", op4: "" },
+        { num: 7, title: "La decisión final", op1: "https://sendvid.com/embed/fuvtc8ge", op2: "", op3: "", op4: "" },
+        { num: 8, title: "El último movimiento", op1: "https://sendvid.com/embed/hc7ryiqw", op2: "", op3: "", op4: "" },
+        { num: 9, title: "La verdadera prueba", op1: "https://sendvid.com/embed/kh6lw72w", op2: "", op3: "", op4: "" },
+        { num: 10, title: "El momento decisivo", op1: "https://sendvid.com/embed/vqiy7u3c", op2: "", op3: "", op4: "" },
+        { num: 11, title: "La revelación", op1: "https://sendvid.com/embed/zc68jfsh", op2: "", op3: "", op4: "" },
+        { num: 12, title: "El poder del conocimiento", op1: "https://sendvid.com/embed/6v5m3k2j", op2: "", op3: "", op4: "" },
+        { num: 13, title: "La conclusión", op1: "https://sendvid.com/embed/o5obe22n", op2: "", op3: "", op4: "" }
     ];
 
-    const episodesGrid = document.getElementById('episodes-grid');
-    const currentEpisodeTitle = document.getElementById('current-episode-title');
-    const playerIframes = {
+    window.episodesGrid2 = document.getElementById('episodes-grid');
+    window.currentEpisodeTitle2 = document.getElementById('current-episode-title');
+    window.playerIframesMain2 = {
         opcion1: document.querySelector('#opcion1-player iframe'),
         opcion2: document.querySelector('#opcion2-player iframe'),
         opcion3: document.querySelector('#opcion3-player iframe'),
@@ -311,30 +326,33 @@
     }
 
     function loadEpisode(episode) {
-        currentEpisodeTitle.textContent = `Episodio ${episode.num}: ${episode.title}`;
+        window.currentEpisodeTitle2.textContent = `Episodio ${episode.num}: ${episode.title}`;
 
-        playerIframes.opcion1.src = episode.op1;
-        playerIframes.opcion2.src = episode.op2;
-        playerIframes.opcion3.src = episode.op3;
-        playerIframes.opcion4.src = episode.op4;
+        window.playerIframesMain2.opcion1.src = episode.op1;
+        window.playerIframesMain2.opcion2.src = episode.op2;
+        window.playerIframesMain2.opcion3.src = episode.op3;
+        window.playerIframesMain2.opcion4.src = episode.op4;
 
         document.querySelectorAll('.episode-item').forEach(item => item.classList.remove('active'));
         document.getElementById(`ep-${episode.num}`).classList.add('active');
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-        episodes.forEach(ep => {
+        window.episodes2.forEach(ep => {
             const epItem = document.createElement('div');
             epItem.className = 'episode-item';
             epItem.id = `ep-${ep.num}`;
-            epItem.textContent = `Episodio ${ep.num}`;
+            epItem.innerHTML = `
+                <span class="episode-number">EP ${ep.num}</span>
+                <span class="episode-title-text">${ep.title}</span>
+            `;
             epItem.onclick = () => loadEpisode(ep);
-            episodesGrid.appendChild(epItem);
+            window.episodesGrid2.appendChild(epItem);
         });
 
         // Cargar el primer episodio por defecto
-        if (episodes.length > 0) {
-            loadEpisode(episodes[0]);
+        if (window.episodes2.length > 0) {
+            loadEpisode(window.episodes2[0]);
         }
 
         // Activar el primer reproductor por defecto
