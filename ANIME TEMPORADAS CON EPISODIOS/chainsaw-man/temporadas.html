@@ -174,7 +174,7 @@
     .season-description {
       color: #ccc;
       margin-bottom: 1.5rem;
-      font-size: 0.9rem;
+      font-size: 0.9rem; /* Ajuste de tamaño */
     }
     
     .season-info {
@@ -279,41 +279,64 @@
       background: rgba(128, 128, 128, 0.1);
     }
 
-    .download-links {
-      margin-top: 2rem;
-      padding: 1rem;
+    .contenedor-video {
       background: rgba(255, 255, 255, 0.05);
-      border-radius: 10px;
+      border-radius: 15px;
+      padding: 2rem;
       border: 1px solid rgba(255, 92, 173, 0.2);
+      margin-bottom: 2rem;
     }
 
-    .download-links h3 {
-      font-size: 1.2rem;
+    .player-options {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
       margin-bottom: 1rem;
-      color: #ff5cad;
+      flex-wrap: wrap;
     }
 
-    .download-links ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .download-links li {
-      margin-bottom: 0.5rem;
-    }
-
-    .download-links a {
-      color: #fff;
-      text-decoration: none;
+    .player-btn {
       background: linear-gradient(45deg, #ff5cad, #ff8a80);
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      transition: background 0.3s ease;
-      display: inline-block;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
     }
 
-    .download-links a:hover {
-      background: linear-gradient(45deg, #ff8a80, #ff5cad);
+    .player-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 92, 173, 0.4);
+    }
+
+    .player-btn.active {
+      background: linear-gradient(45deg, #4CAF50, #45a049);
+    }
+
+    .reproductor-video {
+      height: 500px;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .player-container {
+      display: none;
+      width: 100%;
+      height: 100%;
+    }
+
+    .player-container.active {
+      display: block;
+    }
+
+    .player-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 10px;
     }
 
     @media (max-width: 768px) {
@@ -348,9 +371,9 @@
     <a href="../../index.html" class="back-btn">← Volver al Catálogo</a>
     
     <div class="anime-header">
-      <h1 class="anime-title">🪚 Chainsaw Man</h1>
+      <h1 class="anime-title">⚔️ Chainsaw Man</h1>
       <p class="anime-description">
-        Denji es un joven cazador de demonios que vive en la pobreza y trabaja para saldar las deudas de su padre. Su vida cambia cuando su demonio mascota Pochita se fusiona con él, otorgándole el poder de convertirse en Chainsaw Man.
+        Chainsaw Man sigue la historia de Denji, un joven cazador de demonios que se fusiona con su mascota demonio Pochita para convertirse en el hombre motosierra.
       </p>
     </div>
 
@@ -364,29 +387,18 @@
         </div>
         <div class="season-info">
           <div class="season-title">Temporada 1</div>
-          <div class="season-description">
-            Denji se convierte en Chainsaw Man y se une a la División de Cazadores de Demonios. Junto a sus compañeros Power y Aki,
-            enfrenta amenazas demoníacas cada vez más peligrosas.
-          </div>
+          <div class="season-description">Denji se enfrenta a demonios y descubre el oscuro mundo de los cazadores de demonios.</div>
           <button class="watch-btn" onclick="goToSeason('season1.html')">Ver Temporada</button>
           <div class="download-servers-section">
             <div class="servers-title">📥 Descargar Temporada Completa</div>
             <div class="servers-grid-compact">
-              <a href="#" onclick="showUnavailableAlert('TeraBox'); return false;" class="download-link terabox unavailable-server">📦 TeraBox</a>
-              <a href="#" onclick="showUnavailableAlert('MEGA'); return false;" class="download-link mega unavailable-server">📦 MEGA</a>
+              <a href="https://exe.io/ChainsawmanS1espanol" target="_blank" class="download-link mediafire">📦 MediaFire</a>
+              <a href="https://exe.io/ChainsawmanS1dropespanol" target="_blank" class="download-link dropbox">📦 Dropbox</a>
+              <a href="https://exe.io/ChainsawmanS1teraboxespanol" target="_blank" class="download-link terabox">📦 TeraBox</a>
             </div>
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="download-links">
-      <h3>Descargas:</h3>
-      <ul>
-        <li><a href="https://exe.io/ChainsawmanS1espanol" target="_blank">Mediafire</a></li>
-        <li><a href="https://exe.io/ChainsawmanS1dropespanol" target="_blank">Dropbox</a></li>
-        <li><a href="https://exe.io/ChainsawmanS1teraboxespanol" target="_blank">Terabox</a></li>
-      </ul>
     </div>
   </main>
 
@@ -405,3 +417,7 @@
   </script>
 </body>
 </html>
+
+
+
+
